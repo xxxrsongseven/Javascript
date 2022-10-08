@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jquery.min.js"></script>
+    <script src="./myajax.js"></script>
+    <script src="./axios.min.js"></script>
+    <link rel="stylesheet" href="./bootstrap.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>请打开f12阅览</h1>
+    <button id="get">JS原生get</button>
+    <button id="post">JS原生post</button>
+    <button id="code">URL编码</button>
+    <button id="json">json</button>
+    <button id="jsonPost">get请求序列化&反序列化</button>
+    <button id="get1">jquery 发起get(无参)</button>
+    <button id="get2">jquery GET(有参)</button>
+    <button id="post1">jquery POST 提交图书信息</button>
+    <button id="ajaxGet">jquery ajaxGet</button>
+    <button id="ajaxPost">jquery ajaxPost</button>
+    <button id="myAjax">自行封装Ajax</button>
+    <button id="outTime">超时访问 timeout</button>
+    <button id="formData">formData 提交定义的值</button>
+    <button id="axiosGet">axios GET</button>
+    <button id="axiosPost">axios POST</button>
+    <button id="axiosGET">axios直接发起GET请求</button>
+    <button id="axiosPOST">axios直接发起POST请求</button>
+    <button id="jsonp">jsonp原生</button>
+    <button id="jsonpJQ">jsonp JQuery</button>
+
+    <div style="border: solid 1px; width: 300px; margin: 10px; position: absolute;">
+        <form id="form1">
+            <b>通过表单获取通过formData提交</b>
+            <input type="text" name="name" placeholder="账号">
+            <input type="password" name="upwd" placeholder="密码">
+            <br><input type="submit" value="提交">
+        </form>
+    </div>
+
+    <div style="border: solid 1px; width: 300px; height: 100px; margin: 10px; position: relative; top: 0; left: 310px;">
+        <b>原生JS 文件上传服务器及显示和进度条</b>
+        <input type="file" id="file1">
+        <!-- 进度条 -->
+        <div class="progress" style="display: none;">
+            <div class="progress-bar progress-bar-striped active" style="width: 0%;" id="percent"></div>
+        </div>
+        <button id="btnUpload">上传文件</button>
+        <img src="" alt="" id="img" width="100px">
+    </div>
+
+    <div
+        style="border: solid 1px; width: 300px; height: 100px; margin: 10px; position: relative; top: -110px; left: 620px;">
+        <b>Jqurey 文件上传服务器及显示和进度条</b>
+        <input type="file" id="file2">
+        <button id="btnUpload1">上传文件</button>
+        <b id="b" style="display: none;">上传中</b>
+        <img src="" alt="" id="img1" width="100px">
+    </div>
+
+    <script>
+        //原生 jsonp 跨域  利用script标签的src来使用回调函数获得相应的值
+        function abc(data) {
+            $('#jsonp').on('click', function () {
+                console.log(data);
+            })
+        }
+        //JQuery jsonp 原理 jquery向header创建了一个script标签
+        $('#jsonpJQ').on('click', function () {
+        $.ajax({
+            url: "http://www.liulongbin.top:3006/api/jsonp?name=haha&age=18",
+            //通过ajax发起jsonp请求必须指定 dataType: 'jsonp'
+            dataType: 'jsonp',
+            //自定义修改参数名，默认callback格式
+            //jsonp:'123',
+            //自定义修改回调函数名，默认jQueryxxxxxx格式
+            jsonpCallback: 'haha',
+            success: function (res) {
+                    console.log(res);  
+            }
+        })
+    })
+    </script>
+
+    <script src="http://www.liulongbin.top:3006/api/jsonp?callback=abc&name=zs&age=18"></script>
+
+    <script>
+
+        var xhr = new XMLHttpRequest()
+
+
+        //axios直接发起POST请求
+        $('#axiosPOST').on('click', function () {
+            axios({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/post',
+                data: {
+                    location: '西安',
+                    address: 'Xi`an University'
+                },
+                params: {
+
+                }
+            }).then(function (res) {
+                console.log(res.data);
+            }, function (err) { })
+        })
+
+
+        //axios直接发起GET请求
+        $('#axiosGET').on('click', function () {
+            axios({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/get',
+                data: {
+
+                },
+                params: {
+                    name: '钢铁侠',
+                    age: 35
+                },
+
+            }).then(function (res) {
+                console.log(res.data);
+            }, function (err) { })
+        })
+
+
+        //axios 发起 POST
+        $('#axiosPost').on('click', function () {
+            var dataObj = { location: '北京', address: '顺义' }
+            axios.post('http://www.liulongbin.top:3006/api/post', dataObj).then(function (res) {
+                console.log(res.data);
+            }, function (err) { })
+        })
+
+
+        //axios 发起 GET
+        $('#axiosGet').on('click', function () {
+            var parmasObj = { name: 'zs', age: 20 }
+            axios.get('http://www.liulongbin.top:3006/api/get', { params: parmasObj }).then(function (res) {
+                console.log(res.data);
+            }, function (err) { })
+        })
+
+
+        //JQuery上传文件
+        $('#btnUpload1').on('click', function () {
+            //监听发起ajax请求
+            $(document).ajaxStart(function () {
+                $('#b').show()
+            })
+            //监听关闭ajax请求
+            $(document).ajaxStop(function () {
+                $('#b').hide()
+            })
+            var files = $('#file2')[0].files
+            if (files.length <= 0) {
+                return alert('请选择上传的文件！')
+            } else {
+                var fd = new FormData()
+                fd.append('avatar', files[0])
+                $.ajax({
+                    method: 'POST',
+                    url: 'http://www.liulongbin.top:3006/api/upload/avatar',
+                    data: fd,
+                    //不修改content-Type属性，使用formdata默认的content-Type值
+                    contentType: false,
+                    //不编码，直接将formdata上传
+                    processData: false,
+                    success: function (res) {
+                        document.getElementById('img1').src = 'http://www.liulongbin.top:3006' + res.url
+                    }
+                })
+            }
+        })
+
+
+        //JS原生上传文件
+        $('#btnUpload').on('click', function () {
+            var files = document.querySelector('#file1').files
+            if (files.length <= 0) {
+                return alert('请选择上传的文件！')
+            } else {
+                var fd = new FormData()
+                //将用户选的文件追加到fd中
+                fd.append('avatar', files[0])
+                xhr.open('POST', 'http://www.liulongbin.top:3006/api/upload/avatar')
+                //计算上传进度
+                xhr.upload.onprogress = function (e) {
+                    if (e.lengthComputable) {
+                        var percentComplete = Math.ceil((e.loaded / e.total) * 100)
+                        $('.progress').attr('style', 'display:block')
+                        $('#percent').attr('style', 'width:' + percentComplete + '%;display:block')
+                        $('#percent').html(percentComplete + '%')
+                    }
+                }
+                xhr.upload.onload = function () {
+                    $('#percent').removeClass().addClass('progress-bar progress-bar-success')
+                }
+                xhr.send(fd)
+                //监听上传成功
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = JSON.parse(xhr.responseText)
+                        console.log(data);
+                        //打印图片
+                        if (data.status === 200) {
+                            document.getElementById('img').src = 'http://www.liulongbin.top:3006' + data.url
+                        } else {
+                            console.log(data.message);
+                        }
+                    }
+                }
+            }
+        })
+
+
+
+
+        //通过表单获取通过formData提交
+        var form = document.querySelector('#form1')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            var fd = new FormData(form)
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/formdata')
+            xhr.send(fd)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+        })
+
+        //formData提交
+        $('#formData').on('click', function () {
+            //创建formdata
+            var fd = new FormData()
+            //通过append向fd中追加数据
+            fd.append('name', 'haha')
+            fd.append('upwd', '123456')
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/formdata')
+            //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            xhr.send(fd)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+        })
+
+
+        //超出timeout定义时间
+        $('#outTime').on('click', function () {
+            xhr.timeout = 30
+            xhr.ontimeout = function () {
+                alert('访问超时！')
+            }
+            xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks')
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            }
+        })
+
+
+
+
+        //自行封装Ajax
+        $('#myAjax').on('click', function () {
+            myajax({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/getbooks',
+                data: {
+
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+            myajax({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/addbook',
+                data: {
+                    bookname: '哈哈哈',
+                    author: '啦啦啦',
+                    publisher: 'eqeq'
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+        })
+
+
+        //json.parse应用发送get 序列化&反序列化
+        // 字符转对象 反序列化  对象转字符  序列化
+        $('#jsonPost').on('click', function () {
+            xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks')
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+                        console.log(res);
+                        var json2 = JSON.stringify(res)
+                        console.log(json2);
+                    })
+                    console.log(typeof xhr.responseText + ':' + xhr.response);
+                    console.log(JSON.parse(xhr.response));
+                }
+            }
+        })
+
+
+        // xhr get
+        var get = document.getElementById('get')
+        get.onclick = function () {
+            xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks')
+            xhr.send()
+            xhr.onreadystatechange = function () {
+
+                console.log(xhr.responseText);
+            }
+        }
+        // $.get('http://www.liulongbin.top:3006/api/getbooks?id=1',function(res){
+        //     console.log(res);
+        // })
+
+
+        // Url编码
+        var code = document.getElementById('code')
+        code.onclick = function () {
+            var bian = encodeURI('你妈的逼')
+            var jie = decodeURI('%E4%BD%A0%E5%A6%88%E9%80%BC')
+            console.log(bian, jie);
+        }
+
+
+        // xhr post
+        var post = document.getElementById('post')
+        post.onclick = function () {
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/addbook')
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            xhr.send('bookname=你好&author=haha&publisher=中国')
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState = 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            }
+        }
+
+
+        // JSON
+        var json = document.getElementById('json')
+        json.onclick = function () {
+            var jsonStr = '{"name":"jack","age":18,"id":123}'
+            var obj = JSON.parse(jsonStr)
+            var json1 = JSON.stringify({ name: 'marry', age: 16, id: 321 })
+            console.log(typeof obj);
+            console.log(obj);
+            console.log(typeof json1 + ':' + json1);
+        }
+
+
+        //get(无参数)
+        $('#get1').on('click', function () {
+            $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+                console.log(res.data);
+            })
+        })
+
+
+        //get(有参数 {id:2})
+        $('#get2').on('click', function () {
+            $.get('http://www.liulongbin.top:3006/api/getbooks', { id: 1 }, function (req) {
+                console.log(req.data);
+            })
+        })
+
+
+        //post图书信息
+        $('#post1').on('click', function () {
+            $.post('http://www.liulongbin.top:3006/api/addbook', { bookname: '金瓶梅', author: '王一博', publisher: '西安文理学院出版社' },
+                function (res) {
+                    console.log(res);
+                }
+            )
+        })
+
+
+        //ajax发起get请求
+        $('#ajaxGet').on('click', function () {
+            $.ajax({
+                type: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/getbooks',
+                data: {
+                    id: 1
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+        })
+
+
+        //ajax发起Post请求
+        $('#ajaxPost').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/addbook',
+                data: {
+                    bookname: '数据结构',
+                    author: '啦啦啦',
+                    publisher: '西安文理学院出版社'
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

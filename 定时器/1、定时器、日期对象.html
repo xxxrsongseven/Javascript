@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+    <p>setInterval 定时型 | setInterval(show, 1000) | 无终止执行 每隔一秒执行1次函数</p>
+    <button onclick="f1()">开始弹出</button>
+    <p>setTimeout 延时型 | setTimeout(show, 2000) | 两秒后执行一次弹出就结束</p>
+    <button onclick="f2()">开始弹出</button>
+    <p>开启和关闭 | clearInterval(函数名) | clearTimeout(函数名)是关闭setTimeout延时器的方法。</p>
+    <button onclick="f3()">关闭Interval和Timeout</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+    <button onclick="f4()">获取小时</button><button onclick="f5()">获取分钟</button><button onclick="f6()">获取秒</button>
+    <div onmouseout="f8()" onmouseover="f7()" style="margin: 0 auto; background-color: pink; width: 50%; height: 100px;">
+    退出延时关闭
+    </div>
+    <div id="d1" style="display: none; margin: 0 auto; background-color: pink; width: 50%; height: 100px;"></div>
+    </div>
+    <script>
+        var date=new Date()
+        function f1() {
+            var i = 0
+            function show(){
+                alert('这是弹出框，第'+i+'次弹出');
+                return i+=1
+            }
+            var timer2= setInterval(show,1000)
+        }
+        function f2(){
+            function show(){
+                alert('2秒后弹出')
+            }
+           var timer1 =  setTimeout(show,2000)
+        }
+        function f3(){
+            clearInterval(timer2)
+            clearTimeout(timer1)
+        }
+        function f4(){
+            var h =date.getHours()
+            alert('当前为'+h+'时')
+        }
+        function f5(){
+            var m =date.getMinutes()
+            alert('当前为'+m+'分')
+        }
+        function f6(){
+            var s =date.getSeconds()
+            alert('当前为'+s+'秒')
+        }
+        function f7(){
+        var d1 =document.getElementById('d1')
+        d1.style.display='block'
+        }      
+        function f8(){
+            setTimeout(function(){
+                d1.style.display='none'
+            },2000)
+            
+        }
+    </script>
+</body>
+</html>

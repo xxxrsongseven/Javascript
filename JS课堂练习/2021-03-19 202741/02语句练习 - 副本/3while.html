@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>while循环练习</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    window.onload = function () {
+      var i = 1;       //设置循环变量初始值  
+      var msg = '';    //显示的信息
+
+      //1.用while循环分别计算1至9的5倍
+      //将“ix5=?”字符串添加到变量msg中，并添加换行标签。
+      while (i < 10) {
+        var sum = i + '*' + '5=' + i * 5;
+
+        i++;
+        msg += sum + '\n';
+
+      }
+      //用变量msg的值替换原网页中显示的信息
+      var el = document.getElementById('answer');
+      el.innerText = msg;
+      // console.log(el.innerHTML);
+      console.log(el.innerText);
+
+      //2.写完1-2后将下面语句中的注释符删除
+      //document.getElementById('answer').innerHTML = msg;
+    }
+  </script>
+</head>
+
+<body>
+  <section id="page1">
+    <h1>Bullseye</h1>
+    <img src="images/teacher.png" id="teacher" alt="teacher" />
+    <section id="answer">1x5=5<br>2x5=10<br>……<br>9x5=45</section>
+  </section>
+</body>
+
+</html>

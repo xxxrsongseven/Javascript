@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块基础</title>
+</head>
+<body>
+<!-- 1.给script标签添加type="module"属性和值 -->
+<script type="module">
+    // 2.导入命名导出
+    // 2-1 从1module.js模块导入name,showName,age,showAge,xm
+    import {name,showName,age,showAge,xm} from '/1module.js';
+    console.log(name);
+    console.log(showName());
+    console.log(age);
+    console.log(showAge());
+    
+    // 3.导入默认导出。导入时可以替换标识符，即重命名
+    // 3-1 从1module.js模块导入默认导出，重命名myDefault
+    import myDefault from './1module.js';
+    myDefault();
+
+    // 4.导入默认导出和命名导出。同名标识符不能导入两次，需注册第13行和第21行代码
+    // import moren,{name, showName, age, showAge} from './module1.js';
+
+    // 5.导入时重命名。格式：原名 as 新名
+    // 5-1 从1module.j模块导入name重命名为username
+    import{name as username} from'./1module.js';
+    console.log('导入时重命名：' + username);
+</script>    
+</body>
+</html>

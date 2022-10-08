@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>避免冲突</title>
+<script>
+//1.死循环，为什么？如何改？
+function f(){
+	function f1(a) {
+		i= 3;
+		document.write(a+i);
+	}
+	for(var i=0; i<5; i++){
+		f1(i);
+	}
+}
+f();
+</script>
+</head>
+
+<body>
+</body>
+</html>

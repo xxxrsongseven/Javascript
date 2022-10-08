@@ -1,0 +1,7 @@
+npm init -y
+npm i koa
+npm i koa-views
+npm i koa-static
+npm i koa-router
+npm i koa-session
+npm i ejs

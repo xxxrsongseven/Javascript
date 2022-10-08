@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>const声明</title>
+<script>
+
+// 1.const声明常量时必需初始化吗？必须初始化
+//const SPEEDLIGHT;
+
+// 2-1const有块级作用域，注意作用域
+const DOMAIN= 'https://bing.com';
+{
+  // 2-2是否屏蔽了代码块外DOMAIN？屏蔽了
+  const DOMAIN= 'https://dogedoge.com';
+  console.log(`代码块内DOMAIN为${DOMAIN}`);
+}
+console.log(`代码块外DOMAIN为${DOMAIN}`);
+
+// 3.能给a再赋值吗？不能
+//DOMAIN= 'https://yandex.com';
+
+// 4.const常量存储的是对象(如数组、自定义对象)，可以修改对象成员值吗？
+const A= [];
+A[0]= 'a';
+console.log(A[0]);
+const AUTOMOBILE= {//对象
+    maxSpeed: 300,
+    start: function() {;}
+};
+AUTOMOBILE.maxSpeed= 350;
+console.log(AUTOMOBILE.maxSpeed);
+
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

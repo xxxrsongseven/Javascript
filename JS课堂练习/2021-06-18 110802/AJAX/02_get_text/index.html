@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+    <title>jQuery的get方法</title>
+<style>
+body{
+	font:100% 等线,微软雅黑;
+	margin:0;
+}
+body > p{
+	font-size: 1.2em;
+}
+#message{ color:green; }
+a{
+	text-decoration:none;
+}
+.mess{
+	margin:20px 0;
+}
+.mess h2{
+	font-size: 1.5em;
+	font-weight:bold;
+	margin: 5px 0;
+}
+.mess p{
+	font-size: 1em;
+	margin: 5px;
+}
+</style>
+</head>
+
+<body>
+<p>未读新消息<span id="newmessage"><a href="#"></a></span></p>
+<div id="message"></div>
+
+<script src="jquery.min.js"></script>
+<script>
+$(function(){
+  //获取未读消息数
+  function newmessage(){
+	var xhr=$.get('http://localhost:90/', function(response){
+		$('#newmessage a').html(response);
+	});
+	//要判断出错，使用xhr.fail()方法
+	xhr.fail(function(jqXHR, textStatus, errorThrown){
+	  $('p > a').remove();
+	  $('p').append('<a href="index.html">刷新</a>'); //用户操作
+	  console.log(textStatus + ' ' +errorThrown);    //调试用
+	});
+  }
+  
+  newmessage();
+  
+  $('a').click(function(){
+	$('#message').load('new_message.html');
+	$('#newmessage a').html('');
+	return false;
+  });
+});
+</script>
+</body>
+</html>

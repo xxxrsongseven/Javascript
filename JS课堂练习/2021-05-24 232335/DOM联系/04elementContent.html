@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML5的innerHTML属性</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em>无花果</li>
+	  <li id="two" class="hot"><em>费牙的</em>松子</li>
+    <li id="three" class="hot"><em>新鲜的</em>蜂蜜</li>
+    <li id="four"><em>列表的</em>列表项</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>操作步骤</h3>
+  <p>1.将第1个列表项的内容变为超链接</p>
+  <p>2.删除第3个列表项的内容</p>
+  <p>3.将第4个列表项原内容隐藏，显示新内容，鼠标移到这个列表项上时显示原内容，鼠标移出时显示新内容</p>
+</div>
+
+<script>
+// 1.元素内容含HTML标签，用innerHTML读取和设置
+// 1-1 使用getElementById()方法将id为one的元素存储在变量firstItem中
+let firstItem= document.getElementById('one');
+
+// 1-2 使用innerHTML属性将获取到的元素节点内容存放在itemContent变量中
+let itemContent= firstItem.innerHTML;
+
+// 1-3 将itemContent作为超链接中文字，超链接连接地址是http://bing.com
+//将上面整个字符串作为firstItem元素的内容
+firstItem.innerHTML= '<a href="http://bing.com">' + itemContent + '</a>';
+// 1-4 使用getElementById()方法将id为three的元素存储在变量thirdItem中
+let thirdItem= document.getElementById('three');
+// 1-5 将id为three的元素的内容删除
+thirdItem.innerHTML= '';
+
+// 2.元素内容是纯文本(不含HTML标签)，用textContent读取和设置
+var question= 'innerHTML属性的作用？答案';        //提示语
+var answer= '获取或设置元素的内容(含标签和文本)';  //答案
+//获取id属性为four的元素，存储在变量fourth中
+var fourth= document.getElementById('four');
+// 2-1 使用textContent属性，将元素内容替换为question
+fourth.textContent= question;	
+fourth.onmouseover= function(){ //鼠标经过第4个li时
+  // 2-2 使用textContent属性，将元素内容替换为answer
+  fourth.textContent= answer;
+}
+fourth.onmouseout= function(){  //鼠标移出第4个li时
+  //2-3 使用textContent属性，将元素内容替换为question
+  fourth.textContent= question;
+}
+</script>
+
+</body>
+</html>

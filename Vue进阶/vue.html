@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../包/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <h1>{{adress}}</h1>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',//el的第一种写法
+
+            //data的对象写法 data只是将数据绑定到了vm上
+            data: {
+                name: '西安',
+                adress:'雁塔区'
+            }, 
+            //data的函数写法,必须return回一个值，不能使用箭头函数
+            /*data:function(){
+                return name='hello'
+            }*/
+        })
+        vm.$mount('#app')//el的第二钟写法   相当于el:'#app'
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>避免冲突</title>
+</head>
+
+<body>
+<script>
+//1.在局部作用域(块级、函数)能访问全局作用域变量吗？
+var a = 1;
+function f1(b) {
+  var c= b + 2;
+  function f2(d) {
+    console.log(a,b,c,d);
+  }; 
+  f2(c + 3);
+}
+f1(a + 2);
+
+//2.局部变量和全局变量同名，如何在局部作用域里访问全局变量
+var d = 1;
+function f2() {
+   //2-1 想读取全局变量d的值，但此时x是全局变量d吗？值是？为什么？
+   console.log('局部变量d：' + d);	
+   var d= 2;
+   //2-2 如何读取全局变量d
+   console.log('全局变量d：' + this.d);		   //this指向根据执行环境改变，容易出错
+   console.log('全局变量d：' + window.d);		   //适用于浏览器
+   console.log('全局变量d：' + globalThis.d);	//ES2020新增，适用于各宿主环境，但注意兼容性
+}
+f2();
+
+//3.死循环，为什么？如何改？
+function f3(){
+	function f4(e) {
+		var i= 1; //添加var
+		console.log(e+i);
+	}
+	for(var i=0; i<3; i++){
+		f4(i);
+	}
+}
+f3();	
+</script>
+</body>
+</html>

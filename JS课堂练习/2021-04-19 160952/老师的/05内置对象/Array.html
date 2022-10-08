@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array对象</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<h1>TravelWorthy</h1>
+  <div id="info"><h2>武林排行榜</h2><p>***，***，***，***</p><h2>随机验证码</h2><p>1587</p></div>
+
+<script>
+  /***第一部分，数组常用方法。***/
+  let msg= '';  //存储显示在网页的信息
+  let arr= ['江南七怪','南帝段智兴','铁砂掌裘千仞'];
+  msg+= '<h2>金庸小说的五绝</h2>';
+  // 1-1 使用shift()方法删除数组arr第1个元素
+  arr.shift();
+  // 1-2 使用pop()方法删除数组arr最后1个元素
+  arr.pop();
+  // 1-3 使用unshift(ele[, …])方法给数组arr头部增加两个元素：东邪黄药师、西毒欧阳锋。中顽童周伯通、南帝一灯大师、东邪黄药师
+  arr.unshift('东邪黄药师','西毒欧阳锋');
+  // 1-4 使用push(ele[, …])方法给数组arr尾部增加连个个元素：北丐洪七公、中神通王重阳
+  arr.push('北丐洪七公','中神通王重阳');
+  // 1-8 在赋值符右侧+号中写出：用join(seprator)方法将数组arr元素用<br>分隔并生成字符串，如：'东邪黄药师<br>西毒欧阳锋<br>……<br>中神通王重阳'
+  msg+=  '<h3>原五绝</h3><p>' + arr.join('<br>') + '</p>';
+  
+  // 1-5 使用splice(m[,n[,item1,……]])方法删除两个数组元素西毒欧阳锋、南帝段智兴
+  arr.splice(1, 2);
+  // 1-6 使用splice(m[,n[,item1,……]])方法在数组索引1位置插入两个元素西狂杨过、南僧一灯
+  arr.splice(1, 0, '西狂杨过', '南僧一灯');
+  // 1-7 使用splice(m[,n[,item1,……]])方法将数组两个元素北丐洪七公、中神通王重阳，分别替换为北侠郭靖、中顽童周伯通
+  arr.splice(3, 2, '北侠郭靖', '中顽童周伯通');
+  // 1-9 在赋值符右侧+号中写出：用join(s)方法将数组arr元素用顿号连接并生成字符串，如：'东邪黄药师、西狂杨过、……、中顽童周伯通'
+  msg+=  '<h3>新五绝</h3><p>' + arr.join('、') + '</p>';
+
+
+  //第二部分，迭代方法，参数均是回调函数
+  let salary= [3000, 5000, 7000];
+  msg+= '<h3>试用工资</h3>';
+  // 2-1 使用forEach(callback(value[,index[,array]]))方法，回到函数完成向msg连接工资(工资用空格分隔)的功能
+  salary.forEach(value => msg+= value + ' ');
+  // 2-2 使用forEach方法将salary中存储的工资加2000
+  salary.forEach((value,index,array) => array[index]+= 2000 );
+  msg+= '<h3>转正工资</h3><p>' + salary.join('、') + '</p>';
+  // 2-3 使用map(callback(value[,index[,array]]))方法将工资加100，存在变量newSalary中。注意salary数组元素值未改变。
+  let newSalary= salary.map(value => value + 100);
+  msg+= '<h3>最新工资</h3><p>' + newSalary.join('、') + '</p>';
+
+  let el = document.getElementById('info');
+  el.innerHTML =  msg;
+
+
+  //第三部分，排序
+  //比较函数的规则：a排在b前面返回负数；如果b排在a前面返回正数；a和b不动返回0。a和b表示待比较的两数
+  //自定义升序比较函数，适用于字符串值和数字值的数组，详情看MDN的Array的sort方法
+  function asc(a, b) {
+    if (a < b ) {  return -1;  }
+    if (a > b ) {  return 1;  }
+    return 0;
+  }
+  //自定义降序比较函数，适用于字符串值和数字值的数组，详情看MDN的Array的sort方法
+  function desc(a, b) {
+    if (a < b ) { return 1;  }
+    if (a > b ) { return -1; }
+    return 0;
+  }
+  let life= ['health', 'happiness', 'freedom'];
+  let age= [20, 3, 100];
+  console.log('原字符串数组：', life.join('、'));
+  // 3-1对字符串值数组life升序排序，无比较函数
+  life.sort();
+  console.log('无比较函数的升序后的字符串数组：', life.join('、'));
+  // 3-2对字符串值数组life降序排序，有比较函数
+  life.sort(desc);
+  console.log('有降序比较函数的降序后的字符串数组：', life.join('、'));
+  console.log('原数值数组：', age.join('、'));
+  // 3-3对数字值数组age升序排序，无比较函数，有可能出错吗？
+  age.sort();
+  console.log('无比较函数时数值先转为字符串再升序排序：',age.join('、'));
+  // 3-4对数字值数组age升序排序，有比较函数函数。数字值排序时必须有比较函数
+  age.sort(asc);
+  console.log('有升序比较函数的升序后的数组：', age.join('、'));
+  // 3-5对数字值数组age降序排序，有比较函数函数。数字值排序时必须有比较函数
+  age.sort(desc);
+  console.log('有降序比较函数的降序后的数组：', age.join('、'));
+  //对于数字值数组，asc和desc函数可简写为下面，注意不适用于字符串值数组，因为字符串不能减
+  function numAsc(a,b)  { return a-b; }
+  function numDesc(a,b) { return b-a; }
+  console.log('针对数值数组简写的升序比较函数', age.sort(numAsc).join('、'));
+  console.log('针对数值数组简写的降序比较函数', age.sort(numDesc).join('、'));
+
+  //第四部分，汉字按拼音排序，结合sort的比较函数理解
+  let bat= ['李彦宏', '马云', '马化腾'];
+  console.log('原汉字数组：', bat.join('、'));
+  //方法一：少量字符串比较时用。所有浏览器均可
+  //localeCompare()使用本地特定的顺序来比较两个字符串，语法：string.localeCompare(target,locales)
+  //locales表示按什么语言排序，参数target是要与string进行比较的字符串。如果string小于target，则localeCompare()返回负数；如果string大于target，返回正数；如果相等，则返回0。
+  //升序
+  bat.sort( function(a, b){
+    return a.localeCompare(b, 'zh')
+  });
+  console.log('升序排序后的汉字数组：', bat.join('、'));
+  //降序
+  bat.sort( function(a, b){
+    return b.localeCompare(a, 'zh')
+  });
+  console.log('降序排序后的汉字数组：', bat.join('、'));
+
+  //方法二：大量字符串比较效率高。IE11开始支持
+  //Intl.Collator是用于语言敏感字符串比较的collators构造函数。
+  //Intl.Collator.compare(string1, string2)方法根据这个Intl/Collator对象的排序顺序比较两个字符串。
+  //compare返回值。string1在string2前返回负值；string1在string2之后返回正值；相等返回0
+  bat.sort(new Intl.Collator('zh').compare);
+  console.log('升序排序后的汉字数组：', bat.join('、'));
+  bat.sort(function(a,b){
+    return new Intl.Collator('zh').compare(b,a);
+  });
+  console.log('降序排序后的汉字数组：', bat.join('、'));
+      
+</script>
+</body>
+</html>

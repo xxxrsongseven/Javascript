@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>遍历DOM树</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {  
+  $h2= $('h2');
+  $('ul').hide();
+  $h2.append('<a class="show">显示</a>');
+
+  $h2.on('click', function() {
+    // 1.选择h2，调用next()方法选择ul
+	
+      .fadeIn(800)
+      // 2.链式语法遍历。写出：children()方法选择ul中class为hot的元素
+	  
+      .addClass('complete');
+	
+    // 3.选择h2，调用find()找到后代的a元素，通过链式语法后添加fadeOut()方法
+	
+  });
+  //有兴趣的同学在上面匿名函数中改造，当单击超链接后，超链接文字变为“显示”，同时隐藏ul
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em> 无花果</li>
+    <li id="two" class="hot"><em>费牙的</em> 松子</li>
+    <li id="three" class="hot"><em>新鲜的</em> 蜂蜜</li>
+    <li id="four" class="cool" ><em>酸爽的</em> 香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.单击显示按钮，列表出现，同时，显示按钮消失</p>
+</div>
+</body>
+</html>

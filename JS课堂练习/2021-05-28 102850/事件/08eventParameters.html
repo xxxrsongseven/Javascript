@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>event对象作为实参和自定义实参</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //2.写出函数形参，其中一个形参是minLength
+  //6.给函数添加第1个形参e
+  //12.给函数添加第3个形参who
+  function checkLength(e,minLength,who) {
+    let el;	
+    //3.将触发事件的元素赋值给变量el，在赋值符右侧用事件对象的target属性获得
+    el = e.target;
+    console.log('(2)' + this);
+    //假如username文本框中值的长度小于minLength
+    if (el.value.length < minLength) {
+      //13.在字符串前面添加形参who，将"用户名"字符串删除
+      elMsg.innerHTML = who +'不能少于' + minLength + '个字符';
+    } else {
+      elMsg.innerHTML = '';
+    }
+  }
+
+  let elMsg = document.getElementById('feedback');
+
+  let elUsername = document.getElementById('username');
+  //1.使用事件侦听器方式写出：当username元素blur事件发生时调用checkLength函数，
+  //4.将6作为checkLength函数的实参
+  //5.将event对象作为checkLength函数的第1个实参
+  //10.将“用户名”字符串作为checkLength函数第3个参数
+  elUsername.addEventListener('blur',function(event){
+    console.log('(1)' + this);
+    checkLength(event,6,'用户名');
+  });
+  
+  let elPassword = document.getElementById('password');
+  //7.使用DOM事件属性方式写出：当password元素blur事件发生时调用checkLength函数
+  //8.将8作为checkLength函数的实参
+  //9.将event对象作为checkLength函数的第1个实参
+  //11.将“密码”字符串作为checkLength函数第3个参数
+  elPassword.onblur=function(e){
+    checkLength(e,8,'密码');
+  }
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>新账户</h2>
+  <form method="post">
+    <div id="feedback"></div>
+    <label for="username">用户名: </label>
+    <input type="text" id="username" />
+
+    <label for="password">密码: </label>
+    <input type="password" id="password" />
+
+    <input type="submit" value="注册" />
+
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>获取元素内容</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+// 1.使用简写形式，写出页面加载时的函数调用的语句，将下面整个代码包含起来
+$(function(){
+  // 2.定义变量$ul，存储使用$()函数获得的ul元素
+  let $ul=$('ul');
+  var $li= $('li');
+  // 3.定义变量$listHTML，存储ul元素中的内容(包含html和文本)
+  let $listHTML=$ul.html();
+  $ul.append($listHTML);  //将ul元素中的内容添加到ul节点的最后子节点的后面
+  
+  // 4.定义变量$listText，存储ul元素中的内容(只包含文本)
+  let $listText=$ul.text();
+  $ul.append('<p>' + $listText  + '</p>');     //将ul元素中的文本以段落的结构添加到ul节点的最后子节点的和面
+  
+  console.log($li.length);
+  // 5.定义变量$listItemHTML，存储li元素中的内容(包含html和含文本)
+  let $listItemHTML=$li.html();
+  $li.append('<i>' + $listItemHTML + '</i>');  //将ul元素中的文本添加到每个li节点的最后子节点的后面 
+  
+  // 6.定义变量$listItemText，存储li元素中的内容(只包含文本)
+  let $listItemText=$li.text();
+  $ul.append('<p>' + $listItemText + '</p>');  //将ul元素中的文本以段落的结构添加到ul节点的最后子节点的和面 
+
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em>无花果</li>
+    <li id="two" class="cool"><em>费牙的</em>松子</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.列表项变为4个，最后两个分别和前两个相同</p>
+  <p>2.在最后列表项后面添加了一个段落，显示列表项内容</p>
+  <p>3.在每个列表项后添加了第一个列表项的内容</p>
+  <p>4.在最后列表项后面添加了一个段落，显示列表项内容</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设置图像属性</title>
+<script>
+window.onload= function(){
+	var photo= document.getElementById('photo');
+	photo.onmouseover= function(){ //鼠标移过图片时
+		//1.使用setAttribute()方法设置图像元素的src属性为photo2.jpg
+		
+	}
+	photo.onmouseout= function(){  //鼠标移出图片时
+		//2.使用setAttribute()方法设置图像元素的src属性为photo1.jpg
+		
+	}
+}
+</script>
+</head>
+
+<body>
+<h2>操作步骤</h2>
+<p>鼠标移过图像时，变成另一幅图像</p>
+<p>鼠标移出图像时，变回原图</p>
+<img id="photo" src="images/photo1.jpg" alt="风景"/>
+</body>
+</html>

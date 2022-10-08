@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>上下文(快捷)菜单</title>
+<style>
+	ul { 
+		list-style: none;
+		margin: 0 ;
+		padding: 10px;
+	}
+	ul#items li {
+		border-bottom: 1px solid #ddd; 
+		background: url("images/folder.png") no-repeat 0 7px;
+		padding: 0.2em 0 0.2em 25px;
+	}
+	ul#contextMenu{
+		font-size: 13px;
+		display:none;
+		padding: 0;
+		border:1px solid #eee;		
+		background-color: #fff;
+		box-shadow: 0 0 6px #ccc;
+  		border-radius: 5px;
+		position: absolute;
+	}
+	ul#contextMenu > li{
+		padding: 0.3em 2em;
+	}
+	#contextMenu > li:hover {
+		background-color: #7EA5F0;
+		color: white;
+	}
+	#contextMenu > li.seperate {
+		background-color: #ddd;
+		padding:0;
+		margin: 5px 0;
+		height:1px;
+		line-height: 0;
+		font-size: 0!important;
+		cursor: default;
+	}
+	#contextMenu > li.seperate:hover {
+		background-color: #fff;
+	}
+	#contextMenu > li.disabled {
+		color: #aaa;
+	}
+	#contextMenu > li.disabled:hover {
+		background-color: #fff;
+	}
+</style>
+</head>
+
+<body>
+	<h3>全部文件</h3>
+	<p>在下面文件夹行上右击出现自定义快捷菜单，任意单单击消失</p>
+	<p>用到事件的鼠标位置属性、阻止右击事件默认行为、事件委托</p>
+	<ul id="items">
+		<li>JavaScript</li>
+		<li>DOM</li>
+	</ul>
+	<ul id="contextMenu">
+		<li class="">下载</li>
+		<li class="seperate"></li>
+		<li class="">重命名</li>
+		<li class="">删除</li>
+		<li class="disabled">历史版本</li>
+	</ul>
+
+	<script>
+		let contextMenu = document.getElementById('contextMenu');
+		let items = document.getElementById('items');
+
+		// 在文件夹列表上右击弹出自定义快捷菜单。将右击事件的处理委托给父元素items。
+		//1 使用DOM事件属性方式写出：为id为items的元素的右击事件contextmenu，绑定事件处理函数(匿名函数)，匿名函数完成以下功能
+		//1.1 将id为contextMenu的元素显示在网页中
+		//1.2 将id为contextMenu的元素左上角显示在鼠标指针处
+		//1.3 阻止右击事件的默认行为(弹出浏览器默认上下文菜单)，并添加return false兼容IE8-
+		//定义鼠标右击事件
+		
+
+		// 在除禁用项外任意其他元素上单击时，隐藏快捷菜单。将单击事件的处理委托给html元素
+    	// 右击会触发document的click事件(很奇怪)，所以给html元素单击事件绑定事件处理程序
+    	// 2 使用DOM事件属性写出：为html元素的单击事件，绑定事件处理函数(匿名函数)，匿名函数完成以下功能
+    	// 2.1 判断触发事件的元素的class属性值不为disabled时，200毫秒后将id为contextMenu的元素隐藏起来
+		
+	</script>
+</body>
+</html>

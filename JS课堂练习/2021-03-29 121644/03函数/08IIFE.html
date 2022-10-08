@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>立即调用函数表达式</title>
+</head>
+
+<body>
+
+<script>
+  //相当于创建了一个块级作用域，ES6中let完全可以取代
+  // 1.now只是做个临时变量使用，为了减少全局变量，将下面代码放在立即调用函数表达式中。
+  (function(){
+    var now = new Date();//不会提升
+    if(now.getMonth()==2 && now.getDate()==29){
+      document.body.innerHTML= "自嗨节";
+    }
+  })();
+  //用括弧扩起当做函数表达式
+  //2.用ES6块级作用域写出上面功能。
+  
+</script>
+
+</body>
+</html>

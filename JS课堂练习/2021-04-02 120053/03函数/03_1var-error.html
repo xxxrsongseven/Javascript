@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>var提升存在的问题</title>
+<script>
+
+//1.块级内var声明变量引起的作用域泄露。
+function f1(x) {
+   if (x) {
+      var c= 1;
+   } else {
+      console.log('else中访问变量c：' + c);
+   }
+   console.log('函数f内访问变量c：' + c);
+}
+f1(1);
+f1(0);
+
+//2.变量提升在执行代码前
+var a = 1;
+function f2() {
+  console.log(a);
+  if (false) {
+     var a = 'h';
+  }
+}
+f2();
+</script>
+</head>
+
+<body>
+</body>
+</html>

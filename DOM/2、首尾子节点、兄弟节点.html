@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <p>首位节点</p>
+        <ul id="ul1">
+            <li>子节点1首节点</li>
+            <li>子节点2</li>
+            <li>子节点3尾节点</li>
+        </ul>
+        <button onclick="f1()">修改首节点文字</button>
+        <button onclick="f2()">修改尾节点文字</button>
+        <button onclick="f3()">查看子节点2前兄弟节点</button>
+        <button onclick="f4()">查看子节点2后兄弟节点</button>
+    </div>
+    <script>
+        var ul1 = document.getElementById('ul1')
+        var lis = ul1.getElementsByTagName('li')
+        function f1() {
+            if (ul1.firstElementChild) {
+                ul1.firstElementChild.innerHTML = '首节点修改成功！'
+            } else {
+                ul1.firstChild.innerHTML = '首节点修改成功！'
+            }
+        }
+        function f2() {
+            if (ul1.lastElementChild) {
+                ul1.lastElementChild.innerHTML = '尾节点修改成功！'
+            } else {
+                ul1.lastChild.innerHTML = '尾节点修改成功！'
+            }
+        }
+        function f3() {
+            if (lis[1].previousElementSibling) {
+                alert(lis[1].previousElementSibling.innerHTML)
+            } else {
+                alert(lis[1].previousSibling.innerHTML)
+            }
+        }
+        function f4() {
+            if (lis[1].nextElementSibling) {
+                alert(lis[1].nextElementSibling.innerHTML)
+            } else {
+                alert(lis[1].nextSibling.innerHTML)
+            }
+        }
+
+    </script>
+</body>
+
+</html>

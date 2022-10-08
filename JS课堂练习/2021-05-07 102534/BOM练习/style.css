@@ -1,0 +1,93 @@
+﻿body {
+  margin: 0;
+  font-family: 微软雅黑, 黑体;}
+
+h1 {
+
+}
+
+h2 {
+  margin: 1.75em 0 0 0;
+}
+
+h2 + p {
+  margin: 0.25em 0 0 0;
+ }
+
+p + h2 {
+  margin: 10px 0 0 0;
+ }
+
+ input {
+   font-size: 100%;
+ }
+
+#info {
+  background-color: #333;
+  color: #fff;
+  width: 500px;
+  padding: 0 15px;
+  text-align: center;
+  min-height: 100%;
+  margin: 10px auto;
+  border: 1px solid transparent;
+  padding-bottom:900px;
+  word-break:break-all;
+}
+
+article {
+  width: 500px;
+  text-align: center;
+  margin: 10px auto;
+}
+  
+#scrolled {
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:#FFFFC6;
+  padding: 10px;
+}
+
+#gotop{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  width: 1em;
+  text-align: center;
+  background: #eee;
+  display: none;
+}
+
+#gotop > a {
+  text-decoration: none;
+  color: black;
+}
+
+#print {
+  position: fixed;
+  top: 200px;
+  right: 10px;
+}
+
+.time {
+  color: red;
+}
+
+button{
+  font: 120% 微软雅黑,黑体;
+  color: white;  
+  width: 5em;
+  height: 2em;
+}
+
+button:enabled {
+  background-color: rgb(250, 88, 88);
+  cursor: auto;
+}
+
+button:disabled{
+  background-color: #ccc;
+  cursor: not-allowed;
+}

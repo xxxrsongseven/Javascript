@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>数据类型练习</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload = function() {
+	//1.写上你的名字
+	var name = '何子琪'
+	var message = '，你好'
+	//2.将上面两个变量值连接并存放在下面变量中
+	var welcome = name + message;
+	
+	//3.写上学院名称。sign存储瓷砖上的字
+	var sign = '仙文理';
+	
+	//4.将变量sign的值的长度存入下面变量中。tiles存储瓷砖数
+	var tiles = sign.length
+	var price = 50;
+	
+	//5.每块砖上印一个字，根据瓷砖数和价格计算出金额。
+	var subTotal = tiles*price;
+	
+	var shipping = 20;  //邮费
+	
+	//6.根据金额和运费计算出总金额
+	var grandTotal = subTotal + shipping;
+	//7.将grandTotal变量的值保留2位小数，怎样保存两位小数
+	grandTotal= grandTotal.toFixed(2);
+	
+	//获取id为greeting的元素
+	var el = document.getElementById('greeting');
+	//设置元素内容为变量welcome的值
+	el.textContent = welcome;
+	
+	var elSign = document.getElementById('userSign');
+	elSign.textContent = sign;
+	
+	var elTiles = document.getElementById('tiles');
+	elTiles.textContent = tiles;
+	
+	var elSubTotal = document.getElementById('subTotal');
+	elSubTotal.textContent = '￥' + subTotal;
+	
+	var elShipping = document.getElementById('shipping');
+	elShipping.textContent = '￥' + shipping;
+	
+	var elGrandTotal = document.getElementById('grandTotal');
+	elGrandTotal.textContent = '￥' + grandTotal;
+}
+</script>
+</head>
+
+<!--本网页显示用户的订单信息，产品为印字的瓷砖，一块瓷砖上印一个字-->
+<body>
+  <h1>订单</h1>
+  <div id="content">
+    <div id="greeting" class="message">您好！</div>
+    <table>
+      <tr>
+        <td>客户留字: </td>
+        <td id="userSign"></td>
+      </tr>
+      <tr>
+        <td>瓷砖数: </td>
+        <td id="tiles"></td>
+      </tr>
+      <tr>
+        <td>瓷砖金额: </td>
+        <td id="subTotal">￥</td>
+      </tr>
+      <tr>
+        <td>运费: </td>
+        <td id="shipping">￥</td>
+      </tr>
+      <tr>
+        <td>总金额: </td>
+        <td id="grandTotal">￥</td></tr>
+    </table>
+    <a href="#" class="action">付款</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <button onclick="f()">隔行变色</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <textarea id="t1"></textarea><button onclick="fnn()">秒转时间</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <textarea id="t2"></textarea><button onclick="fn()">判断二位数</button>
+    </div>
+    <script>
+        var lis = document.getElementsByTagName('li')
+        function f() {
+            var i = 0
+            lis[i].index = i
+            for (i; i < lis.length; i++) {
+                if (i % 2 == 0) {
+                    lis[i].style.backgroundColor = 'red'
+                } else {
+                    lis[i].style.backgroundColor = 'pink'
+                }
+            }
+        }
+        var t1 = document.getElementById('t1')
+        function fnn() {
+            if (t1.value == NaN) {
+                alert('请输入数字')
+            } else {
+                var fen = t1.value / 60
+                var miao = t1.value % 60
+                alert(parseInt(fen) + 'min' + miao + 'sec')
+            }
+        }
+
+        var t2 = document.getElementById('t2')
+        function fn() {
+            t21 = t2.value / 10
+            t22 = t2.value / 100
+            if (t2.value == NaN) {
+                alert('请输入数字')
+            } else {
+                if (t21 >= 1 && t22 < 1) {
+                    alert('ture')
+                } else {
+                    alert('false')
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

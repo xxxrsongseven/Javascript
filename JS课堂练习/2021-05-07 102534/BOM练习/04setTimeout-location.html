@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>setTimeout和location用途</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<article>
+    <h1>定时跳转页面，用户也可单击跳转</h1>
+    <div>广告播放中……，挣着广告商的钱</div>
+    <h2><a href="01window.html"><span id="seconds">3</span>秒后跳转到首页</a></h2>
+</article>
+
+<script>
+// 获取id为seconds的元素
+let seconds= document.getElementById('seconds');
+// 处理倒计时函数
+function countdown(secs, url){
+    // 2.将当前秒数显示在网页中。在赋值符右侧写出当前秒数
+    seconds.innerHTML= ;
+    if(secs > 0){
+        // 3.使用setTimeout方法在1000毫秒后调用countdown函数，注意实参
+        
+    } else {
+        // 4.设置当前网页的url为要跳转的url。使用location对象
+        
+    }
+}
+// 1.调用countdown函数，第1个实参是倒计时开始的秒数，如5秒；第2个实参是时间到时要跳转到的URL，如'01window.html'
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array对象</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  /***第一部分，数组方法。***/
+  let msg= '';  //存储显示在网页的信息
+  // 1_1 声明一个空数组arr
+  
+  msg+= '<h2>武林排行榜</h2>';
+  // 1_2 使用length属性作为索引给数组arr尾部一个元素：江南七怪
+  
+  // 1-3 使用push()方法给数组arr尾部增加一个元素：北丐洪七公
+  
+  // 1_4 使用push()方法给数组arr尾部增加一个元素：铁砂掌裘千仞
+      
+  // 1-5 使用unshift()方法给数组arr头部增加三个元素：中顽童周伯通、南帝一灯大师、东邪黄药师
+  
+  // 1-6 使用unshift()方法给数组arr头部增加三个元素：中神通王重阳、西毒欧阳锋
+  
+  // 1-7 使用pop()方法删除数组arr最后一个元素
+  
+  // 1-8 使用splice(m,n)方法删除数组元素：江南七怪
+  
+  // 1-9 在赋值符右侧+号中写出：用join(s)方法将数组arr元素用<br>分隔并生成字符串，如：'中神通王重阳<br>西毒欧阳锋<br>……<br>北丐洪七公'
+  
+  
+  
+  /***第二部分，生成4个字符组成随机验证码***/
+  msg+= '<h2>4位随机验证码</h2><p>';
+  let randomNum;          //存放1个随机数
+  let checkcode= '';      //存放最终4个随机数
+  let str= '356789ABCDE'; //验证码组成字符
+  // 2-1 使用length属性将数组arr所有元素删掉，即将arr变为空数组
+  
+  // 2-2 使用split(s)将str字符串中每个字符作为一个元素存入数组arr中
+  
+  // 2-3 生成4个字符的随机验证码，写出for循环;之间条件表达式
+  for(let i=0; ; i++) {
+	  // 2-4 生成数组索引范围内的1个随机数，存入变量randomNum中
+	  
+	  // 2-5 用变量randomNum为数组arr的下标获得相应数组元素的值，并追加到checkcode变量中
+	  
+  }
+  
+  //将验证码添加到msg中
+  msg+= '<p>' + checkcode + '</p>';
+  
+  //将msg显示在页面中
+  let el = document.getElementById('info');
+  el.innerHTML =  msg;
+}
+</script>
+</head>
+
+<body>
+	<h1>TravelWorthy</h1>
+    <div id="info"></div>
+</body>
+</html>

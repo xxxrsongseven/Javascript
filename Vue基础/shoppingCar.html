@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .left,.right{
+            width:100px;
+            height:50px;
+            background-color: pink;
+            
+            float: left;
+            text-align: center;
+        }
+        .mid{
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            float: left;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+   <div id="jiajian">
+     <div>
+         <button class="left" @click="uadd">-</button>
+         <div class="mid">{{ sum }}</div>
+         <button class="right" @click="add">+</button>
+    </div>
+   </div>
+   <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+   <script>
+       
+       var app = new Vue({
+           el:'#jiajian',
+           data:{
+               sum:'1',
+            
+           },
+           methods:{
+               add:function(){
+                   if(this.sum>9){
+                       alert('不能大于10！！！！')
+                   }else{
+                   this.sum++
+                   }
+               },
+               uadd:function(){
+                if(this.sum<1){
+                       alert('不能小于0！！！！')
+                   }else{
+                   this.sum--
+                   }
+               }
+           }
+          
+       });
+   </script>
+</body>
+</html>

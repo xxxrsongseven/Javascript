@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实参、返回值都是引用(数组名或数组字面量)</title>
+</head>
+
+<body>
+	<h3>可将复合值(数组、函数、对象)作为实参、返回值，传递的是引用。</h3>
+	<h3>数组、对象作为实参、返回值，可传递或返回多个值。</h3>
+
+	<script>
+		/* 1 实参是数组 */
+		//1_1 声明一个数组arr1，含有5和6两个元素
+		var arr1=[5,6];
+		//向网页输出arr1数组
+		document.body.innerHTML+= '<p>arr1数组初始值：' + arr1 + '</p>';	
+		//1_3 写出交换两个值的函数swap1，形参是变量c，交换用的临时变量是temp
+		function swap1(c) {
+			var temp= c[0];
+			c[0]=c[1] ;
+			c[1]= temp;
+		}
+		
+		//1_2 调用函数swap1，将数组arr1作为实参
+		swap1(arr1);
+		
+		//1_4 向网页输出交换后的arr1数组，使用模板字面量
+		document.body.innerHTML+= '<p>arr1数组交换后值:'+arr1+'</p>';	
+		
+		// /* 2 返回值是数组 */
+		 let arr2= [7, 8];
+		// //2_1向网页输出arr2数组，使用模板字面量
+		 document.body.innerHTML+= '<p>arr2数组初始值：'+arr2+'</p>';	
+		
+		// //2_3 写出交换两个值的函数swap2，形参是c和d，函数将“数组字面量”作为返回值(多个值)
+		function swap2(c,d){
+			arr2[0]=d;
+			arr2[1]=c;
+		}
+		
+		// //2_2 调用函数swap2，实参为7和8，，将返回值存入变量arr2中
+		swap2(7,8);
+		// //向网页输出数组arr2
+		document.body.innerHTML+= `<p>arr2数组交换后值：${arr2}</p>`;			
+	</script>
+</body>
+</html>

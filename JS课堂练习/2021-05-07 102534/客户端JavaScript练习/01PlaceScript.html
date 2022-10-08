@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>在网页中插入JavaScript代码</title>
+<link rel="stylesheet" href="css/style1.css">
+
+<!-- 2.引入外部脚本文件。在此处链接js文件夹下的period.js文件，查看该文件。一旦被引入网页文件，脚本文件中的代码相当于在此处写入JS代码吗？ -->
+
+
+<!-- 1.在<head>标签中放入JS代码。查看下面代码运行了吗？注意welcome变量和getPeriod函数在哪声明了？welcome变量和getPeriod函数作用域 -->
+
+document.addEventListener('DOMContentLoaded',function(){
+    document.getElementsByTagName('h2')[0].innerHTML= '改为自己的中文姓名，' + getPeriod();
+    document.getElementsByTagName('p')[0].innerHTML= welcome;
+});
+
+</head>
+
+<body>
+<header>
+    <h2></h2>
+</header>
+<main>
+    <p></p>
+    <p>报考咨询请拨打电话：<em>029-88278689</em></p>
+</main>
+<footer>    
+</footer>
+
+<!-- 4.新建外部脚本文件footer.js，保存在js文件夹中，footer.js文件内容如下
+function copyright(){
+        return '<p>Copyright &copy;' + (new Date()).getFullYear() + '</p>'
+}
+-->
+<!-- 5.引入外部脚本文件footer.js -->
+
+
+<!-- 6.在body结束标签前放入脚本代码。-->
+
+    let footer= document.getElementsByTagName('footer')[0];
+    footer.innerHTML= '<address>地址：西安市科技六路1号</address>'; 
+    footer.innerHTML+= '<small>' + copyright() + '</small>';   
+
+
+<!-- 7.使用服务器软件两两互相访问 -->
+<!-- 8.将前面链接period.js文件的路径改为某个同学的IP路径-->
+</body>
+</html>

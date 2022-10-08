@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Date对象</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){  
+  let msg= '';  //网页上显示的信息
+
+  /***第一部分，日期***/
+  let msg= '<h2>今天日期</h2>'; 
+  //1.在赋值符右侧写出：当前日期
+  let today = ;
+  //2.在赋值符右侧写出：当前日期中的年
+  let year = ;
+  //3.在赋值符右侧写出：当前日期中的月
+  let month= ;
+  //4.在赋值符右侧写出：当前日期中的日
+  let date= ;
+  //5.再赋值符右侧写出：当前日期中星期
+  let day= ;
+  //6.在赋值符右边写出数组直接量，元素值是中文“星期几”的“几”，第一个元素值是“日”，以此类推写到“六”
+  let week= ;
+  //7.在赋值符的右边的+号中用年月日变量连接出如“2015年9月25日“的表达式
+  msg+= '<p>' +  + '</p>';
+  //8.在赋值符右边的+中用数组week写出如“星期几”的“几”表达式
+  msg+= '<p>星期' +  + '</p>';
+
+  
+  /***第二部分，时间***/  
+  msg+= '<h2>当前时间</h2>';
+  //9.在赋值符右侧写出：当前时间的小时
+  let hours= ;
+  //10.在赋值符右侧写出：当前时间的分钟
+  let minutes= ;
+  //11.在赋值符右侧写出：当前时间的秒
+  let seconds= ;
+  let greeting; //问候语
+  if (hours<6){ //根据时间显示不同问候语
+	  greeting= '夜已深，洗洗睡';
+  } else if (hours<12){
+	  greeting= '上午好，记得吃早餐';
+  } else if (hours<18) {
+	  greeting= '下午好，睡午觉是好习惯';
+  } else {
+	  greeting= '晚上好，饭后散散步';
+  }
+  
+  //调整时间数字格式，时间分钟秒小于10时，前加0
+  hours= checkTime(hours);
+  minutues= checkTime(minutes);
+  seconds= checkTime(seconds);
+
+  function checkTime(i){
+	i<10 ? '0' + i : i;
+  }
+
+  //连接小时分钟秒
+  msg+= '<p>' + hours + ':' + minutes + ':' + seconds + '</p>';
+  //连接问候语
+  msg+= '<p>' + greeting + '</p>';
+
+  
+  /***第三部分，计算程序耗时***/  
+  msg+= '<h2>计算程序耗时</h2>';
+  //12.获得此刻毫秒数
+  let starts= ;
+  //一个耗时的循环
+  let sum= 1;
+  for(i = 1; i < 10000000; i++) {
+	  sum= i*i;
+  }
+  //13.获得此刻毫秒数
+  let ends= ;
+  //向msg添加计算结果
+  msg+= '<p>sum=' + sum + '</p>';
+  //14.在赋值符右侧的+中写出：ends和starts两变量相差的毫秒数
+  msg+= '<p>耗时：' +  + '毫秒</p>';  
+  
+  
+  //***第四部分，相差多少天，相差多少年***/
+  //将建校日期时间存入est变量中
+  let creatingDate = new Date('2003/11/20 , 15:45:55');
+  //15.在赋值符右边写出：today和creatingDate相差的毫秒数
+  let difference = ;
+  //16.计算相差多少天。在赋值符右侧写出：相差毫秒数除以一天毫秒数，注意除法有小数，只要商
+  let diffDate = Math.floor(difference / (1000*60*60*24)); //parseInt也可以
+  
+  //计算相差多少年。要考虑闰年
+  let diffYear = 0;
+  //17.写出while循环的条件表达式，使用setFullYear()方法
+  while(){
+    diffYear++;
+  }
+    
+  
+  /***第五部分，15天后日期***/
+  msg+= '<h2>网站于15天后维护</h2>';
+  today.setDate(today.getDate() + 15);
+  msg+= '<p>' + today.toLocaleDateString() + '</p>';
+  
+  
+  //18.本网页显示正确后，将计算机上日期改为上一年，刷新网页，观察整个网页显示的日期时间
+  
+  //将日期时间显示在侧边栏
+  let el = document.getElementById('info');
+  el.innerHTML = msg; 
+  
+  //将年显示在页脚中
+  el = document.getElementById('footer');
+  el.innerHTML = '<p>Copyright &copy;' + year + '</p>';
+  
+  //将已建校多少年显示在网页左上角
+  el = document.getElementById('message');
+  el.innerHTML = '<p>已建校' + diffDate + '天</p><p>已建校' + diffYear + '年</p>';
+}
+</script>
+</head>
+
+<body>
+	<h1>TravelWorthy</h1>
+    <div id="message"><p>已建校360天</p><p>已建校15年</p></div>
+    <div id="info"><h2>今天日期</h2><p>2018年9月1日</p><p>星期六</p><h2>当前时间日期</h2><p>08:00:00</p><p>早上好</p></div>
+    <div id="footer">Copyright &copy; 2013</div>
+</body>
+</html>

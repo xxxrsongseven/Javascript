@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>for循环的循环变量用let声明</title>
+<script>
+// 1-1 ES5循环变量的声明只能用var
+var arr = [];
+for (var i = 0; i < 3; i++) {
+    arr[i] = function () {
+    	console.log(i);//调用的时候才会调用i
+    };
+}
+for(let j=0; j< arr.length; j++){
+  arr[j]();//结果是三个3
+}
+
+// 1-2 for循环头部的let不仅将i绑定到了for循环的块中，事实上它将其重新绑定到了循环的每一个迭代中，确保使用上一个循环迭代结束时的值重新进行赋值。
+for (let i=0; i<10; i++) {
+    console.log( i );
+}
+//上面代码相当于
+{
+    let j;
+    for (j=0; j<10; j++) {
+        let i = j; // 每个迭代重新绑定！
+        console.log( i );
+    }
+}
+
+// 1-3 ES6将循环变量的声明改为let解决
+//for循环头部的let声明有一个特殊的行为：变量在循环过程中不止被声明一次，每次迭代都会声明。随后的每个迭代都会使用上一个迭代结束时的值来初始化这个变量。
+var arr1 = [];
+for (let i = 0; i < 3; i++) {
+    arr1[i] = function () {
+    	console.log(i);
+    };
+}
+for(let j=0; j< arr1.length; j++){
+  arr1[j]();//0 1 2
+}
+
+// 2-1 setTimeout执行时，for循环已经执行完，都输出的是全局变量m
+for(var m = 0; m < 3; m++){
+    setTimeout(function(){
+        console.log(m);
+    }, m*2000);
+}
+
+// 2-2将循环变量声明改为let
+for(let n = 0; n < 3; n++){
+    setTimeout(function(){
+        console.log(n);
+    },  n*2000);
+}
+
+// 2-3上面代码类似下面代码
+for (let i=1; i<=5; i++) {
+    let j = i;
+    setTimeout( function timer() {
+        console.log( j );
+    }, j*2000 );
+}
+
+// 3 ES5用立即调用函数表达式和闭包解决。作用域的最高境界
+var arr = [];
+for (var i = 0; i < 3; i++) {
+    arr[i] = (function (i) {
+    	return function(){ console.log(i) };
+    }(i));
+}
+for(let j=0; j< arr.length; j++){
+  arr[j]();
+}
+
+
+
+</script>
+</head>
+
+<body>
+<p><img src="images/var-for.png"></p>
+<p><img src="images/let-for.png"></p>
+</body>
+</html>

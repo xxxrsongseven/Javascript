@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>获取多个节点</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+      <li class="hot"><em>美味的</em>无花果</li>
+      <li class="hot"><em>费牙的</em>松子</li>
+    </ul>
+  <ul id="two">
+      <li class="hot"><em>新鲜的</em>蜂蜜</li>
+      <li ><em></em>香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>操作步骤</h3>
+  <p>1.通过元素节点集合选择第4个列表项</p>
+  <p>2.通过元素节点集合选择第1个列表项</p>
+  <p>3.通过元素节点集合选择第3个列表项</p>
+  <p>4.通过元素节点集合访问列表中的每一个节点</p>
+  <p>5.通过getElementById、getElementsByClassName获取第2个列表中的某个节点</p>
+</div>
+
+<script>
+//1.使用getElementsByTagName()获取所有em元素节点，存放在els变量中
+
+//2.在if表达式中写出：els中元素节点的个数大于3
+if () { 
+	//3.在.前面用item(n)方法获取els中第4个em元素节点
+	.innerHTML= '酸爽的';		//改变els节点列表中第4个节点的内容
+}
+
+//4.使用getElementsByClassName()获取所有class属性值为hot的元素节点，存放在els变量中
+  //想一想为什么赋值给变量？
+//4.在if表达式中写出：els中元素节点的个数大于0
+if () {
+	//6.在.前面用[]方式获取els中第1个元素节点
+	.className= 'cool';			//改变els节点列表中第1个节点的class属性值
+}
+
+//7.使用querySelectorAll()获取所有class属性值为hot的元素节点，存放在elements变量中
+
+//8.在if表达式中写出：els中元素节点的个数大于1
+if () { 
+	//9.在.前面用item()方式获取elements第2个元素节点
+	.className= 'cool';		//改变els节点列表中第2个节点的class属性值    
+}
+
+//10.使用querySelectorAll()获取所有li元素中的em元素节点，存放在els变量中
+
+//11.在for循环条件表达式中写出：i小于els节点列表的节点个数
+for (var i=0; ; i++) {  //for循环遍历节点列表中每个节点
+	//12.在.前面用item()方式获取els节点列表中当前元素节点
+	.className= 'color_ddd';	//改变当前节点的class属性值    
+}
+
+// 13.使用getElementById获取id为two的元素节点，存放在els变量中
+
+// 14.使用getElementsByClassName获取id为two的元素节点里的class为cool的元素，存储在新生命的变量lis中
+
+li[0].innerHTML += '(推荐)';  //改变元素内容
+</script>
+
+</body>
+</html>

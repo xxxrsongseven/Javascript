@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>文本域</title>
+<link rel="stylesheet" href="form.css" />
+<script>
+window.onload= function(){
+  let bio      = document.getElementById('bio'),        //获得文本域控件
+      bioCount = document.getElementById('bio-count');  //获得显示字符数的元素
+
+  // 1.用事件属性方式写出：当文本域获得焦点时，调用updateCounter函数
+  bio.onfocus= updateCounter;
+  // 2.用事件属性方式写出：当文本域中松开键盘或值改变时，调用updateCounter函数
+  bio.oninput= updateCounter;
+
+  // 3.在赋值符左侧写出：文本域失去焦点时
+  bio.onblur= function () {
+    // 4.在if条件表达式中写出：文本域里长度小于140
+	  if (bio.value.length<140) {
+	  // 5.将id为bio-Count的元素的class属性改为hide
+      bioCount.className= 'hide';
+    }
+  };
+
+  //计算字符数和更新样式
+  function updateCounter(e) {
+    //计算当前还能输入多少字符数，存在变量count中
+    let count = 140 - e.target.value.length;
+    if (count < 0) { 
+      bioCount.className = 'error';             // 剩余字符数小于0时的样式
+    } else if (count <= 15) {
+      bioCount.className = 'warn';
+    } else {
+      bioCount.className = 'good';
+    }
+	
+	  //将字符数作为id为bio-Count的元素内容
+    let charMsg = '还能输入<b>' + count + '</b>' + ' 字';
+    bioCount.innerHTML = charMsg;
+  }
+  
+}
+</script>
+</head>
+<body>
+<div class="container login">
+  <form name="howHeard" id="howHeard" action="heard" method="get">
+    <div class="one-third column">
+      <img src="images/logo.png" alt="logo" id="logo" />
+    </div>
+    <div class="two-thirds column" id="main">
+      <fieldset>
+        <legend>用户信息</legend>
+        <label for="bio">个人简介(不超过140个字符)</label>
+        <textarea name="bio" id="bio" rows="5" cols="30"></textarea>
+        <span id="bio-count" class="hide"></span>
+      </fieldset>
+    </div>
+  </form>
+</div>
+<div id="footer">
+<h3>文本域 - 最终效果</h3>
+  <p>1.网页加载后文本域获得焦点时，下方显示还能输入的字树</p>
+  <p>2.当在文本域中输入文字后，下方实时显示还能输入多少字，当还能输入字数小于15时改变样式，当超过140字时改变样式</p>
+  <p>3.当文本域失去焦点时，将下方的还能输入多少字的元素样式更新(隐藏)</p>
+</div>
+</body>
+</html>

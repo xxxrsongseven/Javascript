@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>continue练习</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <section id="page1">
+      <h1>Bullseye</h1>
+      <img src="images/teacher.png" id="teacher" alt="teacher" />
+      <section id="answer">x>0，y>0，并且x、y为整数，求二元一次方程组x+y=10，输出x=?，y=?，每个结果一行</section>
+    </section>
+<script>
+var msg = '';  //显示的信息
+//1.写出内外两层循环，将每次结果存入msg中，注意continue的使用
+for(var i = 0;i<=10;i++){
+  for(var j = 0;j<=10;j++){
+      if(i+j==10){
+        msg+='x='+i+'y='+j+'<br>'
+        continue;
+      }
+      
+  }
+  
+}
+
+//用变量msg的值替换原网页中显示的信息
+document.getElementById('answer').innerHTML = msg;
+</script>
+</body>
+</html>

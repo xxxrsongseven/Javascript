@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+    <input value="还没修改">
+    <button onclick="f1()">修改内容</button>
+    <button onclick="f2()">获取内容</button>
+    <button onclick="f3()">移除内容</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+    <ul id="ul1">
+        <li class="hello">class="hello"</li>
+        <li class="hello">class="hello"</li>
+        <li>无</li>
+        <li class="hello">class="hello"</li>
+        <li>无</li>
+        <li class="hello">class="hello"</li>
+    </ul>
+    <button onclick="f4()">修改指定class背景</button>
+    </div>
+    <script>
+        var t1= document.getElementsByTagName('input')
+        function f1(){
+            t1[0].setAttribute('value','修改成功！')
+        }
+        function f2(){
+            alert(t1[0].getAttribute('value'))
+        }
+        function f3(){
+            t1[0].removeAttribute('value')
+        }
+        var ul1=document.getElementById('ul1')
+        var lis = ul1.getElementsByTagName('li')
+        function f4(){
+            for(i=0;i<lis.length;i++){
+                var cls=lis[i].getAttribute('class')
+                if(cls=='hello'){
+                    lis[i].style.backgroundColor='pink'
+                }
+            }
+            
+        }
+    </script>
+</body>
+</html>

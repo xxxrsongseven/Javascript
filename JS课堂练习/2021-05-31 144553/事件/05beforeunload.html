@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>beforeunload事件</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+
+//离开页面时提示函数
+function leavePage(event){
+  //兼容非IE浏览器和IE浏览器
+  var event= event || window.event;
+  var message = '★您还未保存本网页中的信息，离开本网页将丢失已改变的信息';
+
+  //2.写出给事件对象的returnValue赋值非空串语句。适用于浏览器新版
+  event.returnValue= message;
+  //兼容了浏览器老版本
+  return message;
+}
+
+//1.使用事件侦听器方式写出：用户关闭标签或浏览器窗口时调用leavePage
+window.addEventListener('beforeunload', leavePage);
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>用户留言</h2>
+  <form id="messageForm" action="http://a.org/">
+    <textarea id="message"></textarea>
+    <input type="submit" value="提交" />
+  </form>
+  <p>1.returnValue属性值为非空串才会显示对话框；未赋值或赋值空串，不会弹出对话框。</p>
+  <p>2.Firefox和Chrome在用户和网页交互过的情况下，才会弹出对话框。IE11及以下未交互过也会弹出对话框</p>
+  <p>3.Firefox V51和Chrome V44中弹出的对话框提示显示固定文本，不显示你所设置的文本。IE和Edge会显示你所设置的文本。</p>
+</div>
+</body>
+</html>

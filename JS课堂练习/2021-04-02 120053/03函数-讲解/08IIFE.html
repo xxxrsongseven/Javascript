@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>立即调用函数表达式</title>
+</head>
+
+<body>
+
+<script>
+  // 1.now被当做临时变量使用，为了减少全局变量，将下面代码放在立即调用函数表达式中。
+  (function() {
+    var now = new Date();
+    if(now.getMonth()==3 && now.getDate()==2){
+      document.body.innerHTML= "自嗨节";
+    }
+  })();
+    
+  
+
+//立即调用函数表达式相当于创建了一个块级作用域，当立即调用函数表达式作为语句使用时，ES6中块作用域完全可以取代立即调用函数表达式。  
+  //2.用ES6块级作用域写出上面功能。
+  {
+    let now = new Date();
+    if(now.getMonth()==3 && now.getDate()==2){
+      document.body.innerHTML+= "愚人节";
+    }
+  }
+</script>
+
+</body>
+</html>

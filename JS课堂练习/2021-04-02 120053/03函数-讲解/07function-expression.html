@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>匿名函数表达式的用途</title>
+
+</head>
+
+<body>
+
+<script>
+  //1.基本含义
+  //声明一个变量f，存储匿名函数表达式(即引用)，函数体为console.log(1)
+  //调用f引用的函数
+  
+  let f = function (){
+    console.log(1);
+  }
+  f();
+
+  //2.作为对象的方法
+  let obj= { 
+    property: '对象的方法',
+    //在冒号右侧写出匿名函数表达式，函数体为在控制台输出property属性
+    method: function (){
+      console.log(this.property);
+    }
+  };
+  obj.method();
+
+  //3.作为函数的实参：异步回调函数
+  //在,号后(即第2个实参处)写出匿名函数表达式，在控制台输出“document对象的click事件的回调函数”
+  document.addEventListener('click', 
+    function (){
+      console.log('document对象的click事件的回调函数');
+    });
+  //4.作为函数实参：同步回调函数
+  //在数组的map方法的实参处写出匿名函数表达式，匿名函数表达式形参为ele，函数体为return ele.length
+  let arr= ['red', 'green'];
+  let arr1= arr.map(function(ele){
+    return ele.length;
+  });
+  console.log(arr1);
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>属性方法</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {
+  // 1.选择id为three的li，调用removeClass()方法删除class属性中的类名：hot
+  
+  // 2.选择class为hot的li，调用addClass()方法给class属性增加类名：favorite
+  
+  // 3.选择ul元素，调用attr()方法，将id属性值设置为group
+  
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em> 无花果</li>
+    <li id="two" class="hot"><em>费牙的</em> 松子</li>
+    <li id="three" class="complete hot"><em>新鲜的</em> 蜂蜜</li>
+    <li id="four" class="cool" ><em>酸爽的</em> 香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.将第三个li的class属性值中的类名hot删除</p>
+  <p>2.给前两个li的class属性值添加类名favorite</p>
+  <p>3.给ul添加id属性，值为group，即加了白色外框</p>
+</div>
+</body>
+</html>

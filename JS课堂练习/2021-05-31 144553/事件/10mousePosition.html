@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>鼠标指针位置</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  let px = document.getElementById('px');	//获得id为px的文本框
+  let py = document.getElementById('py');
+  let cx = document.getElementById('cx');
+  let cy = document.getElementById('cy');
+  let ox = document.getElementById('ox');
+  let oy = document.getElementById('oy');
+  
+  //移动鼠标时，更新6个文本框的值
+  function showPosition(e) {
+    //1.在赋值符右侧写出：鼠标指针距离整个页面(算上网页滚出文档显示区域的距离)左上角的水平距离
+    px.value = e.pageX;
+    //2.在赋值符右侧写出：鼠标指针距离整个页面(算上网页滚出文档显示区域的距离)左上角的垂直距离
+    py.value = e.pageY;
+    //3.在赋值符右侧写出：鼠标指针距离网页显示区域(不算网页滚出文档显示区域的距离)左上角的水平距离
+    cx.value =e.clientX ;
+    //4.在赋值符右侧写出：鼠标指针距离网页显示区域(不算网页滚出文档显示区域的距离)左上角的垂直距离
+    cy.value =e.clientY ;
+    //5.在赋值符右侧写出：鼠标指针距离触发事件的元素左上角的水平距离
+    ox.value =e.offsetX ;
+    //6.在赋值符右侧写出：鼠标指针距离触发事件的元素左上角的垂直距离
+    oy.value = e.offsetY;
+  }
+  
+  document.querySelector('ul').addEventListener('mousemove', showPosition);
+}
+</script>
+</head>
+
+<body>
+<div id="stats">   
+  pageX: <input type="text" id="px" /> 
+  pageY: <input type="text" id="py" /><span class="divider">|</span>
+  clientX: <input type="text" id="cx" /> 
+  clientY: <input type="text" id="cy" /><span class="divider">|</span>
+  offsetX: <input type="text" id="ox" /> 
+  offsetY: <input type="text" id="oy" />
+</div>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li>无花果</li>
+    <li>松子</li>
+    <li>蜂蜜</li>
+    <li>香醋</li>
+    <li>哈根达斯</li>
+    <li>酸奶</li>
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>草莓</li>
+    <li>面条</li>
+    <li>大米</li>
+    <li>馒头</li>
+    <li>面包</li>
+  </ul>
+</div>
+</body>
+</html>

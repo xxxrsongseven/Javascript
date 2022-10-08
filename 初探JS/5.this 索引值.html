@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+        background:#fff;
+        padding:20px;
+        margin:20px auto;
+        width:82%;
+        line-height:22px;
+        border-bottom:9px solid #E7EFF1;
+	    box-shadow: 1px 0px 5px rgba(100, 100, 100, 0.3);
+        }
+        .box-re{
+        position: relative;border-color: #e8f3ec;
+    }
+        
+        button{
+            width: 100px;
+            height: 20px;
+            margin-left: 10px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="box box-re">
+        1、选项卡 鼠标经过变换<br><br>
+        <button type="button" class="btn btn-info.active">栏目一</button>
+        <button type="button" class="btn btn-info">栏目二</button>
+        <button type="button" class="btn btn-info">栏目三</button>
+        <button type="button" class="btn btn-info">栏目四</button>
+        <div class="alert-info" style="display: block;">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+        <div class="alert-info" style="display: none;">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+        <div class="alert-info" style="display: none;">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+        <div class="alert-info" style="display: none;">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+    </div>
+
+    <div id="div2" class="box box-re">
+        1、选项卡 鼠标点击变换<br><br>
+        <button id="bt1" type="button" class="btn btn-info.active">栏目一</button>
+        <button id="bt1" type="button" class="btn btn-info">栏目二</button>
+        <button id="bt1" type="button" class="btn btn-info">栏目三</button>
+        <button id="bt1" type="button" class="btn btn-info">栏目四</button>
+        <div id="d1" class="alert-info" style="display: block;">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+        <div id="d1" class="alert-info" style="display: none;">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+        <div id="d1" class="alert-info" style="display: none;">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+        <div id="d1" class="alert-info" style="display: none;">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+    </div>
+    <script>
+       window.onload=function ()
+{
+	var oDiv1=document.getElementById('div1');
+	var aBtn1=oDiv1.getElementsByTagName('button');
+	var aDiv1=oDiv1.getElementsByTagName('div');
+	for(var i=0;i<aBtn1.length;i++)
+	{
+		aBtn1[i].index=i;
+		aBtn1[i].onmouseover=function ()
+		{
+			for(var i=0;i<aBtn1.length;i++)
+			{
+				aBtn1[i].className='btn btn-info';
+				aDiv1[i].style.display='none';
+			}
+			this.className='btn btn-info.active';
+			aDiv1[this.index].style.display='block';
+		}
+	}}
+
+    var div2 = document.getElementById('div2')
+    var bt1=div2.getElementsByTagName('button')
+    var d1 = div2.getElementsByTagName('div')
+    for(i=0;i<bt1.length;i++){
+        bt1[i].index=i
+        bt1[i].onclick=function(){
+            for(var i = 0;i<bt1.length;i++){
+                bt1[i].className='btn btn-info'
+                d1[i].style.display='none'
+            }
+            this.className='btn btn-info.active'
+            d1[this.index].style.display='block'
+        }
+    }
+    </script>
+</body>
+</html>

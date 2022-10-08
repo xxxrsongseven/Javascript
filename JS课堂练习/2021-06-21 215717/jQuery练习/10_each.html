@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用each函数操作每一个元素</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {
+  // 1.选择li元素，调用each()方法，参数是匿名函数(实参是index)
+  
+    // 2.在赋值符右侧写出：获取每个元素的id属性值
+	var ids =   //纯JavaScript，此时的this可以使用DOM中属性和方法
+	$(this).prepend(' <span class="order">' + index + '</span>'); //将每个列表index值添加列表内容前面
+    $(this).append(' <span class="order">' + ids + '</span>'); //将每个id属性值添加列表内容后面
+  
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em> 无花果</li>
+    <li id="two" class="hot"><em>费牙的</em> 松子</li>
+    <li id="three" class="hot"><em>新鲜的</em> 蜂蜜</li>
+    <li id="four" class="cool" ><em>酸爽的</em> 香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.将每个元素的index值添加在每个li内容的前面</p>
+  <p>2.将每个元素id属性值添加在每个li内容的后面</p>
+</div>
+</body>
+</html>

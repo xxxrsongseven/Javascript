@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>回调函数</title>
+<script>
+//回调函数1
+function greeting(name) {
+  alert(name + '，你好');
+}
+//回调函数2
+function eat(name) {
+  alert(name + '，该吃饭了');
+}
+//外层函数，实参接收值为函数，名字为callback
+function userInput() {
+  var name = prompt('请输入你的姓名：');
+  //调用callback，实参name
+  
+}
+
+//调用userInput，实参为greeting函数引用
+
+//调用userInput，实参为eat函数引用
+
+
+</script>
+</head>
+
+<body>
+<h3>回调函数是作为参数传递给另一个函数的函数，在外部函数内部调用回调函数以完成某种操作。是一种抽象编程。分为同步回调和异步回调。</h3>
+</body>
+</html>

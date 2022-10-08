@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>get方式</title>
+</head>
+
+<body>
+<input type="button" value="向服务器发出异步请求，服务器返回普通文本" />
+<div id="result"></div>
+
+<script>
+let input = document.getElementsByTagName("input")[0];
+let result= document.getElementById('result');
+
+// 1.新建XMLHttpRequest对象
+let xhr = new XMLHttpRequest();
+input.onclick = function(){
+	// 2.建立异步连接，get方式发送数据，把请求数据发送给服务器get.js脚本处理
+	xhr.open("GET", "http://localhost:90");
+	// 3.请求状态改变事件处理函数，必须放在send()前。
+	xhr.onreadystatechange = response;  //状态改变时调用响应函数
+	// 4.发送请求到服务器端。使用get方法，参数null
+	xhr.send(null);
+}
+
+// 5.事件处理程序
+function response(){
+	// 6.请求状态码，通过XMLHttpResponse对象的readstate属性获得，表示请求状态，返回值及含义如下：
+	// 发送请求时，readystatechange事件会被触发4次，readstate状态依次从1变为2变为3，最后变为4。只需关心最后的第4阶段，表示浏览器接收完来自服务器的响应数据(错误或成功信息)
+	if(xhr.readyState == 4){
+		// 7.状态码，XMLHttpResponse对象的status属性获得，表示响应是否成功，由三位数字组成。
+		// 200表示响应成功；404表示服务器找不到请求的文件；500表示服务器处理请求时出错。
+		if (xhr.status == 200){
+			// 8.成功时可以从responseText属性读取字符串类型的响应数据，使用DOM更新网页指定元素内容为响应响应的数据
+			result.innerHTML= xhr.responseText;
+		} else {
+			result.innerHTML= '错误：' + xhr.status;	//出错
+		}
+	}
+}
+</script>
+</body>
+</html>

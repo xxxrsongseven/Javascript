@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <textarea id="t1"></textarea>
+        <select id="s1">
+            <option value="-1">性别</option>
+            <option value="1">男</option>
+            <option value="0">女</option>
+        </select>
+        <button onclick="f()">问候</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <textarea id="t2"></textarea>
+        <button onclick="fn()">判断单双</button>
+    </div>
+
+    <div id="lis" style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <li style="list-style-type: none; margin: 0 auto; height: 20px; width: 60%; border: solid 1px;"></li>
+        <button onclick="f2()">break</button>
+        <button onclick="f1()">continue</button>
+    </div>
+    <script>
+        var t1 = document.getElementById('t1')
+        var s1 = document.getElementById('s1')
+        function f() {
+            if (t1.value == '') {
+                alert('请输入名字')
+            } else {
+                if (isNaN(t1.value)) {
+                    var sex = s1.value
+                    switch (sex) {
+                        case '1':
+                            alert(t1.value + ' 先生，欢迎您！')
+                            break;
+                        case '0':
+                            alert(t1.value + ' 女士，欢迎您！')
+                            break;
+                        case '-1':
+                            alert(t1.value + ' 欢迎您！')
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    alert('名字中不能纯数字')
+                }
+            }
+        }
+
+        var t2 = document.getElementById('t2')
+        function fn() {
+            if (isNaN(t2.value)) {
+                alert('请输入数字！')
+            }
+            else {
+                t2.value % 2 == 0 ? alert('双') : alert('单')
+            }
+        }
+
+        var lis = document.getElementById('lis')
+        var tn = lis.getElementsByTagName('li')
+        function f1() {
+            for (i = 0; i < tn.length; i++) {
+                if (i == 1) {
+                    continue
+                } else {
+                    tn[i].style.backgroundColor = 'red'
+                }
+            }
+        }
+        function f2() {
+            for (i = 0; i < tn.length; i++) {
+                if (i == 1) {
+                    break
+                } else {
+                    tn[i].style.backgroundColor = 'pink'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

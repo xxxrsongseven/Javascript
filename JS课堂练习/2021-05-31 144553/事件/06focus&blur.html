@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>焦点事件</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+//1.在赋值符左侧写出window对象的load事件发生时
+window.onload= function(){
+  //检验username文本框里输入值的长度
+  function checkUsername() {
+    if (el.value.length < 5) {           // 假如username文本框的值长度小于5
+      el.focus(); //Firefox中无作用
+      elMsg.className = 'warning';       // 改变id为feedback的元素class属性值
+      elMsg.innerHTML = '长度小于5个字符，请重新输入'; // 改变id为feedback的元素的内容    
+    } else {                          
+      elMsg.innerHTML = ''; 
+    }
+  }
+  
+  //提示用户
+  function tipUsername() {
+    elMsg.className = 'tip';                 //改变id为feedback的元素class属性值
+    elMsg.innerHTML = '用户名应大于5个字符'; //改变id为feedback的元素的内容
+  }
+  
+  let el = document.getElementById('username');
+  let elMsg = document.getElementById('feedback');
+  
+  //2.使用DOM事件属性方式写出：当username文本框获得焦点，调用tipUsername函数
+  el.onfocus= tipUsername;
+  //3.使用事件监听器方式写出：当username文本框失去焦点，调用checkUsername函数
+  el.addEventListener('blur', checkUsername);
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>新账户</h2>
+  <form method="post">
+
+    <label for="username">用户名: </label>
+    <input type="text" id="username" />
+    <div id="feedback"></div>
+
+    <label for="password">密码: </label>
+    <input type="password" id="password" />
+
+    <input type="submit" value="注册" />
+
+  </form>
+</div>
+</body>
+</html>

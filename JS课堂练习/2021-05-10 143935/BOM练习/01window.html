@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BOM</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- 9.给id为info的元素外层添加div元素，id为printArea -->
+  <div id="printArea">
+    <div id="info">
+      <h2>浏览器的window对象</h2>
+      <p>width:1024</p>
+    </div>
+  </div>
+  <div id="scrolled">
+  	<h3>页面的滚动高度</h3><p>(注意网页右下角)</p>
+    <p><span id="gdgd"></span></p>
+  </div>
+  <div id="gotop">
+    <a href="#">↑回到页面顶端</a>
+  </div>
+  <input type="button" id="print" value="打印">
+  
+<script>
+  //产生变量msg，存放在屏幕上显示的信息
+  let msg = '<h2>Window对象</h2><p><em>注意：</em>文档显示区域的宽、高值不包括浏览器菜单、地址、工具栏、边框，但包括水平垂直滚动条</p>'
+  
+  //1.在赋值符右侧写出：浏览器文档显示区域宽度
+  let docWidth= window.innerWidth;
+  //2.在赋值符右侧写出：浏览器文档显示区域高度
+  let docHeight= window.innerHeight;
+  //将docWidth添加到msg中
+  msg +='<p>文档显示区域宽度: ' + docWidth + '</p>';
+  //将docHeight添加到msg中
+  msg += '<p>文档显示区域高度: ' + docHeight + '</p>';
+  //打印按钮被单击时
+  document.getElementById('print').onclick= function(){
+    //10. 只打印id为printArea的div元素的内容
+    document.body.innerHTML= document.getElementById('printArea').innerHTML;
+    //4.打印本页面
+    window.print(); 
+  }  
+  
+  msg += '<h2>screen对象</h2>'; //添加信息
+  //5.在下面语句的+号之间写出显示设备的宽度
+  msg += '<p>显示器屏幕宽度: ' + screen.width + '</p>';
+  //6.在下面语句的+号之间写出显示设备的高度
+  msg += '<p>显示器屏幕高度: ' + screen.height + '</p>';
+  
+  msg += '<h2>location对象</h2>';
+  //7.在赋值符右侧+号中写出当前文档url
+  msg += '<p>文档当前url：' + location.href + '</p>';
+  //添加一个按钮
+  msg += "<p><input type='button' id='baidu' value='百度'></p>";
+    
+  //将msg信息输出到页面
+  let el = document.getElementById('info');
+  el.innerHTML = msg;
+  
+  //百度按钮被单击时执行
+  document.getElementById('baidu').onclick = function() {
+	  //8.将当前文档的url改为http://baidu.com
+    location.href= 'https://baidu.com';
+  }
+
+  window.onscroll= function() {  
+    //3.将页面的滚动高度存储在scrollHeight变量中
+    let scrollHeight= window.pageYOffset;
+      
+    //当页面滚动高度大于300时显示右下角的回到页面顶端
+    let gotop= document.getElementById('gotop');
+    if(scrollHeight > 300){ 
+      gotop.style.display= 'block';
+    } else {
+      gotop.style.display= 'none';
+    }
+    
+    //显示页面的滚动高度
+    let el = document.getElementById('gdgd');
+    el.innerHTML = scrollHeight;
+  }
+</script>
+</body>
+</html>

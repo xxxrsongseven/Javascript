@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>load和DOMContentLoaded事件事件</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+//1.在赋值符左侧写出window对象的onload事件属性(即DOM树、图片、CSS、js解析完)
+window.onload= function(){
+  let username= document.getElementById('username');
+  username.focus(); //使username获得焦点，即光标在用户名文本框中闪烁
+};
+
+//2.使用事件侦听器方式写出：document对象的DOMContentLoaded事件发生时(即DOM树生成时)，执行下面的匿名函数
+document.addEventListener('DOMContentLoaded', function(){
+  let password= document.getElementById('password');
+  password.focus(); //使password获得焦点，即光标在密码文本框中闪烁
+});
+</script>
+</head>
+
+<body>
+<div id="page">  
+  <h1>King列表</h1>
+  <p>观察两个文本框激活顺序，操作DOM树的代码放在哪个事件中更早执行？应该用哪个？</p>
+  <img src="http://a.com/a.jpg"><!-- 加载图片是否成功都需要耗费时间 -->
+  <h2>新账户</h2>
+  <form method="post">
+
+    <label for="username">用户名: </label>
+    <input type="text" id="username" />
+    <div id="feedback"></div>
+
+    <label for="password">密码: </label>
+    <input type="password" id="password" />
+
+    <input type="submit" value="注册" />
+
+  </form>
+</div>
+</body>
+</html>

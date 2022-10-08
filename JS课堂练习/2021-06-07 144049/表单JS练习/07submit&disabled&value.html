@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>提交按钮的禁用状态</title>
+<link rel="stylesheet" href="form.css" />
+<script>
+window.onload= function(){
+  var form      = document.getElementById('newPwd');
+  var password  = document.getElementById('pwd');
+  var button    = document.getElementById('submit');
+  
+  // 1.使用表单控件节点的focus方法，让密码框获得焦点
+  password.focus();
+  
+  // 9.定义变量submitted，值为false
+  let submitted=false;// 记录表单的提交状态
+  // 2.使用表单控件元素节点的disabled属性，将提交按钮禁用
+  button.disabled=true;
+  //设置按钮的HTML中该按钮的class属性为disabled
+  button.className = 'disabled';
+  
+  // 3.在事件侦听器方式写出第1个参数，松开键盘按键时的事件名
+  password.addEventListener( 'input', function(e) {
+    var target= e.target;    //为了后面简写代码
+	// 4.根据密码框中的值(控件元素节点的value属性)，设置提交按钮的disabled属性的值	
+	button.disabled=(submitted || !password.value)?'disabled':'enabled';
+	// 11.改造上一行代码：表单被提交后，假如网速慢网页停滞，这时用户修改密码框值，提交按钮应仍是禁用状态
+    // 5.假如密码框中有值，设置按钮的HTML中该按钮的class属性为disabled，否则设置为enabled
+	//提示：使用条件表达式	
+  button.className='enable';
+	// 12.改造上一行代码：表单被提交后，假如网速慢网页停滞，这时用户修改密码框值，提交按钮的s样式应仍是禁用样式，改造上一行代码
+  }); 
+
+  //表单被提交后，禁用提交按钮，防止网速慢，表单被用户重复提交
+  // 6.在赋值符左侧写出：form表单被提交时
+  form.onsubmit= function(e) {	
+    //防止非Firefox浏览器中，密码框中未输入值时，按Enter键提交表单。
+    if(button.disabled) {
+      e.preventDefault();  //阻止提交表单
+      return;              //出匿名函数不执行函数体内后面语句
+	  }
+	  // 7.使用表单控件节点的disabled属性设置提交按钮为禁用状态	
+	button.disabled=true;
+	  // 10.提交后，将变量submitted设为true
+	submitted=true;
+    button.className = 'disabled';     // 提交后，更新提交按钮的样式为禁用
+
+	  //13.下面的代码为了演示网速慢网页停滞时的状态，实际开发中不用
+	e.preventDefault();
+	  //下一行的代码为了查看向服务器传递了什么值以及提交按钮的当前状态和样式。实际开发中不用			
+	  // 8.使用节点的value属性在+号中写出：新密码的值
+	  alert('新密码是：' + password.value + '\n新密码将被提交给服务器。');
+  };
+  
+}
+</script>
+</head>
+<body>
+<div class="container login">
+  <form id="newPwd" name="login" action="login" method="get">
+    <div class="one-third column">
+      <img src="images/logo.png" alt="logo" id="logo" />
+    </div>
+    <div class="two-thirds column" id="main">
+      <fieldset>
+        <legend>重置密码</legend>
+        <label for="pwd">新密码:</label>
+        <input type="password" id="pwd" />
+        <input type="submit" id="submit" value="提交" />
+      </fieldset>
+    </div>
+  </form>
+</div>
+<div id="footer">
+  <h3>提交按钮禁用 - 最终效果</h3>
+  <p>因为服务器响应或网速慢，堤防使用者点击两次按钮，产生不必要的请求和错误。</p>
+  <p>1.未在密码框中输入值时，提交按钮被禁用。</p>
+  <p>2.在提交按钮中输入值后，提交按钮可用，单击提交按钮弹出对话框显示提交的密码，此时观察提交按钮是否被禁用。</p>
+  <p>3.当网速慢网页处于停滞状态(参考注释13)，提交按钮仍是禁用状态，即使改变文本框的值。以防止用户多次提交表单。</p>
+</div>
+</body>
+</html>

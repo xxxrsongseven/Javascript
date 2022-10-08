@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插值语法实现</title>
+</head>
+
+<body>
+    <div id="div">
+        姓：<input type="text" v-model=fName><br><br>
+        名：<input type="text" v-model=lName><br><br>
+        姓名：{{fullName}}
+        <h1>今天天气很{{temp}}</h1>
+        <!-- 简写  @click="isHot=!isHot" -->
+        <button @click="changeTemp">修改</button>
+        <h1>{{number.a}}</h1>
+        <button @click="number.a++">修改</button>
+        <h1>{{number.b}}</h1>
+        <button @click="number.b++">修改</button>
+    </div>
+    <script src="../包/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#div',
+            data: {
+                fName: '',
+                lName: '',
+                isHot: true,
+                number:{
+                    a:1,
+                    b:1
+                }
+            },
+            computed: {
+                temp() {
+                    return this.isHot ? '炎热' : '寒冷'
+                },
+                fullName: {
+                    get() {
+                        return this.fName + this.lName
+                    },
+                    set(value) {
+                        const arr = value.split('-')
+                        this.fName = arr[0]
+                        this.lName = arr[1]
+                    }
+                }
+            },
+            methods: {
+                changeTemp(){
+                    this.isHot=!this.isHot
+                }
+            },
+            watch:{
+                number:{
+                    deep:true,
+                    handler(){
+                        console.log('number改变了');
+                    } 
+                },
+                isHot:{
+                    immediate:true,
+                    handler(newValue,oldValue){
+                        console.log(newValue,oldValue);
+                    }
+                },
+                //watch简写
+                fName(newValue,oldValue){
+                    console.log(newValue,oldValue);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

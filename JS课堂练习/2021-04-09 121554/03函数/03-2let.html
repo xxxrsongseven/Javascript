@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>let声明</title>
+<script>
+
+// 1.分支里用let声明的变量是否为块级作用域？
+if(1) {
+  let b= 1;
+}
+console.log(b);
+
+// 2.循环变量、循环体里用let声明德变量是否为块级作用域？
+for(let i=0;i<5;i++) {
+  let sum=i;
+}
+console.log(i, sum);
+
+// 3.let可声明全局、函数、块级作用域的变量
+let a= 1;
+{
+  // 1-1 是否屏蔽了全局作用域
+  let a= 2;
+  console.log(`代码块内变量a为${a}`);
+}
+console.log(`代码块外变量a为${a}`);
+
+// 4.let和const全局变量与var全部变量的区别。
+// 4-1 var全局变量会作为浏览器全局对象的属性。let和const不会
+var b= 3;
+let c= 4;
+console.log(window.b === b);
+console.log(window.c === c);
+// 4-2 var容易误伤浏览器全局对象window的属性和成员，例如alert方法
+let alert= '只是普通的全局变量';
+window.alert(5);
+var alert= '给全局对象window的alert赋新值';
+window.alert(5);
+
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

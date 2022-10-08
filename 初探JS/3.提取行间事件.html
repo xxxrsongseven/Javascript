@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            float: left;
+            width: 30px;
+            height: 30px;
+            border: solid 2px black;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="bgc" style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;"><p>
+        <button id="btn1">修改样式</button>
+        <button id="btn2">改   变</button>
+    </p></div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+    <button id="btn3">修改前2样式</button>
+    <div><span></span><span></span><span></span><span></span></div>
+    </div>
+
+    <div  style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <button id="btn4">获取本页面总div数量</button>
+    </div>
+<script>
+    var bgc=document.getElementById('bgc')
+    var btn1=document.getElementById('btn1')
+    window.onload=function(){
+        btn1.onclick=function(){
+       bgc.style.width='300px'
+       bgc.style.backgroundColor='yellow'
+        }
+        btn2.onclick=function(){
+            bgc.style.width='100%'
+            bgc.style.backgroundColor='white'
+        }
+    }
+
+    var q2=document.querySelector('#btn3')
+    q2.onclick=function(){
+    var q1=document.getElementsByTagName('span')
+    q1[0].style.backgroundColor='red'
+    q1[1].style.backgroundColor='yellow'
+    }
+
+    var q3=document.getElementById('btn4')
+    q3.onclick=function(){
+        var q4=document.getElementsByTagName('div').length
+        alert(q4)
+    }
+
+    
+</script>    
+</body>
+</html>

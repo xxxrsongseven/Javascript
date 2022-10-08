@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>改变input控件类型(IE8及以下不支持)</title>
+<link rel="stylesheet" href="form.css" />
+<script>
+window.onload= function(){
+  // 1.在赋值符右侧写出通过name属性值获取密码文本框
+  let pwd = document.getElementsByName('pwd')[0];
+  // 2.在赋值符右侧写出通过id属性值获取显示密码复选框
+  let chk = document.getElementById('showPwd');
+
+  chk.onchange= function(e) {
+    try {  //防止IE8及以下报错，因为不支持改变HTML中控件元素的type属性值。
+      // 3.在if表达式中写出：通过控件节点的checked属性判断id为showPwd的复选框是否被选中
+      if (e.target.checked) {
+        // 4.将密码框的type属性值改为：text
+        pwd.type = 'text';
+      } else {
+        // 5.将密码框的type属性值改为：password
+         pwd.type = 'password';
+      }
+    } catch(error) {
+      alert('这个浏览器不能切换控件类型');
+    }
+  };  
+}
+</script>
+</head>
+<body>
+<div class="container login">
+  <form name="login" action="login" method="get">
+    <div class="one-third column">
+      <img src="images/logo.png" alt="logo" id="logo" />
+    </div>
+    <div class="two-thirds column" id="main">
+      <fieldset>
+        <legend>登陆</legend>
+        <label for="username">用户名:</label>
+        <input type="text" id="username1" name="username" />
+        <label for="pwd">密码:</label>
+        <input type="password" id="pwd" name="pwd" /><br>
+        <input type="checkbox" id="showPwd">
+        <label for="showPwd">显示密码</label>
+        <input type="submit" value="登陆" />
+      </fieldset>
+    </div>
+  </form>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.选中“显示密码”复选框，“密码”框中的密码显示原字符。</p>
+  <p>2.未选中“显示密码”复选框，“密码”框中的密码显示默认样式。</p>
+</div>
+</body>
+</html>

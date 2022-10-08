@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>隐藏内部实现</title>
+<script>
+//1.变量b和函数f1作用域是全局，假如b和f1只能在f函数里使用，全局作用域无法访问，如何改?
+  //b = 0;
+
+function f(a){
+	let b = 0;
+	b = f1(a);
+	document.write(b + '<br>');
+}
+
+function f1(a) {
+	return a + 1;
+}
+
+f(2);
+//2.在第1步改完后，没有全局变量b的声明，fn函数中也没有b变量声明，程序出错，如何解决?
+function fn(){	
+	
+	b = b+2;
+	document.write(b);
+}
+fn();
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {
+
+  var $newItemButton = $('#newItemButton');
+  var $newItemForm = $('#newItemForm');
+  var $text = $('input:text');
+
+  $newItemButton.show();
+  $newItemForm.hide();
+
+  $('#showForm').on('click', function(){  //单击添加新项目按钮
+    $newItemButton.hide();
+    $newItemForm.show();
+  });
+
+  $newItemForm.on('submit', function(e){
+    e.preventDefault();  //组织提交表单
+    // 1.在if条件表达式中使用$.isNumeric写出条件表达式：文本框中的值是数值或这能转为数值的值
+	if(  ){
+		$newItemForm.after('<p>不能输入数字</p>');  //在id为newItemForm的元素后增加一个段落
+		return;
+	} else {
+		// 2.将段落删除
+		
+	}
+	
+	// 3.在赋值符右边写出：获取文本框中的值
+	var newText = 
+	// 4.使用after()方法在最后一个li后添加新的li，内容为newText
+    
+    $newItemForm.hide();
+    $newItemButton.show();
+    // 5.将文本框中的值清空
+	
+  });
+
+});
+
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="cool"><em>美味的</em> 无花果</li>
+    <li id="two" class="cool">费牙的 松子</li>
+    <li id="three" class="cool">新鲜的 蜂蜜</li>
+  </ul>
+  <div id="newItemButton">
+    <button href="#" id="showForm">添加新项目</button>
+  </div>
+  <form id="newItemForm">
+    <input type="text" id="itemDescription" placeholder="请增加说明" />
+    <input type="submit" id="addButton" value="添加" />
+  </form>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.单击“添加新项目”按钮，隐藏这个按钮，显示添加项目的表单</p>
+  <p>2.在文本框中输入值，单击“添加”按钮，假如是数值会在下面出现提示，不是会将输入的值作为一个新的列表项插入在当前最后一个列表项后面</p>
+  <p>3.添加项目的表单被隐藏，”添加新项目”按钮被显示</p>
+</div>
+</body>
+</html>

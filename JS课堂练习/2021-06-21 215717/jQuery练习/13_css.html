@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>操作样式</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {
+  // 1.在赋值符右侧写出：选择li元素，调用css()方法获取背景色(注意只会获取第1个li的)
+  var backgroundColor = ;
+  //在ul元素后添加段落元素，写出背景色
+  $('ul').append('<p>第1个li原背景色是: ' + backgroundColor + '</p>');
+  // 2.选择li元素，调用css()方法，设置text-shadow为none
+  
+  // 3.选择li元素，调用css()方法，参数为对象字面量，设置：
+  // 背景色为#5a996，文字颜色为黑色，边框为1px solid white，下外边距为0.3em，左内边距为原值加76
+  
+  
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em> 无花果</li>
+    <li id="two" class="hot"><em>费牙的</em> 松子</li>
+    <li id="three" class="hot"><em>新鲜的</em> 蜂蜜</li>
+    <li id="four" class="cool" ><em>酸爽的</em> 香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.将第1个li的背景色显示在最后一个li下面</p>
+  <p>2.使用css()方法将文字阴影去掉</p>
+  <p>3.使用css()方法，设置多个CSS属性和值，加背景色，文字变黑色，加边框，增加下外边距，增加左编剧</p>
+</div>
+</body>
+</html>

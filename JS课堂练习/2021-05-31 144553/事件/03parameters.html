@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM事件处理器和事件监听器中用参数</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //第一步，获得username元素
+  var elUsername = document.getElementById('username');  
+  
+  //第三步，声明函数(事件处理程序)
+  //2.给函数加个形参minLength
+  function checkUsername(minLength) {
+	//获得feedback元素
+	var elMsg = document.getElementById('feedback');
+	//3.将if条件表达式用形参改造
+	if (this.value.length < minLength) {
+	  //4.将赋值符右侧的表达式用形参改造
+	  elMsg.innerHTML = '用户名不能少于'+ minLength +'个字符';
+	} else {
+	  elMsg.innerHTML = '';
+	}
+  }    
+  
+  //第二步，响应事件，指定事件处理程序
+  //1.使用事件侦听器方式写出：当username元素的blur事件(失去焦点)发生时调用checkUsername函数，
+  //将5作为checkUsername函数的实参  
+  elUsername.addEventListener('blur', function(){
+    checkUsername(8);
+  });
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>新账户</h2>
+  <form method="post">
+
+    <label for="username">用户名: </label>
+    <input type="text" id="username" />
+    <div id="feedback"></div>
+
+    <label for="password">密码: </label>
+    <input type="password" id="password" />
+
+    <input type="submit" value="注册" />
+
+  </form>
+</div>
+</body>
+</html>

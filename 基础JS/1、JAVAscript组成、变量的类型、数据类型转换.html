@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <textarea id="tt1"></textarea>+<textarea id="tt2"></textarea><button onclick="f()">求和</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <textarea id="tt3"></textarea>+<textarea id="tt4"></textarea><button onclick="fn()">求和</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <textarea id="tt5"></textarea><button onclick="fnn()">求和</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <textarea id="tt6"></textarea>+<textarea id="tt7"></textarea><button onclick="fnnn()">求和</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <textarea id="tt8"></textarea>+<textarea id="tt9"></textarea><button onclick="fnnnn()">求和</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <p> var a='5'    var b=5 </p>
+        <button onclick="dd()">==</button>
+        <button onclick="ddd()">===</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <p> var c='15'    var d='5' </p>
+        <button onclick="jia()">+</button>
+        <button onclick="jian()">-</button>
+    </div>
+    <script>
+        var t1=document.getElementById('tt1')
+        var t2=document.getElementById('tt2')
+        function f(){
+            alert(t1.value+t2.value)
+        }
+
+        var t3=document.getElementById('tt3')
+        var t4=document.getElementById('tt4')
+        function fn(){
+            alert(parseInt(t3.value)+parseInt(t4.value))
+        }
+
+        var t5=document.getElementById('tt5')
+         function fnn(){
+        alert(isNaN(t5.value))
+        }
+
+        var t6=document.getElementById('tt6')
+        var t7=document.getElementById('tt7')
+        function fnnn(){
+            if(isNaN(t6.value)||isNaN(t7.value)){
+                alert('请输入数字！')
+            }else{
+                alert(parseInt(t6.value)+parseInt(t7.value))
+            }
+        }
+
+        var t8=document.getElementById('tt8')
+        var t9=document.getElementById('tt9')
+        function fnnnn(){
+            if(isNaN(t8.value)||isNaN(t9.value)){
+                alert('请输入数字！')
+            }else{
+                alert(parseFloat(t8.value)+parseFloat(t9.value))
+            }
+        }
+
+        var a = '5'
+        var b =  5
+        function dd(){
+            if (a==b) {
+                alert('ture')
+            }else{
+                alert('false')
+            }
+        }
+        function ddd(){
+            if (a===b) {
+                alert('ture')
+            }else{
+                alert('false')
+            }
+        }
+        
+        var c='15'
+        var d='5'
+        function jia(){
+           alert(c+d)
+        }
+        function jian(){
+            alert(c-d)
+        }
+    </script>
+</body>
+</html>

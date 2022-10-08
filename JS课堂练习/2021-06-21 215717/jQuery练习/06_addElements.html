@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>增加新元素</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {
+  // 1.定义新的变量$newListItem，存储使用$()函数产生的1个新jQuery对象：<li><em>新增的</em> 豆瓣酱</li>  
+  
+  // 2.使用:last过滤器选择最后一个li元素，调用after()方法，参数为$newListItem
+  
+  // 3.使用before()方法，在ul元素前增加新段落，class属性为notice，元素内容为：正在更新中……
+  
+  // 4.使用prepend()方法，在class属性为hot的li元素开始标签后增加：+空格
+  
+  // 5.定义新变量$listItem，存储使用$()函数选择的id为four的li
+  
+  // 6.选择ul元素，调用append()方法，使用$listItem作为参数。注释5和6相当于移动节点
+  
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em> 无花果</li>
+    <li id="two" class="hot"><em>费牙的</em> 松子</li>
+    <li id="three" class="hot"><em>新鲜的</em> 蜂蜜</li>
+    <li id="four" class="cool"><em>酸爽的</em> 香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.在最后一个li后插入新列表项：<em>新增的</em> 豆瓣酱</p>
+  <p>2.在ul前插入新段落：正在更新中……</p>
+  <p>3.在前3个li的内容前增加：+符号</p>
+  <p>4.将第4个li移动到ul结束标签的前</p>
+</div>
+</body>
+</html>

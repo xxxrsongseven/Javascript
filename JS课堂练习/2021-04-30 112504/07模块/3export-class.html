@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导入类</title>
+</head>
+<body>
+
+<!-- 2.给script标签添加type="module"属性和值 -->
+<script type="module">
+// 3.将3module.js模块导出的User类导入
+import User from '/3module.js';
+// 4.新建User类的对象，存在变量user中
+let user=new User(555);
+// 5.调用user对象的changePassword方法，实参为新密码
+user.changePassword(666);
+// 6.在控制台输出user对象的password属性
+console.log(`${user.id}的新密码是${user.password}`);
+
+</script>
+
+</body>
+</html>

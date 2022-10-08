@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="app">
+        <input v-model="inputValue" type="text" @keydown.enter="add">
+        <input type="button" @click="add" value="添加">
+        <ul>
+            <li v-for="(item,index) in list">
+                <span>{{ index+1 }}</span>
+                <label> {{ item }} </label>
+                <a href="#" @click="delt(index)">delete</a>
+            </li>
+        </ul>
+        <span v-if="list.length!=0" >{{list.length}}个任务有待完成</span>
+        <a v-show="list.length!=0" href="#" @click="clear">清空</a>
+    </section>
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                list:['写代码','吃饭饭','睡觉觉'],
+                inputValue:'好好学习',
+            },
+            methods:{
+                add:function(){
+                    this.list.push(this.inputValue)
+                },
+                delt:function(index){
+                    this.list.splice(index,1)
+                },
+                clear:function(){
+                    this.list=[]
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>

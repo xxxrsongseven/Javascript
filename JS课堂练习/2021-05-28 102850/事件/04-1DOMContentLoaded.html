@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>load和DOMContentLoaded事件</title>
+<script>
+//1.在赋值符左侧写出window对象的onload事件属性
+window.onload= function(){
+  console.log('3.load事件：全部资源(DOM树、JS、CSS、音视频等)被加载到内存时触发，这里适合放对图像、音视频等媒介的操作。');
+  console.log(document.body);
+}
+
+//2.使用事件侦听器方式写出：document对象的DOMContentLoaded事件触发时(即DOM树生成时)，执行下面的匿名函数
+document.addEventListener('DOMContentLoaded',function(){
+  console.log('2.DOMContentLoaded事件：DOM树已被加载到内存时触发，这里适合放初始化应用程序的操作。');
+  console.log(document.body);
+});
+
+
+
+</script>
+</head>
+
+<body>
+<h1>load和DOMContentLoaded事件</h1>
+<p>在控制台观察执行顺序。</p>
+<img src="http://a.com/a.jpg" alt="图像不存在">
+<script>
+//3.直接写的JS代码。如果操作DOM树，放哪个位置更适合？
+console.log('1.DOM还未被加载到内存中，访问DOM会出错，这里适合放非DOM的操作，例如定义函数、获取外部资源缓存。');
+console.log(document.body);
+</script>
+</body>
+</html>

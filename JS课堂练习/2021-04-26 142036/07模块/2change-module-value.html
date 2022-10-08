@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改变导入模块中变量的值</title>
+    <style>
+        body {
+          font-family: 微软雅黑, sans-serif;
+          font-size: 16px;
+          width: 800px;
+        }
+        p {
+          font-size: 1em;
+        }
+        aside {
+          text-align: center;
+          position: fixed;
+          right: 5px;
+          top: 5px;
+        }
+        a {
+          text-decoration:none;
+          color: orange;
+          padding: .3em .5em;
+        }
+        aside, aside a {
+          font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<p>每个模块是包含export的.js文件。必须通过服务器运行。
+<p>export从模块导出原始值、函数、对象、类等的动态绑定。</p>
+<p>import在当前JS代码(HTML嵌入式或.js文件)中导入其他模块导出的只读动态绑定。
+</p>
+<p><strong>本代码中调用从模块中导入的函数会回到模块中执行该函数，并且可以修改模块中变量的值。</strong><p>
+<aside>
+    <span>字号 </span>
+    <a href="#" id="decrease">减小</a>
+    <a href="#" id="increase">增大</a> 
+</aside>
+
+<!-- 2.给script标签添加type="module"属性和值 -->
+<script>
+// 3.从2module.js模块中导出的函数changeFontsize
+
+
+//单击减小超链接
+document.getElementById('decrease').addEventListener('click', function(e){
+  // 4.调用changeFontsize，形参为-1
+  
+  e.preventDefault();//避免触发超链接默认行为
+});
+//单击增大超链接
+document.getElementById('increase').addEventListener('click', function(e){
+  // 5.调用changeFontsize，形参为1
+  
+  e.preventDefault();
+});
+</script>
+
+</body>
+</html>

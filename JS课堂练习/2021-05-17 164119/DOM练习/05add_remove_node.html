@@ -1,0 +1,61 @@
+﻿3<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>增加删除节点</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script>
+window.onload= function(){	
+  /***第一部分，增加元素内容***/
+  //1_1.使用createElement()方法产生一个新的li元素节点存储在变量newEl中
+  let newEl=document.createElement('li');
+  //1_2.使用createTextNode()方法产生一个文本节点存储在变量newText中，文本内容为酱油
+  let newText= document.createTextNode('酱油');
+  //1_3.使用appendChild()方法将文本节点newText添加到元素节点newEl中
+  newEl.appendChild(newText);
+  //1_4.获取ul元素节点，将其存储在变量position中
+  let position=document.querySelector('#todo');
+  //1_5.使用appendChild()方法将元素节点newEl添加到position中
+  position.appendChild(newEl);
+  //1_6.使用createElement()方法产生一个新的li元素节点存储在变量newEl中
+  newEl=document.createElement('li');
+  //1_7.使用insertBefore()方法将newEl元素插入到ul第1个li子元素前
+  //提示：第2个参数使用元素节点.firstChild属性可以获得这个元素节点的第1个子节点
+  position.insertBefore(newEl,position.firstChild);
+  //改变当前newEl节点的元素内容为花生
+  newEl.innerHTML= '花生';
+  
+  position.innerHTML +='<li>酱油</li>';
+  /***第二部分，删除元素内容***/
+  //2_1.获取第4个li元素(准备删除)，存放在变量removeEl中
+  let removeEl=document.querySelector('#four');
+  //2_2.使用元素节点.parentNode属性获取这个li的父元素，存放在变量parentEl中
+  let parentEl=removeEl.parentNode;
+  //2_3.使用removeChild()方法从父元素中将这个li元素删除
+  parentEl.removeChild(removeEl);
+  //parentEl.removeChild(parentEl.getRootNode());
+  	
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>  
+  <ul id="todo">
+    <li id="one" class="hot"><em>美味的</em>无花果</li>
+    <li id="two" class="hot"><em>费牙的</em>松子</li>
+    <li id="three" class="hot"><em>新鲜的</em>蜂蜜</li>
+    <li id="four"><em>酸爽的</em>香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>操作步骤</h3>
+  <p>1.在最后一个列表项后插入一个新的列表项</p>
+  <p>2.在第一个列表项前插入一个新的列表项</p>
+  <p>3.删除第4个列表项</p>
+</div>
+</body>
+</html>

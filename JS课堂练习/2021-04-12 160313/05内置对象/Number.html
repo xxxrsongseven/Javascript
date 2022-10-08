@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Number对象的方法和全局函数</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){  
+  //***第一部分，Number对象的toFixed方法***
+  //将原始金额存入变量money
+  let money = 10.856;
+  //将原始金额的信息存入msg中
+  let msg = '<h2>原始金额</h2><p>' + money + '</p>';
+  //1.在+号之间写出：原始金额保留小数位数2位
+  msg += '<h2>两位小数金额</h2><p>' + money.toFixed(2)  + '</p>';
+  
+  //***第二部分，全局parseInt函数***
+  //将某个元素宽度160px存入变量width中
+  let width= '160px';
+  //将原始宽度的信息添加到msg中
+  msg+= '<h2>原始宽度</h2><p>' + width + '</p>';
+  //2.在原宽度上增加40px;
+  width= ;
+  //将新的宽度信息添加到msg变量中
+  msg+= '<h2>增加40px的宽度</h2><p>' + width + '</p>';
+  
+  //***第三部分，全局parseFloat函数***
+  //将某个元素行高存入变量lineHeight中
+  let lineHeight= '1.3em';
+  //将原始行高添加到msg中
+  msg+= '<h2>原始行高</h2><p>' + lineHeight + '</p>';
+  //3.在原行高上增加0.2em;
+  lineHeight= ;
+  //将现在行高显示在网页中
+  msg+= '<h2>现在行高</h2><p>' + lineHeight + '</p>';
+  
+  //将msg显示在页面中
+  let el = document.getElementById('info');
+  el.innerHTML = msg;
+  } 
+
+</script>
+</head>
+
+<body>
+	<h1>TravelWorthy</h1>
+    <div id="info">
+       <h2>原始金额</h2><p>20.831</p>
+       <h2>两位小数金额</h2><p>20.83</p>
+       <h2>原始宽度</h2><p>180px</p>
+       <h2>增加20px的宽度</h2><p>200px</p>
+    </div>
+</body>
+</html>

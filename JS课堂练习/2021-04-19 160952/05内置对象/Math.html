@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Math对象</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<h1>TravelWorthy</h1>
+<div id="info"><h2>随机房号</h2><p>B0422</p></div>
+
+<script>
+//1.产生随机房号
+//获得[min,max]之间的一个随机数的公式
+function getRandom(min,max){
+  return Math.floor( Math.random() * (max-min+1) + min );
+}
+
+//1-1 将产生1~10的随机数的表达式写在赋值符右边
+let randomNum = Math.floor((Math.random() * 10) + 1);
+//1-2 调用getRandom函数产生1到10之间的随机数，赋值给randomNum
+randomNum= getRandom(1,10);
+  
+//将随机房号显示在页面中
+let el = document.getElementById('info');
+el.innerHTML = '<h2>随机房号</h2><p>' + randomNum + '</p>';  
+
+// 2.抽奖游戏。有倾向性的随机概率
+let result= '<p>抽奖结果：';
+let rnd= Math.floor(Math.random()*100 + 1);
+// 2-1 怎样控制一等奖最少，二等奖次之，以此类推
+if(rnd == 1){
+    result+='恭喜，获得一等奖！';
+} else if(rnd >= 2 && rnd < 10) {
+    result+='恭喜，获得二等奖！';
+} else if(rnd >= 10 && rnd < 50) {
+    result+='恭喜，获得三等奖！';
+} else{
+    result+='很遗憾，请再接再厉！';
+}
+el.innerHTML+= result + '</p>';
+
+// 3.生成4个字符组成随机验证码
+el.innerHTML+= '<h2>4位随机验证码</h2><p>';
+let random;             //存放1个随机数
+let checkcode= '';      //存放最终4个随机数
+let code= '356789ABCDE'; //验证码组成字符
+// 3-1 使用split(s)将code字符串中每个字符作为一个元素存入数组arr中
+let arr= code.split('');
+// 3-2生成4个字符的随机验证码，写出for循环;之间条件表达式
+for(let i=0; i<4; i++) {
+    // 3-3生成数组索引范围内的1个随机数，存入变量randomNum中
+    random= Math.floor(Math.random()*arr.length);
+    // 3-4 用变量randomNum为数组arr的下标获得相应数组元素的值，并追加到checkcode变量中
+    checkcode+= arr[random];
+}
+//将验证码显示在页面中
+el.innerHTML+= '<p>' + checkcode + '</p>';;
+
+</script>
+</body>
+</html>

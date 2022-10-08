@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>首页</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/public/css/basic.css">
+</head>
+<body>
+    <%- include('header.ejs') -%>
+    <h1>首页 - ejs模板生成</h1>
+    <form action="/login" method="get">
+        <lable>用户名</lable>
+        <input type="text" name="username">
+        <%=user%>
+        <label>密码</label>
+        <input type="password" name="password">
+        <%=pwd%>
+        <input type="submit" value="登录">
+    </form>
+
+    <script src='/public/js/basic.js'></script>
+</body>
+</html>

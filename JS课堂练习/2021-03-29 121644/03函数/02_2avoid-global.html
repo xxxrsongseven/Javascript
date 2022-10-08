@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ES5中如何减少全局标识符的声明</title>
+<script>
+
+//减少全局标识符的声明。变量冲突的一个典型例子存在于全局作用域中。当程序中加载了多个第三方库时，如果它们没有妥善地将内部私有的函数或变量隐藏起来，就会很容易引发冲突。
+//1 变量a和函数f1作用域是全局，假如a和f1只能在f函数里使用，全局作用域无法访问，如何改?
+function f(temp){
+   var a=0;
+   function f1(temp) {
+	   return temp + 1;
+   }
+	a = f1(temp);
+	console.log(a);
+}
+f(2);
+
+//2 块级作用域中用var声明的变量会提升到？ES5时如何解决？
+function f2(){
+   if(1){
+      var d= 4;
+   }
+   console.log(`if中var声明变量d的值为${d}`);
+   for(var i=1; i<3; i++) {
+      var sum= i;
+   }
+   console.log(`for循环变量i和循环体内sum的值分别为${i}、${sum}`);
+}
+f2();
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用对象字面量新建对象</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //1.用对象字面量新建一个酒店对象，存放在hotel中
+  //hotelName存放快捷酒店名，如家快捷酒店
+  //rooms存放总房间数，100
+  //booked存放预定房间数，68
+  //checkEmptyRooms存放方法，计算空余房间数
+  let hotel={
+    hotelName:'如家快捷酒店',
+    rooms:100,
+    booked:68,
+    checkEmptyRooms:function(){
+      return this.rooms-this.booked;
+    }
+  }
+  
+  var elName = document.getElementById('hotelName'); //获得元素
+  //2.将酒店名写在赋值符右边
+  elName.textContent = ;                   //用对象属性更新元素内容
+  
+  var elRooms = document.getElementById('emptyRooms');    //获得对象
+  //3.将酒店空房间数写在赋值符右边
+  elRooms.textContent = ;     //用对象方法更新元素内容
+}
+</script>
+</head>
+
+<body>
+<h1>TravelWorthy</h1>
+    <div id="info">
+      <h2>酒店空余房间数</h2>
+      <div id="hotelName">某某酒店</div>
+      <div id="availability">
+        <p id="emptyRooms">1000</p>
+        <p>间</p>
+      </div>
+    </div>
+</body>
+</html>

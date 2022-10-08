@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <p>var c=[1,2,3]</p><button onclick="f1()">length</button>
+        <p>var b = new Array(4,5,6)</p><button onclick="f2()">length</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <p>var a=[1,2,3,4,5,6]</p>
+        <p>设置数组的length</p><button onclick="f3()">length</button><button onclick="f4()">只要前三</button>
+        <p>数组尾部添加 push</p><button onclick="f5()">尾部添加</button>
+        <p>数组尾部删除 pop</p><button onclick="f6()">尾部删除1位</button>
+        <p>数组头部添加 unshift</p><button onclick="f7()">头部添加</button>
+        <p>数组头部删除 shift</p><button onclick="f8()">头部删除</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <p>删除 splice</p><button onclick="f9()">删除2-4位</button>
+        <p>添加 splice</p><button onclick="f10()">第二位添加abc</button>
+        <p>替换 splice</p><button onclick="f11()">第二位删除2位插入</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <p>数组连接 concat</p><button onclick="f12()">连接b c数组</button>
+        <p>数组分割 join</p><button onclick="f13()">用-连接</button>
+        <p>var str=['hello','my','name','is','hzq']</p>
+        <p>数组字符串排序 sort</p><button onclick="f14()">字符串排序</button>
+        <p>var s1=[33,22,15,53,355,134,2,5,6]</p>
+        <p>数组数字排序 sort(function (n1,n2){return n1-n2})</p><button onclick="f15()">数字排序</button>
+    </div>
+    <script>
+        var a = [1, 2, 3, 4, 5, 6]
+        var c = [1, 2, 3]
+        var b = new Array(4, 5, 6)
+        var str = ['hello', 'my', 'name', 'is', 'hzq']
+        var s1 = [33, 22, 15, 53, 355, 134, 2, 5, 6]
+        function f1() {
+            alert(c.length)
+        }
+        function f2() {
+            alert(b.length)
+        }
+        function f3() {
+            alert(a.length)
+        }
+        function f4() {
+            a.length = 3
+            alert(a)
+        }
+        function f5() {
+            a.push(7)
+            alert(a)
+        }
+        function f6() {
+            a.pop()
+            alert(a)
+        }
+        function f7() {
+            a.unshift(0)
+            alert(a)
+        }
+        function f8() {
+            a.shift()
+            alert(a)
+        }
+        function f9() {
+            a.splice(2, 3)
+            alert(a)
+        }
+        function f10() {
+            a.splice(2, 0, 'abc')
+            alert(a)
+        }
+        function f11() {
+            a.splice(2, 2, 'abc')
+            alert(a)
+        }
+        function f12() {
+            var d = c.concat(b)
+            alert(d)
+        }
+        function f13() {
+            var e = a.join('-')
+            alert(e)
+        }
+        function f14() {
+            alert(str.sort())
+        }
+        function f15() {
+            alert(s1.sort(function (m, n) {
+                return m - n
+            }))
+        }
+    </script>
+</body>
+
+</html>

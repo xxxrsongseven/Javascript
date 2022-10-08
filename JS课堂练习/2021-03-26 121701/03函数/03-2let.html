@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>let声明</title>
+<script>
+// 1.let有块级作用域
+let a= 1;
+{//一个块级作用域
+  // 1-1 是否屏蔽了全局作用域
+  let a= 2;
+  console.log(`代码块内变量a为${a}`);
+}
+console.log(`代码块外变量a为${a}`);
+
+// 2.let是否将i和sum绑定到了for块级作用域中？
+for(let i=0;i<5;i++) {
+  let sum=i;
+}
+//console.log(`for循环变量i的值为${i}`);
+//console.log(`for循环体力sum的值为${sum}`);
+
+// 3.let和const全局变量与var全部变量区别
+// 3-1 var全局变量会作为浏览器全局对象的属性。let和const不会
+var b= 3;
+let c= 4;
+console.log(window.b=== b);//windows代表浏览器中的一个标签页
+console.log(window.c);
+// 3-2 var容易误伤浏览器全局对象window的属性和成员
+window.alert(5);
+//let alert= 1;
+var alert= 1;
+window.alert(5);
+
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

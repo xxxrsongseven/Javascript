@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function (){
+        var d1 = document.getElementById('d1')
+        d1.onclick=function(){
+            
+            var timer=null;
+		function show ()
+		{
+			var speed=2;
+			d1.style.left=d1.offsetLeft+2+'px';
+			d1.style.fontSize='12px';
+			d1.style.lineHeight='24px';
+			d1.innerHTML='当前位置：'+d1.offsetLeft+'<br/>当前速度：'+speed;
+		}
+		timer=setInterval(show,30);
+        }}
+    </script>
+</head>
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+    <div id="d1" style="width: 100px; height: 100px; background-color: pink;"></div>
+    </div>
+    
+</body>
+</html>

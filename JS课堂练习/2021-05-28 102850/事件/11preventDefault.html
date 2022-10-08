@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>阻止元素事件的默认行为</title>
+<style>
+body {
+	font: 18px 微软雅黑,黑体;
+}
+div#mode {
+	position: fixed;
+	top: 46%;
+	right: 1em;
+	background: #111;
+	text-align: center;
+	width: 3em;
+}
+div#mode a{
+	color: orange;
+}
+#example {
+	margin-top: 600px;
+}
+.daytime {
+  color: #555;
+	background-color: #f1f1f1;
+}
+.nighttime {
+  color: #ccc;
+	background-color: #222;	 
+}
+</style>
+<script>
+window.onload= function(){
+  let day=document.getElementById("day");
+  let night=document.getElementById("night");
+  //(1)将body元素的class属性设置为：day
+  //(2)使用event对象的preventDefault()阻止超链接的单击事件的默认行为
+  //(3)使用return false阻止超链接的单击事件的默认行为；兼容IE8及以下，在addEventListener方法里无效
+
+  
+  //2.用事件事件侦听器方式写出：单击id为night的超链接时，调用匿名函数，在匿名函数中写出  
+  //(1)将body元素的class属性设置为：night
+  //(2)使用event对象的preventDefault()阻止超链接的单击事件的默认行为
+  
+  
+  //3.使网页根据时间自动使用夜晚和白天模式，7-18点白天，18-6点夜晚
+}
+</script>
+</head>
+
+<body>
+<div id="mode">
+  <p><a id="day" href="#">白天</a></p>
+  <p><a id="night" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/click">夜晚</a></p>
+</div>
+<h1>在白天和夜晚样式之间切换</h1>
+<p>1.使用了DOM的节点style属性</p>
+<p>2.使用了click事件</p>
+<p>3.使用了event对象的preventDefault()方法</p>
+<h3>注意：网页下方还有很多文字，让这些字显示在屏幕内单击右边的模式，不会滚动页面到顶端或者打开新的网页</h3>
+<div id="example">
+  <p>很多字</p>
+  <p>很多字</p>
+  <p>……</p>
+  <p>很多字</p>
+  <p>（完）</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>回调函数</title>
+<script>
+//1.回调函数含义
+//高阶函数(外层函数)
+function userInput(callback) {
+  var name = prompt('请输入你的姓名：');
+  callback(name);
+}
+
+//同步回调函数1
+function greeting(name) {
+  console.log(name + '，你好');
+}
+
+//同步回调函数2
+function eat(name) {
+  console.log(name + '，该吃饭了');
+}
+
+// 调用userInput，实参为greeting函数引用
+userInput(greeting);
+// 调用userInput，实参为eat函数引用
+userInput(eat);
+
+//2.同步回调：数组内置方法forEach
+let arr=[5, 6];
+arr.forEach(function(element){
+  console.log(element);
+});
+
+//2-1同步回调：自己实现forEach，命名为myEach
+Array.prototype.myEach= function(callback){
+  for(let i=0; i<this.length; i++){
+    callback(this[i]);
+  }
+}
+//任何数组都可以愉快的使用myEach了
+arr.myEach(function(element){
+  console.log(element);
+});
+
+//3.异步回调
+document.addEventListener('click', function(){
+  console.log('你单击了网页');
+});
+setTimeout(function(){
+  console.log('给我3秒钟，我会出现在你的面前，详细吗？');
+}, 3000);
+</script>
+</head>
+
+<body>
+<h3>高阶函数是至少满足下列一个条件的函数：</h3>
+<ul>
+  <li>接受一个或多个函数作为输入(JS用于回调函数)</li>
+  <li>输出一个函数(JS用于闭包)</li>
+</ul>
+<h3>回调函数是一种抽象编程，分为同步回调(同步调用回调函数)和异步回调(异步调用回调函数)。</h3>
+<p>数组对象的map、forEach等方法是同步回调。</p>
+<p>事件监听器的第2个实参是异步回调，setTimout、setInterval方法的第1个实参是异步回调。</p>
+</body>
+</html>

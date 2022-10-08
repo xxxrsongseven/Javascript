@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>event.keyCode属性和keyup事件</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //计算字符函数，并显示输入的字符的ASCII码值和字符
+  // 3.写出函数实参，其中一个参数名为totalCount
+  // 6.给charCount添加形参接收事件对象
+  function charCount(e, totalCount) {
+    let counter, lastkey;
+    // 4.通过事件对象的target属性获得触发事件的元素，存在obj变量中。赋值符右侧如果写this，this代表谁？
+    let obj= e.target;
+    // 10.写出if的条件表达式：判断按键ASCII码值为46（Delete键码值）
+    if(e.keyCode == 46) {
+      obj.value= ''; //将文本域内容清空
+    }	
+    // 7.计算还能输入的字符数，存放在变量counter中
+    counter= totalCount - obj.value.length;
+    // 8.将还能输入的字符数作为id为characterLeft元素的内容
+    charDisplay.textContent= counter;    
+    // 9.在+后写出当前ASCII码值
+    lastKey.innerHTML = '最后输入的键的ASCII码值：' + e.keyCode;
+  }  
+  
+  // 获得文本域元素
+  let charDisplay = document.getElementById('charactersLeft'); 
+  // 获得id为lastKey的元素                        
+  let lastkey = document.getElementById('lastKey');
+  //1.在赋值符右侧写出获得id为message的元素
+  let el = document.querySelector('#message');
+  //2.用事件侦听器方式写出：id为message的元素的keyup事件发生时调用charCount函数，实参为140，表示最多能输入140字
+  // 5.给事件处理程序添加形参接收事件对象，给charCount函数添加事件对象实参
+  el.addEventListener('keyup', function(e){
+    charCount(e, 140);
+  });
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <form id="messageForm" aciton="http://a.com/a.jsp">
+    <h2>来，说说你在做什么，想什么，这样心情会好很多</h2>
+    <textarea id="message"></textarea>
+    <div>还能输入 <span id="charactersLeft">140</span> 字</div>
+    <div id="lastKey"></div>
+  </form>
+</div>
+</body>
+</html>

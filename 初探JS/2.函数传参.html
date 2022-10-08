@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bgc" style="border: solid 2px; height: 100px;; text-align: center;"><p>
+        <button onclick="f('yellow')">背景变黄</button>
+        <button onclick="f('red')">背景变红</button>
+        <button onclick="f('black')">背景变黑</button>
+        <button onclick="f('white')">背景变回</button>
+    </p></div>
+
+
+    <div id="q1" style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;"><p>
+        <button onclick="f1('width','41%')">背景变窄</button>
+        <button onclick="f1('backgroundColor','yellow')">背景变黄</button>
+        <button onclick="f1('height','300px')">背景变高</button>
+        <button onclick="f1('width','100%'),f1('backgroundColor','white'),f1('height','100px')">背景变回</button>
+    </p></div>
+
+
+    <div  style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;"><p>
+        <form>
+        <input id="hzqhzq" value="wocaonima">
+        <button onclick="setvalue('value')">改变</button>
+    </form>
+    </p></div>
+
+    <div id="wtf"  style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;"><p>
+        <button onclick="f3()">变高变窄变黄</button>
+        
+    </p></div>
+    <script>
+        var bgc=document.getElementById('bgc');
+        function f(e){
+            bgc.style.backgroundColor=e;
+        }
+
+
+        var q1=document.getElementById('q1');
+        function f1(name,value){
+            q1.style[name]=value;
+        }
+
+        let mlf=document.getElementById('hzqhzq');
+          function setvalue(valuename){
+              
+	        
+	        mlf[valuename]='dajiahao';
+              
+          }
+
+
+          var hlo=document.getElementById('wtf');
+          function f3(){
+              hlo.style.height='300px';
+              hlo.style.width='300px';
+              hlo.style.backgroundColor='red';
+          }
+        
+    </script>
+</body>
+</html>

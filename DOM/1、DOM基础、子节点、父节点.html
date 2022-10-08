@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pinks {
+            background-color: pink;
+        }
+
+        .reds {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <ul id="u1">
+            <li>子节点1</li>
+            <li>子节点2</li>
+        </ul>
+        <button onclick="f1()">childNodes子节点个数</button>
+        <button onclick="f2()">children子节点个数</button>
+        <button onclick="f3()">判断节点类型</button>
+        <button onclick="f4()">childNodes操作子节点</button>
+        <button onclick="f5()">children操作子节点</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <ul id="uls">
+            <li style="display: block;">子节点1<a href="javascript:;">隐藏</a></li>
+            <li style="display: block;">子节点2<a href="javascript:;">隐藏</a></li>
+            <li style="display: block;">子节点3<a href="javascript:;">隐藏</a></li>
+            <li style="display: block;">子节点4<a href="javascript:;">隐藏</a></li>
+            <li style="display: block;">子节点5<a href="javascript:;">隐藏</a></li>
+        </ul>
+        <button id="btn2">查看隐藏的父节点f12</button>
+        <button id="btn1">显示a的父节点</button>
+    </div>
+    <script>
+        var u1 = document.getElementById('u1')
+        function f1() {
+            alert(u1.childNodes.length)
+        }
+        function f2() {
+            alert(u1.children.length)
+        }
+        function f3() {
+            for (i = 0; i < u1.childNodes.length; i++) {
+                alert(u1.childNodes[i].nodeType);
+            }
+        }
+        function f4() {
+            for (i = 0; i < u1.childNodes.length; i++) {
+                if (u1.childNodes[i].nodeType == 1) {
+                    u1.childNodes[i].className = 'pinks'
+                }
+            }
+        }
+        function f5() {
+            for (i = 0; i < u1.children.length; i++) {
+                u1.children[i].className = 'reds'
+            }
+        }
+        var as = document.getElementsByTagName('a')
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+                this.parentNode.style.display = 'none'
+            }
+        }
+        var btn1 = document.getElementById('btn1')
+        btn1.onclick = function () {
+            for (i = 0; i < as.length; i++) {
+                as[i].parentNode.style.display = 'block';
+            }
+        }
+        var btn2 =document.getElementById('btn2')
+        btn2.onclick=function(){
+            for (i = 0; i < as.length; i++) {
+            console.log((as[i].parentNode));
+        }}
+
+    </script>
+</body>
+
+</html>

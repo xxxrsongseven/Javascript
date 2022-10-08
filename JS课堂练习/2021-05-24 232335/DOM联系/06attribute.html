@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>操作属性的方法</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script>
+window.onload= function(){	
+  /***第一部分，获取元素的属性的值***/
+  //1.使用getElementById()方法将id为one的元素存储在变量firstItem中
+  let firstItem= document.getElementById('one');
+  //2. 在if表达式中写出：使用hasAttribute()方法判断id为one的元素的class属性是否存在
+  if (firstItem.hasAttribute('class')) {
+	//3.使用getAttribute()方法获得id为one的元素的class属性值，存储在attr变量中
+    let attr= firstItem.getAtrribute('class');
+    //4.获得id为scriptResults的元素，存储在变量el中
+    let el= document.querySelector('#scriptResults');
+	//5.将“第一个项目的class属性值: hot”作为id为scriptResults的元素内容
+    el.innerHTML= '第一个项目的class属性值: ' + attr; 
+  }
+  
+  /***第二部分，设置元素的属性的值，当不存在这个属性时，会新增这个属性***/
+  //11.使用className属性改变id为one元素的属性值
+  
+  //6.获得第4个li元素，存放在fourthItem变量中
+  
+  //7.使用setAttribute()方法为第4个li元素设置class属性的值为cool
+  
+  
+  /***第三部分，删除属性***/
+  //8.使用getElementById()方法将id为two的元素存储在变量secondItem中
+  
+  //9.在if表达式中写出：使用hasAttribute()方法判断id为two的元素的class属性是否存在
+  if(){
+    //10.使用removeAttribute()方法删除id为two的元素的class属性
+	
+  }  	
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em>无花果</li>
+    <li id="two" class="hot"><em>费牙的</em>松子</li>
+    <li id="three" class="hot"><em>新鲜的</em>蜂蜜</li>
+    <li id="four"><em>酸爽的</em>香醋</li>
+  </ul>
+  <div id="scriptResults"></div>
+</div>
+<div id="footer">
+  <h3>操作步骤</h3>
+  <p>1.获取第1个列表项的属性值，显示在列表下方；更改class属性值</p>
+  <p>2.更换第4个列表项的class属性值；给最后一个列表项的新增了class属性和值</p>
+  <p>3.删除第2个列表项的class属性和值</p>
+</div>
+</body>
+</html>

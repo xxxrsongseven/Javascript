@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>列表框</title>
+<link rel="stylesheet" href="form.css" />
+<script>
+window.onload= function(){
+  let type  = document.getElementById('equipmentType');//获得第1个列表框
+  let model = document.getElementById('model');        //获得第2个类表框
+  let cameras = {                             //用对象cameras存储照相机的型号
+    bolex: 'Bolex Paillard H8',
+    yashica: 'Yashica 30',
+    pathescape: 'Pathescape Super-8 Relax',
+    canon: 'Canon 512'
+  };
+  let projectors = {                          //用对象projectors存储投影仪的型号
+    kodak: 'Kodak Instamatic M55',
+    bolex: 'Bolex Sound 715',
+    eumig: 'Eumig Mark S',
+    sankyo: 'Sankyo Dualux'
+  };
+
+  // 1.在赋值符的左侧使用事件属性方式写出：当用户改变了type列表框的选项时
+  = function() {
+    // 2.在if表达式中写出：选择的是默认项时。提示：使用this关键字和value属性
+    if () {
+      model.innerHTML = '<option>请先选择一个类型</option>';  //更新型号列表框中的值
+        return;                                  //退出匿名函数
+    }
+    // 3.选择了某个类型时。在赋值符右侧写出：调用getModels()函数，实参为第1个列表框当前选择项的值
+    let models = ;
+
+    //使用循环将当前类型的对象中存储的属性和属性值作为列表项添加到model列表框
+    let options = '<option>请选择一个型号</option>';
+    let key;
+    // 4.在for循环表达式中写出：key遍历当前选择的类型的对象的属性和属性值
+    for () {
+      // 5.向变量options中添加字符串：<option value="键">键值</option>
+        
+    }
+    // 6.用变量options作为model列表框的元素内容
+    
+  };
+
+  function getModels(equipmentType) {
+    if (equipmentType === 'cameras') {            // 假如类型是cameras
+      return cameras;
+    } else if (equipmentType === 'projectors') {  // 假如类型是projectors
+      return projectors;
+    }
+  }
+  
+}
+</script>
+</head>
+<body>
+<div class="container login">
+  <form name="howHeard" id="howHeard" action="heard" method="get">
+    <div class="one-third column">
+      <img src="images/logo.png" alt="logo" id="logo" />
+    </div>
+    <div class="two-thirds column" id="main">
+      <fieldset>
+        <legend>设备出租</legend>
+          <label for="equipmentType">类型</label>
+          <select id="equipmentType" name="equipmentType">
+            <option value="choose">请选择一个类型</option>
+            <option value="cameras">照相机</option>
+            <option value="projectors">投影仪</option>
+          </select><br>
+          <label for="model">型号</label>
+          <select id="model" name="model">
+            <option>请先选择一个类型</option>
+          </select>
+          <input id="submit" type="submit" value="提交" />
+      </fieldset>
+    </div>
+  </form>
+</div>
+<div id="footer">
+<h3>列表框 - 最终效果</h3>
+  <p>1.从第1个列表框选择默认选项，第2个列表框中的内容被更新为“请先选择一个类型”</p>
+  <p>2.从第1个列表框选择非默认选项，第2个列表框中的显示这个类型的多对应的所有型号</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this关键字</title>
+</head>
+<body>
+<script>
+    // 1.全局环境，在函数外使用this是全局对象，在客户端是window对象，在node.js是global对象。未来用globalThis引用全局对象更准确。
+    console.log(this);
+
+    // 2.函数里的this    
+    var width= 1;
+    function showWidth(width){
+        console.log(this.width);
+    }
+    // 2-1 直接通过函数名调用函数，函数内this是全局对象，在客户端(浏览器)环境是window，在node.js环境时global。
+    //【注意】客户端里var声明的全局变量和全局函数是window的键
+    showWidth(2);
+
+    // 2-2 函数作为对象的方法被调用，函数内this是调用函数的当前对象，使使对象内部代码不依赖于对象外部的变量名，提高代码灵活性.
+    let shape  = {
+        width: 3,
+        height: 4,
+        getArea: function() {
+            // 2-2-1 如果对象名不再是shape，下面代码还需改动，如何解决？
+            return this.width * this.height;
+        },
+        showWidth: function(){
+            return this.width;
+        }
+    };
+    console.log(shape.getArea());
+    let f1= shape.showWidth;
+    // 2-2-2 此时是shape调用f1函数吗？
+    console.log(f1());
+
+    // 3 通过函数对象的call和apply方法调用，this被强制绑定
+    let food1=  { name: '冰峰'};
+    let food2= { name: '肉夹馍'};
+    function f(count){
+        console.log(`$(this.name)：$(count)份`);
+    }
+    // 3-1 使用call方法调用函数，将f函数里的this绑定为food2，给形参count传值为2
+    f.call(food1, 1);
+    // 3-2 使用apply方法调用函数，将f函数里的this绑定为food2，给形参count传值为2
+    f.apply(food2, [2]);
+</script>    
+</body>
+</html>

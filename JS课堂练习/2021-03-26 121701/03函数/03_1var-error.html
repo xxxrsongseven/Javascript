@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>var提升存在的问题</title>
+<script>
+
+//1.块级内var声明变量引起的作用域泄露。
+function f1() {
+   if (1) {
+      var c= 1;
+   } else {
+      console.log('else中访问变量c：' + c);
+   }
+   console.log('函数f内访问变量c：' + c);
+
+   for(var i=0; i<3; i++){
+      var sum = i;
+   }
+   console.log(`for循环变量i和循环体内sum的值分别为${i}、${sum}`);
+}
+f1(1);
+
+//2.变量提升在执行代码前
+var a = 1;
+function f2() {
+   //var a;提升
+  console.log(a);//输出undefined
+  if (false) {
+    var a = 'h';//提升到26行后,包裹它的函数顶层
+  }
+}
+f2();
+</script>
+</head>
+
+<body>
+</body>
+</html>

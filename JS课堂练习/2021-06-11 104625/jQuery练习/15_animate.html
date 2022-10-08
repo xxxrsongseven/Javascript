@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>动画</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {  
+  // 1.选择h2元素，调用animate()方法
+  //第1个参数是对象字面量：字间距变为.8em，左内边距变为.8em，字号变为1.5em
+  //第2个参数是动画持续1500毫
+  
+   
+  $('li').on('click', function() {
+    // 2.使用$(this)作为选择器，调用animate()方法
+	//第1个参数是对象字面量：透明度设置为0.0，左内边距设置为原值加120
+	//第2个参数是动画持续900毫秒
+	//第3个参数是匿名函数，将这个元素删除
+	
+  });
+     
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em> 无花果</li>
+    <li id="two" class="hot"><em>费牙的</em> 松子</li>
+    <li id="three" class="hot"><em>新鲜的</em> 蜂蜜</li>
+    <li id="four" class="cool" ><em>酸爽的</em> 香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.页面出现时，h2字间距增大</p>
+  <p>2.单击每个li时，li上的字向右移动，变透明，并被删除</p>
+</div>
+</body>
+</html>

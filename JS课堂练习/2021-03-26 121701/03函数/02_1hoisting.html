@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>var声明变量</title>
+<script>
+
+//提升。仅限于var声明的变量和function函数定义语句，let和const声明的变量不会提升。
+
+//1 只提升var声明语句，不提升赋值语句。
+console.log(`在var声明变量c1前读取其值：${c1}`);
+//1-1 用var声明变量c1
+var c1= 'var声明变量c1';
+console.log(`在var声明变量c1后读取值：${c1}`);
+//console.log(`let声明的变量c2为${c2}`);
+//console.log(`const声明的常量c3为${c3}`);
+//1-2 用let、const分别声明变量c2和c3
+let c2= 'let变量c1';//let声明的变量不会提升
+const c3= 'const常量c2';// 同上
+
+//2 函数作用域中用var声明的变量会提升到？提升到外层函数代码的顶端（最前面）
+function f(){
+   console.log(`函数中e的值为${e}`);
+   //2-1 用var声明变量e
+   var e= 1;   
+}
+f();
+//console.log(`函数中声明的变量e还存在吗？值为${e}`);
+
+//3 未用var、let、const声明的变量会提升吗？会变成那种作用域变量？
+function f1(){
+   //console.log(`函数中f1的值为${g}`);
+   g= 1; //g的作用域被泄露到了全局
+}
+f1();
+console.log(`函数中声明的变量g还存在吗？值为${g}`);
+
+//4.函数提升，可使函数定义位于调用之后，但不建议这样做。
+f2();
+function f2(){
+   console.log('函数调用在前，定义在后，不会出错，但不要这样做。');
+}
+</script>
+</head>
+
+<body>
+   <h1>标识符声明语句和函数定义语句应放在代码最前面，不要依赖于提升，避免产生意想不到的错误。</h1>
+</body>
+</html>

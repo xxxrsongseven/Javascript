@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>对象键的新增和删除</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //新建一个对象
+  let Hotel = {
+    name : '汉庭快捷酒店',
+    rooms : 120,
+    booked : 77
+  };
+  
+  //1.给对象新增gym键，值为true
+
+  //2.给对象新增pool键，值为false
+
+  //3.删除booked键
+
+  //4.清空rooms键的值
+
+  
+  //更新html信息
+  let elName = document.getElementById('hotelName');
+  elName.textContent = Hotel.name;
+  
+  let elRooms = document.getElementById('totalRooms');
+  elRooms.textContent = '房间数：' + Hotel.rooms;
+  
+  let elBooked = document.getElementById('totalBooked');
+  elBooked.textContent = '已订房：' + Hotel.booked;
+  
+  let elPool = document.getElementById('pool');
+  elPool.className = Hotel.pool;
+  
+  let elGym = document.getElementById('gym');
+  elGym.className = Hotel.gym; 
+}
+</script>
+</head>
+
+<body>
+  <h1>TravelWorthy</h1>
+  <div id="info">
+    <h2>酒店配套设备</h2>
+    <div id="hotelName"></div>
+    <div>
+      <p id="totalRooms">房间数</p>
+      <p id="totalBooked">已订房</p>
+      <p id="pool">游泳池</p>
+      <p id="gym">健身房</p>
+    </div>
+  </div>
+</body>
+</html>

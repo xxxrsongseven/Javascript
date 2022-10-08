@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img {
+            width: 500px;
+            height: 300px;
+        }
+        .btn {
+            background-color: darkgray;
+            font-size: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 10px;
+            line-height: 100px;
+        }
+        #app{
+            text-align: center;
+        }
+    </style>
+</head>
+<div id="app">
+            <a href="#" class="btn" v-show="index>0" @click='left'><</a>
+            <img class="img" v-bind:src="url[index]"></img>
+            <a href="#" class="btn" v-show="index<2" @click='right'>></a>
+</div>
+<body>
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                index: 0,
+                url: ['/img/1.jfif', '/img/2.jfif', '/img/3.jfif'],
+            },
+            methods: {
+                left: function () {
+                    this.index--
+                },
+                right: function () {
+                    this.index++
+                },
+                // isShowLeft:function(){
+                //     if(index<0){
+                //         isShowLeft=false;
+                //         console.log('1');
+                //     }else{
+                //         isShowLeft=false;
+                //     }
+                // }
+
+            },
+        })
+    </script>
+</body>
+</html>

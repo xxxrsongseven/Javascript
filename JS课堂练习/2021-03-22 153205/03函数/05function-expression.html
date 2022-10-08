@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>匿名函数表达式的用途</title>
+
+</head>
+
+<body>
+
+</body>
+<script>
+  //1。对象的方法
+  let obj= { 
+    property: '对象的方法',
+    method: function (){ console.log(this.property); }
+  };
+  obj.method();
+  //2.函数的实参：回调
+  document.addEventListener('click', function (){
+    console.log('文档click事件的回调函数');
+  });
+</script>
+</html>

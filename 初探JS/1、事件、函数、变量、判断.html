@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html id="skin"  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <button id="btn">hello world</button>
+    <div id="r">fuck</div>
+    <div id="c" style="display: none;">hello</div>
+    <div id="bian" style="height: 100px; width: 80%; background-color: antiquewhite;">移入变高变宽</div>
+    <a id="e5" href="#">弹出</a>
+    <div id="e6" style=" display: none;float: right;">这是弹出1</div>
+    <div id="e7" style=" display: none;float: right;">这是弹出2</div>
+    <button id="s1">style1</button><button id="s2" >style2</button>
+    <script>
+        var e1=document.getElementById('btn')
+        e1.onclick=function(){
+            alert('hello world')
+        }    
+        
+        
+        var e2=document.getElementById('r');
+        var e3=document.getElementById('c');    
+        e2.onmouseover=function(){
+            e3.style.display='block';
+        }
+        e2.onmouseout =function(){
+            e3.style.display='none';
+        }
+
+        var e4 =document.getElementById('bian');
+        e4.onmouseover=function(){
+            e4.style.height='300px';
+            e4.style.backgroundColor='yellow';
+        }
+        e4.onmouseout=function(){
+            e4.style.height='100px';
+            e4.style.backgroundColor='antiquewhite';
+        }
+
+
+        var e5 =document.getElementById('e5');
+        var e6 = document.getElementById('e6');
+        var e7 = document.getElementById('e7');
+        e5.onmouseover=function(){
+            e6.style.display='block';
+        }
+        
+        e5.onclick=function(){
+            if(e7.style.display!='block'){
+            e7.style.display='block';}
+            else{
+                e7.style.display='none';
+            }
+        }
+        e5.onmouseout=function(){
+            
+            e6.style.display='none';
+        }
+
+
+        var s1=document.getElementById('s1');
+        var s2=document.getElementById('s2');
+      var sk=document.getElementById('skin');
+        s1.onclick=function(){
+            sk.style.backgroundColor='pink'
+        }
+        s2.onclick=function(){
+            sk.style.backgroundColor='red'
+        }
+    </script>
+</body>
+</html>

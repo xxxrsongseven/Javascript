@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Person(name,age){  //Person是一个构造函数
+        /*构造函数中，实例成员就是构造函数内部通过this添加的成员，
+        name、age、say就是实例成员（个人理解就是构造函数在实例化以后可以访问的成员）*/
+        this.name = name
+        this.age = age
+        this.sayName = () => {
+            console.log(`Hey,I am ${ name }`);
+        }
+    }
+    let person = new Person('Frank',22)
+
+    console.log(person.name); //Frank
+    console.log(person.age);  //22
+    person.sayName()
+
+    Person.height = 188  //在构造函数上加的属性属于静态成员，没有通过原型链传到windows
+    /*静态成员只能通过构造函数进行访问*/
+    console.log(Person.height);//输出188
+    console.log(person.height);//输出undefined
+
+    /*通过prototype添加的成员不是静态成员，是实例成员，也就是只要是实例化的对象都可以访问到*/
+    Person.prototype.weight='70kg';
+    console.log(person.weight);//70kg
+    console.log(Person.weight);//undefined
+
+     /*实例成员只能通过实例对象进行访问*/
+     console.log(p1.name);//输出张三
+    p1.say();//输出我是人
+    console.log(Person.age);//输出undefined
+    Person.say();//报错，Person.say is not a function
+</script>
+</html>

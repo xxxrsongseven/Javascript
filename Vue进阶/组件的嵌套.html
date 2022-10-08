@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="../包/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+<script>
+    //创建朋友组件
+    const friends = Vue.extend({
+        template:'<div><h3>朋友姓名：{{fName}}</h3><h3>朋友年龄：{{fAge}}</h3></div>',
+        data() {
+            return {
+                fName:'王思颖',
+                fAge:'20'
+            }
+        },
+    })  
+
+    //创建student组件
+    const student = Vue.extend({
+        template: `<div>
+                <h2>学生姓名：{{studentName}}</h2>
+                <h2>学生年龄：{{age}}</h2><friends></friends>
+                    </div>`,
+        data() {
+            return {
+                studentName: '何子琪',
+                age:21
+            }
+        },
+        components:{
+            friends
+        }
+    })
+
+    //创建school组件
+    const school = Vue.extend({
+        template: `<div>
+            <h2>学校名称：{{schoolName}}</h2>
+            <h2>学校地址：{{adress}}</h2>
+            <button @click="showSchoolName">点我提示学校</button>
+            <student></student>
+            </div>`,
+        //el:'#root',  一定不要写el配置项，由vm决定于服务于那个容器
+        data() {
+            return {
+                schoolName: '西安文理学院',
+                adress: '科技六路'
+            }
+        },
+        methods: {
+            showSchoolName() {
+                alert(this.schoolName)
+                console.log(this);
+            }
+        },
+        //sutdent组件作为school子组件  子组件标签写在注册的组件模板里
+        components: {
+            student
+        }
+    })
+
+    //创建hello组件
+    const hello = Vue.extend({
+        template:`<div><h1>{{msg}}</h1></div>`,
+        data() {
+            return {
+                msg:'Welcome to my little zone'
+            }
+        },
+    })
+    //定义app组件
+    const app = Vue.extend({
+        template:`<div><hello></hello><school></school></div>`,
+        //注册组件
+        components:{
+            school,
+            hello
+        },
+    })
+    //创建vm
+    const vm = new Vue({
+        el: '#root',
+        template:'<app></app>',
+         //注册组件
+        components: {
+        app
+        } 
+    })
+</script>
+
+</html>

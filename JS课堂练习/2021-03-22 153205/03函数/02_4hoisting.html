@@ -1,0 +1,22 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>var提升</title>
+<script>
+function f(b) {
+   if (b) {
+      var c= 1;//此处换为let
+   } else {
+      console.log('else中访问变量c：' + c);
+   }
+   console.log('函数f内if语句外访问变量c：' + c);
+}
+f(1);
+console.log('函数f外访问变量c：' + c);
+</script>
+</head>
+
+<body>
+</body>
+</html>

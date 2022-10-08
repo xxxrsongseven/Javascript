@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ES6用class声明类</title>
+</head>
+
+<body>
+  <h1>ES2015时如何建立类(对象的模型)</h1>
+  <h2>打开控制台看结果</h2>
+
+<script>
+// ES2015，创建一个用户自定义的对象需要两步：用class声明类；通过new来创建类的实例，即对象。
+// 1 声明类。类名为User，类体包含构造函数方法和改变密码方法
+// 构造函数方法包含number和name两个形参，函数体包含两条语句：给对象number属性赋值number；给对象name属性赋值name
+// 改变密码方法名为changePassword，形参为password，函数体是在控制台输出：某某新密码为多少
+class User{
+  constructor(number,name){
+    this.number=number;
+    this.name=name;
+  }
+  changePassword (password){
+    console.log(`${this.name}的新密码为${this.number}`);
+  }
+}
+//从服务器或数据库读取原密码并修改为新密码;
+
+
+// 2 extends关键字，根据父类建立子类。
+// 根据User类创建一个名为Teacher的子类
+// 2-1 子类Teacher没有自己构造函数方法(省略)，即使用父类构造函数
+// 2-2 Teacher类体有一个自己的方法，方法名为getCourseScore，形参为courseID，函数体是在控制台输出：姓名课程号所有学生成绩为70、100等
+class Teacher extends User{
+  getCourseScore(courseID){
+    console.log(`${this.name}${courseID}所有学生成绩为70、100`);
+  }
+}
+//使用courseID从服务器或数据库读取本课程的所有学生成绩;
+// 2-3 用new 类名('t120', '任正非')表达式建立的教师对象，赋值给变量t1
+let t1=new Teacher('t120','任正非');
+// 2-4 调用t1对象的changePassword方法，实参为'888'
+t1.changePassword(888);
+// 2-5 调用t1对象的getCourseScore，实参为'c122'
+t1.getCourseScore('c122');
+
+// 3 super关键字，调用父类的方法。
+// 根据User类创建一个名为Student的子类
+// 3-1 子类Student有自己构造函数方法，实参为number、name、grade。构造函数体包含两条语句：(必须)使用super()调用父类的构造函数方法；给Student类添加自己的属性grade并赋值为grade
+// 【说明】子类有自己的构造函数时，必须先用super(实参)调用父类的构造函数，才能使用this，否则抛出引用错误。
+// 3-2 Student类还包含一个自己的方法，方法名为getScore，无形参，函数体是在控制台输出：学号姓名新密码为80、90等
+class Student extends User{
+  constructor(number,name,grade){
+    super(number,name);
+    this.grade=grade;
+  }
+  getScore(){
+    console.log(`${this.number}${this.name}新密码为80、90`);
+  }
+}
+// 从服务器或数据库查询读取某个学生所有课程的成绩
+// 3-3 用new 类名(007', '小明', '2020')表达式建立的学生对象，赋值给变量s1
+let s1=new Student('007','小明','2020');
+// 3-4 调用s1对象的changePassword方法，实参为'777'
+s1.changePassword(777);
+// 3-5 调用s1对象的getScore方法
+s1.getScore();
+// 3-6 用new 类名('110', '小静', '2021')表达式建立的学生对象，赋值给变量s2
+let s2=new Student('110', '小静', '2021');
+// 3-7 调用s2对象的changePassword方法，实参为'666'
+s2.changePassword(666);
+// 3-8 调用s2对象的getScore方法
+s2.getScore();
+
+</script>
+
+</body>
+</html>

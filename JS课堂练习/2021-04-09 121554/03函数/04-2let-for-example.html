@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>for循环的循环变量用let声明的应用</title>
+</head>
+
+<body>
+<h3>循环变量用let声明，简化了用立即执行函数表达式或闭包实现的理解和代码难度。</h3>
+
+<script>
+// 产生5个超链接
+for (let i = 0, str; i < 5; i++) {
+  str= `<a href="#" id=id${i}>超链接${i}</a>  `;
+  document.body.innerHTML+= str;
+}
+
+// 获取超链接
+var eles = document.getElementsByTagName('a');
+
+// 1.使用let实现
+for(let i=0; i<= eles.length; i++){
+  eles[i].addEventListener('click', function(e){
+    e.preventDefault();
+    alert('我是超链接'+i);
+  });
+}
+
+
+
+// 使用立即调用函数表达式实现。
+// for (var i = 1; i <= eles.length; i++) {
+//   (function (index) {
+//       eles[index].addEventListener('click', function (e) {
+//           e.preventDefault();
+//           alert('我是超链接' + index);
+//       });
+//   })(i);
+// }  
+
+// 使用闭包实现
+// for (var i = 1; i <= eles.length; i++) {
+//   eles[i].addEventListener('click', (function (index) {
+//       return function (e) {
+//           e.preventDefault();
+//           alert('我是超链接' + index);
+//       };
+//   })(i));
+// }
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <textarea id="shuru"></textarea>
+        <button onclick="f()">提交</button>
+        <div style="width: 10%; height: 50px; margin: 0 auto; background-color: pink;" id="shuchu">提交后在这里显示：</div>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <span><textarea id="t1"></textarea>+<textarea id="t2"></textarea></span>
+        <button onclick="fn()" id="bt1">提交</button>
+        <div style="width: 300px; height: 30px; margin: 0 auto; background-color: pink;" id="s1"></div>
+    </div>
+    <div id="btn" style=" margin: 0 auto; border: solid 2px; height: 100px;; text-align: center;">
+        <button onclick="f(0)">1</button>
+        <button onclick="f(1)">2</button>
+        <button onclick="f(2)">3</button>
+        <button onclick="f(3)">4</button>
+        <button onclick="fn()">all</button>
+
+        <div id="show" style="width: 300px;height: 50px;margin: 0 auto; background-color: pink;"></div>
+    </div>
+    <script>
+        var sr = document.getElementById('shuru')
+        var sc = document.getElementById('shuchu')
+        function f() {
+            sc.innerHTML = '提交后在这里显示：' + sr.value
+        }
+
+
+        function fn() {
+            var t1 = document.getElementById('t1')
+            var t2 = document.getElementById('t2')
+            var s1 = document.getElementById('s1')
+            s1.innerHTML = t1.value + t2.value
+        }
+
+        var divs = document.getElementById('btn')
+        var btns = divs.getElementsByTagName('button')
+        var show = document.getElementById('show')
+        var arr = ['这是第一句', '这是第二句', '这是第三句', '这是第四句']
+        function f(i) {
+            show.innerHTML = arr[i]
+        }
+        function fn() {
+            for (i = 0; i < btns.length - 1; i++) {
+                alert(arr[i])
+            }
+        }
+
+    </script>
+</body>
+
+</html>

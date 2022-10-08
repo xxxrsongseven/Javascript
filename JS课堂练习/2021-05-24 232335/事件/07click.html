@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>click事件</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //将新产生的元素内容存放在变量msg中
+  var msg = '<div class=\"header\"><a id=\"close\" href="#">关闭 X</a></div>';
+  msg += '<div><h2>系统维护</h2>';
+  msg += '我们的服务器在晚上3至4点更新，这个时间段内会暂停服务，敬请谅解！</div>';
+
+  var elNote = document.createElement('div');   //产生新元素
+  elNote.setAttribute('id', 'note');            //设置id属性和值
+  elNote.innerHTML = msg;                       //设置元素内容
+  document.body.appendChild(elNote);            //向body的最后增加这个元素
+  
+  //删除节点
+  function dismissNote() {
+	document.body.removeChild(elNote);          //删除节点
+}
+  
+  var elClose = document.getElementById('close');
+  //1.使用事件侦听器方式写出：单击“关闭 X”时调用dismissNote函数
+
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>新账户</h2>
+  <form method="post">
+    <label for="username">用户名: </label>
+    <input type="text" id="username" />
+    <div id="feedback"></div>
+
+    <label for="password">密码: </label>
+    <input type="password" id="password" />
+
+    <input type="submit" value="注册" />
+
+  </form>
+</div>
+</body>
+</html>

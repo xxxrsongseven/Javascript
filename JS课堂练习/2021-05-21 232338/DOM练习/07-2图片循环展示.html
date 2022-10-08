@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>图片循环展示</title>
+</head>
+
+<body>
+<div>
+	<h2>循环显示5张图像，两张图像间隔1.5秒</h2>
+	<img id="imgFlash" src="images/1.jpg">
+</div>
+<script>
+	imgFlash= document.getElementById("imgFlash");
+	let i= 1;	//图像名
+	setInterval(function() {
+		//更新图像的src属性为新图像
+		imgFlash.src='images/'+(++i)+'.jpg';
+		//i的值怎么变
+
+		//显示到第5张怎么办
+		if(i==5)i=0;
+	}, 1500);
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            border: 1px solid;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>name</td>
+                <td>age</td>
+            </tr>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>alice</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>frank</td>
+            <td>18</td>
+        </tr>
+        </table>
+        <button onclick="f1()">old获取1号名字</button>
+        <button onclick="f2()">new获取2号年龄</button>
+        <button onclick="f3()">开启隔行变色</button>
+    </div>
+    <script>
+        var tb=document.getElementsByTagName('table')[0]
+        function f1(){
+        var td=document.getElementsByTagName('td')[4]
+        alert(td.innerHTML)
+        }
+        function f2(){
+            
+            alert(tb.tBodies[0].rows[1].cells[2].innerHTML)
+        }
+        function f3(){
+            tb.tBodies[0].rows[1].style.backgroundColor=='black'
+            console.log(tb.tBodies[0].rows.length);
+            for(i=0;i<tb.tBodies[0].rows.length;i++){
+                if(tb.tBodies[0].rows[i].style.backgroundColor=='pink'){
+                    tb.tBodies[0].rows[i].style.backgroundColor=='white'
+                }else{
+                    tb.tBodies[0].rows[i].style.backgroundColor=='white'
+                }
+            }
+            
+        }
+    </script>
+</body>
+
+</html>

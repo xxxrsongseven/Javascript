@@ -1,0 +1,27 @@
+html {
+	background: #F8F5EE;
+}
+
+body{
+	width: 500px;
+	margin: 20px auto;
+	padding: 30px;
+	background: white;
+	font: medium 微软雅黑,黑体;
+	color: #5A514C;
+}
+
+h2,h3{
+	margin-top:0;
+}
+
+em{
+	background: #F1DEDA;
+}
+
+div {
+	font-size: 90%;
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: 0em;
+}

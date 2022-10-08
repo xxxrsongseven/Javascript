@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../包/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .basic{
+            border: 1px solid black;
+            height: 100px;
+            width: 300px;
+        }
+        .sad{
+            background-color: #555;
+        }
+        .happy{
+            background-color: pink;
+        }
+        .normal{
+            background-color: blue;
+        }
+        .arr1{
+            background-color: pink;
+        }
+        .arr2{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .arr3{
+            font-size: 50px;
+        }
+        </style>
+</head>
+
+<body>
+    <div id="app">
+        <div  class="basic" :class="a" @click="changeMood">
+            <input type="text" placeholder="姓" v-model="firstName">
+        <input type="text" placeholder="名" v-model="lastName">
+        {{fullName}}
+        </div><br><br>
+        <div class="basic" :class="classArr">
+            {{fullName}}
+        </div><br><br>
+        <div class="basic" :class="classObj">
+            {{fullName}}
+        </div><br><br>
+        <div class="basic" :style="fSize">
+            {{fullName}}
+        </div><br><br>
+        <h1>watch过滤</h1>
+        <input type="text" v-model="keyword" placeholder="请输入查找的名字">
+        <ul>
+            <li v-for="p in filpersons" :key="p.id">
+                {{p.name}}--{{p.age}}
+            </li>
+        </ul>
+        <h1>computed过滤</h1>
+        <input type="text" v-model="keyword2" placeholder="请输入查找的名字">
+        <button @click="sortType=2">升序</button>
+        <button  @click="sortType=1">降序</button>
+        <button  @click="sortType=0">原顺序</button>
+        <ul>
+            <li v-for="p in filname" :key="p.id">
+                {{p.name}}--{{p.age}}
+            </li>
+        </ul>
+        
+    </div><br><br>
+    
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'zhang',
+            lastName: 'san',
+            fullName: 'zhang-san',
+            a:'normal',
+            classArr:['arr1','arr2','arr3'],
+            classObj:{
+                arr1:true,
+                arr2:false
+            },
+            fSize:{
+                fontSize:'50px',
+                backgroundColor:'pink',
+            },
+            persons:[
+            { id:1,name:'马冬梅',age:14},
+            { id:2,name:'周冬雨',age:13},
+            { id:3,name:'周杰伦',age:15},
+            { id:4,name:'温兆伦',age:19}
+            ],
+            filpersons:[],
+            keyword:'',
+            keyword2:'',
+            sortType:0
+               
+            
+        },
+        computed:{
+            //computed实现过滤
+            filname(){
+                const arr = this.persons.filter((p)=>{
+                    return p.name.indexOf(this.keyword2)!=-1
+               })
+               if(this.sortType!=0){
+                arr.sort((a,b)=>{
+                    return this.sortType===1?b.age-a.age:a.age-b.age
+                })
+               }
+               return arr
+            }
+        },
+        watch: {
+           // watch实现过滤
+            keyword:{
+                immediate:true,
+                handler(newVal){
+                    this.filpersons=this.persons.filter((p)=>{
+                    return p.name.indexOf(newVal)!=-1
+                })
+                }
+                
+            },
+
+            firstName(newValue) {
+                setTimeout(() => {
+                    this.fullName = newValue + '-' + this.lastName
+                }, 1000)
+            },
+            lastName(newValue) {
+                this.fullName = this.firstName + '-' + newValue
+            }
+        },
+        methods: {
+            changeMood(){
+                var arr = ['happy','normal','sad']
+                var index=Math.floor(Math.random()*3) 
+                this.a=arr[index]
+            },
+
+        },
+
+    })
+</script>
+
+</html>

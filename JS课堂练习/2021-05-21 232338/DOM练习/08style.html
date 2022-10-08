@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>元素节点的style属性实现动画</title>
+<style>
+.foo{
+	font-size: 30px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 50px;
+	position: absolute;/*水平居中*/
+	background-color: #95F595;
+	/* 1-1将不透明度设置为0，即透明 */
+	opacity: 0;
+}
+.square{
+	border-radius: 0!important;
+	transition: all 2s;	
+}
+.cirle{
+	border-radius: 0!important;
+	transition: all 2s;	
+}
+</style>
+</head>
+
+<body>
+	<h2>操作步骤</h2>
+	<p>将下面的div元素渐显，同时向右移动</p>
+  <div class="foo">1</div>
+<script>
+let el= document.querySelector('.foo'); //获取class为foo的元素节点
+// 1-2调用show()函数，将el作为实参
+show(el);
+// 1-4调用move()函数，将el作为实参
+move(el);
+// 2.在赋值符右侧写使用style属性的cssText属性；在赋值符右侧写出将文字颜色设置为white，背景色设置为黑色
+document.body.style.cssText='background-color:black;color:white'
+
+//渐变透明度显示函数(以一定的速率渐变opacity属性值实现淡入)
+function show(el){
+	var frame= 0;      //透明度初始值
+	//使用setInterval()方法，第1个参数是匿名函数表达式，第2个参数是200毫秒
+	var t= setInterval(function() {
+		frame+= 0.05;  //透明度每次增加0.05
+		// 1-3将el节点的CSS样式的opacity属性设置为frame
+		el.style.opacity = frame;
+		if(parseInt(frame)==1){  //透明度值为1时
+			clearInterval(t);    //停止setInterval()
+		}
+	}, 200);
+}
+//自己试试淡出
+
+//移动元素函数(以一定的速率渐变left属性值实现移动)
+function move(el){
+	var frame= 0;      //据浏览器左侧的初始值
+	//使用setInterval()方法，第1个参数是匿名函数表达式，第2个参数是100毫秒
+	var t= setInterval(function() {
+		frame+= 1;    //据浏览器左侧的值每次增加1
+		// 1-5将el节点的CSS样式的left属性设置为frame，并连接单位
+		el.style.left=frame+'px';
+		if(parseInt(frame)==200){  //left属性值为200时
+			clearInterval(t);    //停止setInterval()
+		}
+	}, 10);
+}
+
+el.onmouseover= function() {
+	// 3-1使用元素节点的classList属性的add方法，给元素的class属性增加square值
+	//el.className +=' square';
+	el.classList.add('square');
+}
+el.onmouseout= function() {
+	// 3-2使用元素节点的classList属性的remove方法，删除元素的class属性值中的square
+	el.classList.remove('square');
+}
+</script>
+</body>
+</html>

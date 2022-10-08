@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>过滤元素</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function() {
+  var $p = $('#page p');
+  
+  // 1.在赋值符右侧写出：使用clone()方法产生p元素的副本
+  var $clonedQuote = 
+  // 2.使用remove()方法删除原来的p元素
+  
+  $('h2').after($clonedQuote);  //在h2节点后插入克隆的段落
+
+  // 3.在赋值符右侧写出：使用detach()方法剪切id为one的元素
+  var $moveItem = 
+  $('ul').append($moveItem);    //在ul中添加最后一个子元素
+
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="cool"><em>美味的</em> 无花果</li>
+    <li id="two">费牙的 松子</li>
+    <li id="three">新鲜的 蜂蜜</li>
+    <li id="four">酸爽的 香醋</li>
+  </ul>
+  <p>"岁月是把杀猪刀，也是把猪饲料。"<br />- 无名氏</p>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.将ul后那句话移到h2元素后</p>
+  <p>2.将第1个li移到最后一个列表项后</p>
+</div>
+</body>
+</html>

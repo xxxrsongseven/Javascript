@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <ul id="ul1">
+        </ul>
+        <button onclick="f1()">创建li</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <ul id="ul2">
+        </ul>
+        <button onclick="f2()">创建li</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <ul id="ul3">
+        </ul>
+        <button id="bt1">创建li</button>
+    </div>
+    <script>
+        var ul1 = document.getElementById('ul1')
+        var ul2 = document.getElementById('ul2')
+        var ul3 = document.getElementById('ul3')
+
+        var i = 1
+        var ii = 1
+        var i1 = 1
+        function f1() {
+            var lis = document.createElement('li')//创建节点
+            ul1.appendChild(lis)//将节点放入父节点
+            lis.innerHTML = '这是第' + i + '个li'
+            i += 1
+        }
+        function f2() {
+            var liss = document.createElement('li')
+            ul2.insertBefore(liss, ul2.children[0])
+            liss.innerHTML = '这是第' + ii + '个li'
+            ii++
+        }
+        var bt1 = document.getElementById('bt1')
+        bt1.onclick = function () {
+            var lis1 = document.createElement('li')
+            ul3.appendChild(lis1)
+            lis1.innerHTML = '这是第' + i1 + '个li <a id="aa" href="#">删除</a>'
+            i1++
+            var as = document.getElementsByTagName('a')
+            for (j = 0; j < as.length; j++) {
+                as[j].onclick = function () {
+                    ul3.removeChild(this.parentNode)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM事件监听器</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  //第三步，声明函数(事件处理程序)
+  function checkUsername() {
+    //获得feedback元素
+    var elMsg = document.getElementById('feedback');	
+    if (this.value.length < 5) { //假如username文本框字符数小于5。
+      elMsg.innerHTML = '用户名不能少于5个字符';
+    } else {
+      elMsg.innerHTML = '';
+    }
+  }
+  
+  //第一步，获得username元素
+  var elUsername = document.getElementById('username');
+  //第二步，响应元素事件，指定事件处理程序
+  // 1.使用事件侦听器方式写出：当username元素的blur事件(失去焦点)发生时调用checkUsername()函数
+  elUsername.addEventListener('blur',checkUsername);
+  var elPassword = document.getElementById('password');
+  // 2.使用事件侦听器方式写出：当username元素的blur事件(失去焦点)发生时，让password文本框获得焦点
+  //事件处理程序使用匿名函数，匿名函数体里的语句为elPassword.focus();
+  elUsername.addEventListener('blur',function(){
+    elPassword.focus();
+  });
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>新账户</h2>
+  <form method="post">
+
+    <label for="username">用户名: </label>
+    <input type="text" id="username" />
+    <div id="feedback"></div>
+
+    <label for="password">密码: </label>
+    <input type="password" id="password" />
+
+    <input type="submit" value="注册" />
+
+  </form>
+</div>
+</body>
+</html>

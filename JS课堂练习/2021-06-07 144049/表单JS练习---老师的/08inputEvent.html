@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>input事件</title>
+<link rel="stylesheet" href="form.css" />
+<style>
+  [type="text"] {
+    width: 1em!important;
+    padding: 0.5em;
+    margin: 0.5em;
+  }
+  [type="submit"]{
+    float:none!important;
+  }
+</style>
+<script>
+window.onload= function(){
+  let form= document.login;
+  let joinCode= form.joinCode;
+  let codes= document.querySelectorAll('[type="text"]');
+
+  // 1-1将文本框输入内容改变事件委托给form对象
+  form.oninput= function(e){
+    // 1-2 当前文本框不是最后一个文本框
+    if(e.target !== codes[codes.length-1]) {
+      // 1-3 当前文本框的值得长度是1
+      if(e.target.value.length == 1){
+        // 1-4 使用当前文本框控件的下一个兄弟文本框节点获得焦点
+        e.target.nextElementSibling.focus();
+      }
+    }
+  };
+
+  // 2-1 表单执行事件
+  form.onsubmit= function(){
+    for(let i= 0; i< codes.length; i++) {
+      // 2-2 将4个文本框中的值合并到joinCode中
+      joinCode.value += codes[i].value; 
+    }
+  }  
+}
+</script>
+</head>
+<body>
+<div class="container login">
+  <form id="login" name="login" action="login" method="get">
+    <div class="one-third column">
+      <img src="images/logo.png" alt="logo" id="logo" />
+    </div>
+    <div class="two-thirds column" id="main">
+      <fieldset>
+        <legend>验证码</legend>
+        <label for="pwd">短信验证码</label>
+        <input type="text" maxlength="1" required>
+        <input type="text" maxlength="1" required>
+        <input type="text" maxlength="1" required>
+        <input type="text" maxlength="1" required>
+        <input type="hidden" name="joinCode">
+        <input type="submit" value="提交" />        
+      </fieldset>
+    </div>
+  </form>
+</div>
+<div id="footer">
+  <h3>文本框输入字符后使下一个文本框获得焦点 - 最终效果</h3>
+  <p>1.在文本框中输入1个字符后，使下一个文本框获得焦点，除了最后一个文本框。</p>
+  <p>2.将全部文本框中输入的值合并后提交给服务器，4个文本框不提交给服务器。</p>
+</div>
+</body>
+</html>

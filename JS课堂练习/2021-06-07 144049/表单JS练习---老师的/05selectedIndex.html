@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>selectedIndex属性</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  let form, package, packageHint, terms, termsHint;
+  form          = document.getElementById('buyorder');
+  package = document.getElementById('package');
+  packageHint   = document.getElementById('packageHint');
+  terms         = document.getElementById('terms');
+  termsHint     = document.getElementById('termsHint');
+  
+  //显示套餐提示函数
+  function selectHint(e) {
+    // 2-1 在赋值符右侧写出获得下拉列表框的当前选项的值
+    let pack = this.value;//e.target.value
+    // 2-2 在if条件表达式中写出：假如选择1个月套餐
+    if (pack == 'monthly') {
+      packageHint.innerHTML = '选择1年套餐可节省10元!';
+    } else if(pack == 'annual') {
+      packageHint.innerHTML = '明智的选择!';
+    } else {
+      packageHint.innerHTML= '';
+    }
+  }
+  
+  //验证复选框函数
+  // 3-1写出函数形参，即自动产生隐式传递的事件对象
+  function checkTerms(e) {
+    // 3-2 在if条件表达式中写出：假如没有选中复选框
+    if (!terms.checked) {
+      termsHint.innerHTML = '同意条款后才可购买。';
+      // 3-3 单击“下一步按钮”不向服务器提交表单，写出：阻止提交按钮的默认事件行为
+      e.preventDefault();
+    } else {
+      termsHint.innerHTML= '';
+    }	
+
+    // 3-4 在圆括号中写出：用户选择列表项的第一项的条件表达式。
+    if (package.selectedIndex == 0) {
+      packageHint.innerHTML = '请选择套餐';
+      // 3-5 阻止提交按钮的默认事件行为
+      e.preventDefault();
+    } else {
+      packageHint.innerHTML = '';
+    }
+  }
+  
+  // 1-1 使用事件侦听器方式写出：提交表单时调用checkTerms函数。考虑兼容IE使用DOM事件属性方式。
+  form.addEventListener('submit', checkTerms)
+  // 1-2 使用事件属性方式写出：复选框值改变时调用checkTerms函数。实际常注释掉
+  terms.onchange= checkTerms;
+  // 1-3 使用事件属性方式写出：提改变下拉列表框的值时调用selectHint函数
+  package.onchange= selectHint;
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+  <h1>King列表</h1>
+  <h2>迅雷会员</h2>  
+  <form method="get" action="http://www.a.org" id="buyorder">
+      <label for="package" class="selectbox">活动 </label>
+      <select id="package" name="package">                 <!--下拉列表-->
+        <option>--请选择套餐--</option>
+        <option value="annual">1年 (50.00元人民币)</option>
+        <option value="monthly">1个月 (5.00元人民币)</option>
+      </select>
+      <div id="packageHint" class="tip"></div>
+  
+      <input type="checkbox" id="terms" />  <!--复选框-->
+      <label for="terms" class="checkbox">我已阅读并同意相关服务条款和隐私政策</label>
+      <div id="termsHint" class="warning"></div>
+  
+      <input type="submit" value="下一步" />  <!--按钮-->
+  </form>
+</div>
+</body>
+</html>

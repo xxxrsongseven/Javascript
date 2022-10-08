@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>try-catch-finally</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<link rel="stylesheet" href="css/style2.css" />
+<script>
+window.onload= function(){
+  var feed= document.getElementById('feed'); //获得id为feed的元素
+  
+  //正确的JSON数据格式
+  var response = '{"deals": [{"title": "铅笔刀", "price": 1,"link":"http://a.cn"}, {"title": "铅笔","price": 0.5,"link":"http://b.cn"} ]}';
+  
+  //3.错误的JSON数据格式。在下面语句前加注释
+  response = '{"deals": [{"title": "铅笔刀","price":1,"link":"http://a.cn" ';  
+
+  if (response) {
+	try {
+	  var dealData = JSON.parse(response);   //解析JSON，可能会出错
+	  showContent(dealData);                 //显示JSON数据
+	} catch(e) {
+	  //1.在赋值符右+号中写出：e.name和e.message和e.lineNumber
+	  var errorMessage = '错误 ' +  + '\n描述 ' +  + '\n行号 ' + 
+	  //2.使用console.log()方法在控制台显示错误信息errorMessage
+	  
+	  feed.innerHTML = '<h3>哎呦，出错了~</h3><p><em>没有获得商品列表</em></p><p>刷新一下芝麻开门</p>';   //网页中向用户展示错误提示信息
+	} finally {
+	  var link = document.createElement('a');           //产生超链接元素，显示给用户，用于刷新网页
+	  link.innerHTML = '<p><a href="06try-catch-finally.html">刷新</a></p>'; //添加新元素内容
+	  feed.appendChild(link);  //将新元素添加到id为feed的元素后
+	}
+  }
+  
+  //显示商品列表
+  function showContent(dealData) {
+	var newContent = '';
+	for (var i in dealData.deals) {
+	  newContent += '<div class="deal">';
+	  newContent += '<h2>' + dealData.deals[i].title + '</h2>';
+	  newContent += '<p>价格：' + dealData.deals[i].price.toFixed(2) + '元</p>';
+	  newContent += '网址：<a href="' + dealData.deals[i].link + '">';
+	  newContent += ' ' + dealData.deals[i].link;
+	  newContent +='</a>';
+	  newContent += '</div>';
+	}	
+	feed.innerHTML = newContent;//将商品列表显示到网页中
+  }
+  	
+}
+</script>
+</head>
+
+<body>
+<div id="logo"><img src="images/paint-logo.png" alt="logo" /></div>
+<div id="page">
+  <h2>打折商品</h2>
+  <div id="feed"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>单选按钮</title>
+<link rel="stylesheet" href="form.css" />
+<script>
+window.onload= function(){
+  let form, options, other, otherText;
+  form      = document.getElementById('how-heard');    //获得表单
+  // 1.通过form.elements.name属性获得所有name为heard的单选按钮
+  options=form.elements.name.heard;
+  other     = document.getElementById('other');        //获得“其他”单选按钮
+  otherText = document.getElementById('other-text');
+  otherText.className = 'hide';
+
+  // 2.在for循环的条件表达式中写出：i小于options集合中单选按钮的个数
+  for (let i = 0; i<options.length ; i++) {
+    // 3.使用事件属性方式写出：每一个name为heard的单选按钮被单击时，调用radioChanged()函数
+	  // 4.提高：使用change事件，可避免在已选中的单选按钮上再次单击时，又调用radioChanged()函数
+    options[i].onchange=radioChanged;
+    // options[i].onclick=radioChanged;
+  }
+
+  //“其他”单选按钮未被选中，不显示文本框，并清空此文本框的值；否则，显示id为otherText的文本框
+  function radioChanged() {
+    console.log(1);      //为了查看click和change事件用于单选按钮的区别
+	  // 5.“其他”单选按钮被选中时，将文本框的class属性设置为空串；未被选中时，将文本框class属性设置为hide，并将值清空
+    if(other.cheked){
+      otherText.className = '';
+    }else{
+      otherText.className = 'hide';
+      otherText.value =''; 
+    }
+  }
+  
+}
+</script>
+</head>
+<body>
+<div class="container login">
+  <form id="how-heard" action="heard" method="get">
+    <div class="one-third column">
+      <img src="images/logo.png" alt="logo" id="logo" />
+    </div>
+    <div class="two-thirds column" id="main">
+      <fieldset>
+        <legend>您通过什么途径知道我们？</legend>
+
+        <input type="radio" name="heard" value="search" id="search" />
+        <label for="search">搜索引擎</label><br>
+
+        <input type="radio" name="heard" value="print" id="print" />
+        <label for="print">新闻或杂志</label><br>
+
+        <input type="radio" name="heard" value="other" id="other" />
+        <label for="other">其他</label><br>
+        <input type="text" name="other-input" id="other-text" />
+
+        <input id="submit" type="submit" value="提交" />
+      </fieldset>
+    </div>
+  </form>
+</div>
+<div id="footer">
+  <h3>单选按钮 - 最终效果</h3>
+  <p>1.“其他”单选按钮被选中时，显示其下的文本框，可输入更多细节。</p>
+  <p>2.选择前两个单选按钮时，将文本框隐藏并清空文本框的值。</p>
+</div>
+</body>
+</html>

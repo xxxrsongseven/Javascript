@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>更新元素内容、替换和删除元素</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+// 1.使用简写形式，写出DOM树加载时函数调用的语句
+
+  // 2.选择元素内容含有“松子”的li元素，调用text(字符串)方法，将其内容改为肉夹馍
+  
+  // 3.选择class属性值为hot的li元素，调用html(匿名函数)方法，在内容前后加<em>、</em>标签
+  
+  // 4.选择ul中的p标签，调用replaceWith(匿名函数)方法将p标签改为li
+  
+
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em>无花果</li>
+    <li id="two" class="hot"><em>费牙的</em>松子</li>
+    <li id="three" class="hot"><em>酸辣的</em>凉皮</li>
+    <li id="four" class="cool"><em>冰爽的</em>冰封</li>
+    <p><span>清风</span>纸巾</p>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.将含有松子的元素内容换为肉夹馍</p>
+  <p>2.将前三行的li元素内容放在&lt;em&gt;标签中</p>
+  <p>3.将ul中p标签变为li标签</p>
+</div>
+</body>
+</html>

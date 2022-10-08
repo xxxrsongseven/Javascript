@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>var声明变量</title>
+<script>
+//1.读取未声明的变量会？
+console.log(a);
+
+//2.全局标识符在其他作用域(如函数作用域、块级作用域)里能否使用？
+var b1 = 1;
+if(b1){
+   console.log(b1);
+   //var声明的全局变量是window全局对象的属性
+   console.log(window.b1);
+}
+
+//3.变量提升。仅限于var声明变量和function声明函数语句，let和const声明的变量不会提升。
+//3.1 变量提升，只提升var声明，不提升赋值。
+console.log('在var声明变量c1前读取其值：' + c1);
+var c3= 'var声明变量c1';
+console.log('在var声明变量c1后读取值：' + c1);
+console.log(`let声明的变量c2为` + c2);
+console.log(`const声明的常量c3为` + c3);
+let c2= 'let变量c1';
+const c3= 'const常量c2';
+
+//3.2 块级作用域中用var声明的变量会提升到？
+if(1){
+   var d= 4;
+}
+console.log('if中var声明变量d的值为' + d);
+for(var i=1; i<3; i++) {
+   var sum= i;
+}
+console.log(`for的循环变量i和循环体内sum的值分别为${i}、${sum}`);
+
+//3.3 函数作用域中用var声明的变量会提升到？
+function f(){
+   console.log('函数中e的值为' + e);
+   var e= 1;   
+}
+f();
+console.log('函数中声明的变量e还存在吗');
+
+//4.函数提升，可使函数定义位于调用之后，但不建议这样做。
+f1();
+function f1(){
+   console.log('函数定义在后');
+}
+</script>
+</head>
+
+<body>
+   <h1>标识符声明语句和函数定义语句应放在代码最前面，不要依赖于提升，避免产生意想不到的错误。</h1>
+</body>
+</html>

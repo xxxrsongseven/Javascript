@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>String对象的属性和方法</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+window.onload= function(){
+  let msg='';  //声明存储信息的变量
+  
+  //***第一部分，length属性***
+  msg+= '<h2>长度判断结果</h2>'; 
+  let password= '123456'; //声明密码
+  //1-1 在if条件表达式中写出：密码长度在8-16之间的条件表达式
+  if ( password.length<8 || password.length>16) {
+	  msg+= '<p>密码长度必须在8~16之间</p>';
+  }
+  
+  //***第二部分，toUpperCase()方法***
+  msg+= '<h2>验证码判断结果</h2>';
+  let checkcode = 'A8CD'; //显示的验证码
+  let code= 'a8cd';		  //输入的验证码
+  //2-1 在if条件表达式中输入的验证码和显示的验证码是否相同的条件表达式
+  if (code.toUpperCase() == checkcode){
+	  msg+= '<p>验证码正确</p>';
+  } else {
+	  msg+= '<p>验证码错误</p>';
+  }
+
+  //***第三部分，indexOf(s)方法*** 
+  msg+= '<h2>身份证号判断省份</h2>'
+  let idNumber = '610103199906239861'; //存储身份证号
+  //3-1 在if条件表达式中写出：idNumber中'61'是开头子串的表达式
+  if (idNumber.indexOf('61') == 0){
+	  msg+= '<p>陕西省</p>';
+  }
+  else {
+	  msg+= '<p>非陕西省</p>';
+  }
+  msg+= '<h2>用户名是否包含敏感词admin</h2>'; 
+  let username= 'Administrator';  //用户名
+  //3-2在if条件表达式中写出：用户名包含敏感词admin
+  if(username.toLowerCase().indexOf('admin') != -1) {
+    msg+= '<p>用户名中包含敏感词admin</p>';
+  } else {
+    msg+= '<p>用户名中未包含敏感词admin</p>';
+  }
+  
+  //***第四部分，slice(start,end)和substring(start,end)方法*** 
+  msg+= '<h2>身份证号提取出生年月日、性别</h2>';
+  //4-1 在赋值符右侧写出：使用slice方法取得idNumber变量中的年月日8位子串
+  let born= idNumber.slice(6,14);
+  //4-2 在赋值符右侧的+运算符中写出：使用slice方法取得变量born中4位年
+  msg+= '<p>' + born.slice(0,4) + '年';
+  //4-3 在赋值符右侧的+运算符中写出：使用substring方法取得变量born中2位月
+  msg+= born.substring(4,6) + '月';
+  //4-4 在赋值符右侧的+运算符中写出：使用slice(start)方法取得变量born中2位日
+  msg+= born.substring(6) + '日</p>';  //substring方法也可以
+  //4-5 在if条件表达式中使用substring()方法取身份证号第17位，偶数是女，奇数是男
+  msg+= '性别：';
+  if(idNumber.slice(-2,-1)%2 == 0){//(16,17)
+	    msg+='女';
+  }else {
+	    msg+='男';
+  }
+  
+  //***第五部分，trim()方法。IE8及以下不可用*** 
+  msg+= '<h2>去除前后空白符</h2>';
+  username= ' Eason ';  //存储用户名
+  msg+= '<p>原串：' + username + '</p>';
+  //5-1 在赋值符右侧的+运算符中写出：使用trim方法去掉username的前后空白符
+  msg+= '<p>新串：' + username.trim() + '</p>';
+  //5-2 链式语法。在赋值符右侧的+运算符中写出：使用trim方法去掉checkcode的前后空白符，并转为大写
+  msg+= '<p>链式语法处理验证码：' + checkcode.trim().toUpperCase()  + '</p>';
+
+  
+  //将msg显示在页面中
+  let el = document.getElementById('info');
+  el.innerHTML = msg;
+}
+</script>
+</head>
+
+<body>
+	<h1>TravelWorthy</h1>
+    <div id="info"></div>
+</body>
+</html>

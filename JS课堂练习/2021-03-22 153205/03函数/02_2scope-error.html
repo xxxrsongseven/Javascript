@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>作用域引起的错误情况</title>
+<script>
+var x = 1;
+function f() {
+   //1-1 想读取全局变量x的值，但此时x是全局变量x吗？值是？为什么？
+   console.log('局部变量x：' + x);	
+   var x= 2;
+   //1-2 如何读取全局变量x
+   console.log('全局变量x：' + x);
+}
+f();
+
+function fn(a) {
+	//2-2 把a的值赋值给b，输出a+b
+   
+	console.log('a+b = '+ (a+b));	
+   //2-1变量b未用var声明，这句执行完才声明隐式全局变量b，导致上一条语句出错，如何改？
+   b=a;	
+}
+fn(3);
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        var json={oDiv1a: 5,oDiv1b: 12,oDiv1c: '15'};
+        <button onclick="f1()">a</button><button onclick="f2()">b</button><button onclick="f3()">c</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        var arr=[5,12,15];
+        <button onclick="f4()">1</button><button onclick="f5()">2</button><button onclick="f6()">3</button>
+    </div>
+
+    <div style=" margin: 0 auto; border: solid 2px;  text-align: center;">
+        <button onclick="f7()">数组循环for length</button>
+        <button onclick="f8()">数组循环for in</button>
+        <button onclick="f9()">json循环</button>
+    </div>
+    <script>
+        var json = { oDiv1a: 5, oDiv1b: 12, oDiv1c: '15' };
+        function f1() {
+            alert(json.oDiv1a)
+        }
+        function f2() {
+            alert(json.oDiv1b)
+        }
+        function f3() {
+            alert(json.oDiv1c)
+        }
+
+        var arr = [5, 12, 15]
+        function f4() {
+            alert(arr[0])
+        }
+        function f5() {
+            alert(arr[1])
+        }
+        function f6() {
+            alert(arr[2])
+        }
+        
+        function f7() {
+            for (i = 0; i < arr.length; i++) {
+                alert(arr[i])
+            }
+        }
+        function f8() {
+            for (var c in arr) {
+                alert(arr[c])
+            }
+        }
+        function f9() {
+            for (var o in json) {
+                alert(json[o])
+            }
+        }
+    </script>
+</body>
+
+</html>

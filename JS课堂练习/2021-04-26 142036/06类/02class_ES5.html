@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ES5对象模型</title>
+</head>
+
+<body>
+<h1>ES5时如何建立对象的模型</h1>
+<h2>打开控制台看结果</h2>
+
+<script>
+// ES5时，创建一个用户自定义的对象需要两步：编写构造函数来定义自定义对象类型；通过new来创建对象实例。
+// 1 编写构造函数(作用类似其他语言中的类)。
+// 构造函数名User，形参是name
+// 构造函数体有两条语句：给对象name属性赋值name；给对象changePassword方法赋值匿名函数表达式，形参为password，函数体是在控制台输出：某某新密码为多少。
+function User(name){
+    this.name=name;
+    this.changePassword = function(password){
+        console.log(`${this.name}新密码为${password}`);//内存有两份
+    }
+}
+
+//省略从服务器或数据库读取原密码并修改为新密码
+
+// 2-1 用new 构造函数('小明')表达式建立的实例(类似其他语言中的对象)，赋值给变量student
+let student=new User('小明');
+// 2-2 调用student对象的changePassword方法，实参为555
+student.changePassword(555);
+// 3-1 用new 构造函数('任正非')表达式建立的实例(类似其他语言中的对象)，赋值给变量teacher
+let teacher=new User('任正非');
+// 3-2 调用teacher对象的changePassword方法，实参为666
+teacher.changePassword(666);
+// 3-3 student和teacher均有name和changePassword两个键值对的副本，changePassword方法重复，浪费内存
+// student和teacher如何共享一个方法？给User的原型prototype添加一个方法getName，函数体为返回对象的name键的值
+User.prototype.getName=function(){
+    return this.name;
+}
+console.log(student.getName());//内存只有一份
+console.log(teacher.getName());
+</script>
+
+</body>
+</html>

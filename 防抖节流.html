@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">防抖节流</button>
+</body>
+<script>
+    let btn = document.getElementById("btn")
+    let delay = 2000
+    let num = 0
+    function add(){
+        num++
+        console.log(num);
+    }
+    btn.onclick = debounce(add,delay)
+
+    //防抖
+function debounce(fn, delay) {
+    let timer = null
+    return () => {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+            fn.apply(this, arguments)
+            timer = null
+        }, delay)
+    }
+}
+    //节流
+function throttle(fn, delay) {
+    let timer = null
+    return () => {
+        if (timer){
+            return
+        }
+        timer = setTimeout(() => {
+            fn.apply(this, arguments)
+            timer = null
+        }, delay)
+    }
+}
+</script>
+
+</html>

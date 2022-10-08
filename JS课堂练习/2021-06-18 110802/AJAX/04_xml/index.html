@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>10_03 评分</title>
+<style>
+body{
+	text-align:center;
+	font-size:70px;
+}
+#message img{
+	width:30px;
+}
+</style>
+<script src="jquery.min.js"></script>
+<script>
+$(function(){
+	var flag=0;
+	var newPhoto = new Image();
+	//直接读取xml，只能使用$.get或$.ajax
+	newPhoto.src='loader.gif';
+	$.get('vote.xml',getVote);
+	$('input:radio').click(function(){
+		if(flag==1){
+			alert('你已投过票。');
+			return;
+		}
+		flag=1;
+		var vote=$(this).val();
+		var xhr=$.post('http://localhost:8765/',{vote:vote},getVote);
+		$('#message').prepend('<img src="loader.gif">');
+		xhr.fail(function(){
+			alert(xhr.responseText);
+		});
+	});
+	function getVote(xml){
+		$('#message img').fadeOut(1500);
+		setTimeout("$('#message img').remove()",1500);
+		var score = $(xml).find('score').text();
+		var count =	$(xml).find('count').text();
+		var avg = (score/count).toFixed(1);
+		$('#message span').html(avg+'分/'+count+'人');
+		
+	};
+});
+</script>
+</head>
+<!--评星插件
+http://wbotelhos.com/raty/
+http://plugins.learningjquery.com/half-star-rating/
+-->
+<body>
+<img src="poster.jpg" alt="poster"/>
+<div>评分：<input type="radio" name="vote" value="1">1分
+<input type="radio" name="vote" value="2">2分
+<input type="radio" name="vote" value="3">3分
+<input type="radio" name="vote" value="4">4分
+<input type="radio" name="vote" value="5">5分
+</div>
+<div id="message">
+<span></span>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>setInterval和clearInterval方法</title>
+<!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<body>
+<h1>聚划算专场</h1>
+<h2>商品：时间和青春</h2>
+<h3>价格：无价</h3>
+<div id="remainingtime" class="time">
+  <button>抢购</button> 还剩：
+  <span></span>
+</div>
+
+<script>
+// 获取id为remainingtime元素里的button元素
+let button= document.getElementById('remainingtime').getElementsByTagName('button')[0];
+// 获取id为remainingtime元素里的span元素
+let element= document.getElementById('remainingtime').getElementsByTagName('span')[0];
+let nowTime= new Date();
+// 设置秒杀结束时间
+// let endTime= nowTime.setDate(nowTime.getDate() + 3);
+let endTime= nowTime.setSeconds(nowTime.getSeconds() + 12);  
+// 1.设置定时器。每隔1000毫秒调用seckill函数(注意参数)，将返回值赋值给变量timer
+// 网页显示是，有延迟第2个参数设置为什么？
+let timer=setInterval(function(){seckill(endTime,element)},1000);
+  //会有毫秒级误差
+
+// 处理秒杀函数
+function seckill(endTime, element){//element增加了程序的灵活性
+  // 获取当前时间
+  nowTime= new Date();
+  // 计算活动结束和当前时间的相差多少秒
+  let remaining= parseInt((endTime - nowTime) / 1000);
+  // 判断秒杀是否结束
+  if (remaining > 0) {
+    // 计算剩余天数，并显示
+    let leftday= parseInt(remaining / (24*60*60));
+    // 计算剩余小时，并显示
+    let lefthour= parseInt((remaining/(60*60)) % 24);
+    // 计算剩余分钟，并显示
+    let leftminute= parseInt((remaining/60) % 60);
+    // 计算剩余秒，并显示
+    let leftsecond= parseInt(remaining % 60);
+    //用剩余时间更新元素内容
+    element.innerHTML= leftday + '天' + lefthour + '小时' + leftminute + '分' + leftsecond + '秒';  
+  }
+  else {
+    // 2.取消定时器。将前面设置的定时器取消
+    clearInterval(timer);
+    // leftTime.innerHTML= '活动结束'; // 将倒计时改为活动结束
+    element.innerHTML= '活动结束'; // 将倒计时改为活动结束
+    button.disabled= true;  //将按钮禁用
+  }    
+}
+</script>
+
+</body>
+</html>

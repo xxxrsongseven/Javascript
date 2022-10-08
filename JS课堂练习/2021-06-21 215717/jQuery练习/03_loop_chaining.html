@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>隐式迭代和链式语法</title>
+<link rel="stylesheet" href="jquery.css">
+<script src="js/jquery.min.js"></script>
+<script>
+$(function(){
+  /* 第1部分，隐式迭代 */
+  // 1.在.前写出：使用$()函数选择id属性为one的li中的em元素
+  $('#one > em').addClass('seasonal');
+  // 2.在.前写出：使用$()函数选择class属性为hot的li元素
+  $('.hot').addClass('favorite');
+  /* 第2部分，链式语法 */
+  // 3.在最左边.前写出：使用$()函数选择id属性值不等于one的li元素
+
+  // 4.在函数hide()后用链式语法添加delay(600)和fadeIn(1400)函数
+  $('#one').hide().delay(600).fadeIn(1400);
+});
+</script>
+
+</head>
+
+<body>
+<div id="page">
+  <h1 id="header">King列表</h1>
+  <h2>购买生活用品</h2>
+  <ul>
+    <li id="one" class="hot"><em>美味的</em>无花果</li>
+    <li id="two" class="hot"><em>费牙的</em>松子</li>
+    <li id="three" class="hot"><em>新鲜的</em>蜂蜜</li>
+    <li id="four"><em>酸爽的</em>香醋</li>
+  </ul>
+</div>
+<div id="footer">
+  <h3>最终效果</h3>
+  <p>1.第1个li中em左侧显示日历背景图像</p>
+  <p>2.前3个li的右侧显示心型背景图像</p>
+  <p>3.后3个li会500毫秒后渐显</p>
+</div>
+</body>
+</html>

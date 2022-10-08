@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="setM">修改message</button>
+        <button @click="doIt(666,'bro')">hello</button>
+        <input type="text" v-model="message" @keydown.enter="sayHi">
+        <h2>{{ message }}</h2>
+    </div>
+    
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:''
+            },
+            methods:{
+                doIt:function(e,q){
+                    console.log('做IT');
+                    console.log(e);
+                    console.log(q);
+                },
+                sayHi:function(){
+                     alert(this.message)
+                },
+                setM:function(){
+                    this.message='何子琪好帅'                        
+                }
+            }
+        })
+    </script>
+</body>
+</html>

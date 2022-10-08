@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery的post方法</title>
+<style>
+body{
+	font: 110% 等线,微软雅黑;
+}
+input{
+	font-size:1em;
+}
+.logindiv{
+	background:#ddd;
+	padding:3px 10px;
+	position:absolute;
+	right:0;
+	top:0;
+}
+label{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+#error {
+	color: red;
+}
+#hidediv{
+	color:orange;
+	font-size: 3em;
+}
+</style>
+</head>
+
+<body>
+<div class="logindiv">
+  <span id="loginuser"><span></span><a id="exit" href="#">退出</a></span>
+  <form id="login">  
+    <label>用户名</label><input type="text" name="username">
+    <label>密码</label><input type="text" name="password">
+    <label>&nbsp;</label><input type="submit" value="登陆">
+  </form>  
+  <p id="error"></p>
+</div>
+<h1>AJAX</h1>
+<p>核心是浏览器XMLHttpRequest对象</p>
+<div id="hidediv">
+	<p>私密内容</p>
+</div>
+
+
+<script src="jquery.min.js"></script>
+<script>
+$(function(){
+	$('#loginuser, #error, #hidediv').hide();
+	$('#login').submit(function(){
+	  var data = $(this).serialize();
+	  var xhr=$.post('http://localhost:8765/', data, checklogin, 'json');
+	  xhr.error(function(){
+		  alert('错误');
+	  });
+	  return false;
+	});
+	function checklogin(data){
+	  if (data.flag=='pass'){
+		  $('#error, #login').hide();
+		  $('#loginuser > span').html(data.user+' 已登陆');
+		  $('#loginuser, #hidediv').show();
+	  }
+	  else{
+		  $('#error').html('用户名或密码有误');
+		  $('#error').show();
+	  }
+	};
+	$('#exit').click(function(){
+	  $('#loginuser, #hidediv, #error').hide();	
+	  $('#login').show();
+	  return false;
+	});
+});
+</script>
+</body>
+</html>
